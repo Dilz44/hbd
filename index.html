@@ -1,0 +1,481 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>For Mina ❤️</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Quicksand:wght@500;700&family=Sacramento&display=swap');
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            background: linear-gradient(135deg, #fce7f0 0%, #fff0f5 50%, #f7d6e0 100%);
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-family: 'Quicksand', sans-serif;
+            padding: 20px;
+            color: #4a4a4a;
+            overflow-x: hidden;
+            position: relative;
+        }
+
+        /* --- ANIMASI BUNGA, LOVE & SPARKLE JATUH --- */
+        .falling-item {
+            position: absolute;
+            top: -50px;
+            font-size: 20px;
+            user-select: none;
+            pointer-events: none !important;
+            animation: fall linear infinite;
+            z-index: 1;
+        }
+
+        @keyframes fall {
+            0% { transform: translateY(0) rotate(0deg); opacity: 0.9; }
+            100% { transform: translateY(105vh) rotate(360deg); opacity: 0.2; }
+        }
+
+        /* --- KOTAK JENDELA UTAMA --- */
+        .window-card {
+            width: 100%;
+            max-width: 400px;
+            background: rgba(255, 255, 255, 0.92);
+            backdrop-filter: blur(10px);
+            border: 2px solid #f3c6df;
+            box-shadow: 0 15px 35px rgba(243, 198, 223, 0.6);
+            border-radius: 20px;
+            overflow: hidden;
+            position: relative;
+            z-index: 10;
+        }
+
+        /* --- HALAMAN SURAT ESTETIK --- */
+        .letter-page {
+            display: none;
+            width: 100%;
+            max-width: 540px;
+            background: #fffdf9;
+            background-image: linear-gradient(#f0e6df 1px, transparent 1px);
+            background-size: 100% 2.4rem;
+            border: 2px solid #e8d3c7;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.1), inset 0 0 35px rgba(243, 198, 223, 0.25);
+            border-radius: 24px;
+            padding: 45px 30px;
+            position: relative;
+            z-index: 20;
+            text-align: left;
+            animation: fadeIn 0.6s ease forwards;
+            margin: 20px 0;
+        }
+
+        .letter-page.active { display: block; }
+
+        .letter-page::before {
+            content: '🎀'; position: absolute; top: -18px; left: 30px;
+            font-size: 28px; background: #fffdf9; padding: 0 8px;
+            border-radius: 50%; box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+        }
+
+        .letter-page::after {
+            content: '💌'; position: absolute; top: -18px; right: 30px;
+            font-size: 28px; background: #fffdf9; padding: 0 8px;
+            border-radius: 50%; box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+        }
+
+        .letter-content {
+            font-size: 0.95rem; line-height: 2.4rem; color: #4a4a4a;
+            max-height: 70vh; overflow-y: auto; padding-right: 8px;
+        }
+
+        /* --- DUA FOTO POLAROID --- */
+        .photo-gallery {
+            display: flex; justify-content: center; gap: 15px;
+            margin: 30px 0 15px 0; flex-wrap: wrap;
+        }
+
+        .photo-frame {
+            background: #ffffff; padding: 8px 8px 20px 8px;
+            border: 1.5px solid #f3c6df; box-shadow: 0 8px 20px rgba(243, 198, 223, 0.4);
+            border-radius: 12px; transition: transform 0.3s ease;
+        }
+
+        .photo-frame:nth-child(1) { transform: rotate(-3deg); }
+        .photo-frame:nth-child(2) { transform: rotate(3deg); }
+
+        .photo-frame:hover { transform: rotate(0deg) scale(1.03); z-index: 5; }
+
+        .photo-frame img {
+            width: 130px; height: 160px; object-fit: cover;
+            border-radius: 8px; display: block;
+        }
+
+        .signature {
+            text-align: right; font-family: 'Sacramento', cursive;
+            font-size: 2.5rem; color: #d47a9e; margin-top: 15px; line-height: 1;
+        }
+
+        /* --- TITLE BAR --- */
+        .title-bar {
+            background: #fff5f8; padding: 12px 18px; display: flex;
+            justify-content: space-between; align-items: center; border-bottom: 1px solid #f3c6df;
+        }
+
+        .title-dots { display: flex; gap: 6px; }
+        .dot { width: 10px; height: 10px; border-radius: 50%; display: inline-block; }
+        .dot-minimize { background: #ffd166; }
+        .dot-close { background: #ef476f; }
+        .window-title { font-size: 0.8rem; color: #d47a9e; font-weight: 700; }
+
+        /* --- ISI KONTEN --- */
+        .window-body {
+            padding: 30px 20px; text-align: center; min-height: 360px;
+            display: flex; flex-direction: column; justify-content: center; align-items: center;
+        }
+
+        .screen { display: none; width: 100%; flex-direction: column; align-items: center; animation: fadeIn 0.4s ease forwards; }
+        .screen.active { display: flex; }
+
+        /* --- WIDGET SPOTIFY --- */
+        .spotify-card {
+            background: #faf2f6; border: 1.5px solid #f3c6df; padding: 15px;
+            border-radius: 14px; width: 100%; margin-bottom: 20px;
+            display: flex; align-items: center; gap: 12px; text-align: left;
+            box-shadow: 0 4px 15px rgba(243, 198, 223, 0.3);
+        }
+
+        .spotify-art {
+            width: 45px; height: 45px; background: #ffb5a7; border-radius: 10px;
+            display: flex; justify-content: center; align-items: center;
+            font-size: 22px; box-shadow: 0 4px 10px rgba(255, 181, 167, 0.5);
+        }
+
+        .spotify-info h4 { font-size: 0.85rem; color: #4a4a4a; font-weight: 700; }
+        .spotify-info p { font-size: 0.75rem; color: #8c7a6b; }
+
+        /* --- KOTAK KADO --- */
+        .gift-wrapper { position: relative; cursor: pointer; display: inline-block; margin-bottom: 15px; z-index: 20; }
+        .gift-box {
+            font-size: 70px; animation: bounceGift 1.5s infinite ease-in-out;
+            user-select: none; transition: transform 0.2s ease;
+            filter: drop-shadow(0 8px 15px rgba(255, 181, 167, 0.6));
+        }
+
+        .instruction-text { font-size: 0.9rem; color: #6b6b6b; font-weight: 600; line-height: 1.5; }
+
+        /* --- EFEK KETIK --- */
+        .typing-container {
+            font-size: 1rem; color: #d47a9e; font-weight: 700; line-height: 1.6;
+            min-height: 80px; display: flex; justify-content: center;
+            align-items: center; text-align: center; padding: 10px;
+        }
+
+        .cursor {
+            display: inline-block; width: 2px; height: 18px;
+            background-color: #d47a9e; animation: blink 0.8s infinite; margin-left: 4px;
+        }
+
+        /* --- DESAIN KUIS & SUCCESS --- */
+        .quiz-box { width: 100%; text-align: center; }
+        .quiz-title { font-size: 0.8rem; color: #f08080; font-weight: 700; margin-bottom: 5px; text-transform: uppercase; }
+        .quiz-question { font-size: 1rem; font-weight: 700; color: #4a4a4a; margin-bottom: 20px; line-height: 1.4; }
+        .quiz-options { display: flex; flex-direction: column; gap: 10px; width: 100%; }
+        
+        .quiz-btn {
+            background: #ffffff; border: 1.5px solid #f3c6df; padding: 12px 15px;
+            border-radius: 12px; font-size: 0.85rem; font-weight: 600; color: #4a4a4a;
+            cursor: pointer; transition: all 0.2s ease; font-family: 'Quicksand', sans-serif;
+            box-shadow: 0 4px 10px rgba(243, 198, 223, 0.2);
+        }
+
+        .quiz-btn:active { transform: scale(0.97); background: #fff0f5; }
+
+        .success-icon { font-size: 55px; margin-bottom: 10px; animation: bounceGift 1.5s infinite ease-in-out; }
+        .success-title { font-size: 1.1rem; font-weight: 700; color: #d47a9e; margin-bottom: 8px; }
+        .success-desc { font-size: 0.85rem; color: #6b6b6b; margin-bottom: 20px; line-height: 1.5; }
+
+        /* --- TOMBOL MODERN --- */
+        .modern-btn {
+            background: linear-gradient(135deg, #ffb5a7 0%, #f08080 100%);
+            color: #ffffff; border: none; padding: 12px 26px; font-size: 0.85rem;
+            font-weight: 700; cursor: pointer; box-shadow: 0 6px 15px rgba(255, 181, 167, 0.5);
+            transition: all 0.2s ease; margin-top: 15px; border-radius: 50px;
+            position: relative; z-index: 20; font-family: 'Quicksand', sans-serif;
+            -webkit-tap-highlight-color: transparent;
+        }
+
+        .modern-btn:active { transform: scale(0.95); }
+
+        @keyframes fadeIn { from { opacity: 0; transform: scale(0.95); } to { opacity: 1; transform: scale(1); } }
+        @keyframes bounceGift { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-8px); } }
+        @keyframes blink { 0%, 50% { opacity: 1; } 51%, 100% { opacity: 0; } }
+    </style>
+</head>
+<body>
+
+    <!-- AUDIO LATAR BELAKANG -->
+    <audio id="bg-music" loop preload="auto">
+        <source src="about you.mp3" type="audio/mpeg">
+    </audio>
+
+    <!-- KOTAK UTAMA -->
+    <div class="window-card" id="main-container">
+        <!-- Title Bar -->
+        <div class="title-bar">
+            <span class="window-title">birthday_gift.exe</span>
+            <div class="title-dots">
+                <span class="dot dot-minimize"></span>
+                <span class="dot dot-close"></span>
+            </div>
+        </div>
+
+        <div class="window-body">
+            
+            <!-- HALAMAN 1: PEMUTAR MUSIK -->
+            <div class="screen active" id="page-1">
+                <div class="spotify-card">
+                    <div class="spotify-art">🎵</div>
+                    <div class="spotify-info">
+                        <h4>About You</h4>
+                        <p>For Mina</p>
+                    </div>
+                </div>
+                <div class="instruction-text" style="margin-bottom: 15px;">Putar lagunya dulu yuk! ✨</div>
+                <button class="modern-btn" id="play-btn" onclick="goToPage2()">Play Music 🎶</button>
+            </div>
+
+            <!-- HALAMAN 2: KOTAK KADO -->
+            <div class="screen" id="page-2">
+                <div class="gift-wrapper" onclick="openGift()">
+                    <div class="gift-box">🎁</div>
+                </div>
+                <div class="instruction-text">Kamu punya satu kado!<br><span style="font-size: 0.8rem; color: #b0b0b0;">( Sentuh kadonya )</span></div>
+            </div>
+
+            <!-- HALAMAN 3: EFEK KETIK BERGANTI -->
+            <div class="screen" id="page-3">
+                <div class="typing-container">
+                    <span id="typed-text"></span><span class="cursor"></span>
+                </div>
+                <button class="modern-btn" id="quiz-start-btn" style="display: none;" onclick="goToQuiz()">Main Kuis Dulu 🎮</button>
+            </div>
+
+            <!-- HALAMAN 4: KUIS 5 PERTANYAAN -->
+            <div class="screen" id="page-quiz">
+                <div class="quiz-box">
+                    <div class="quiz-title" id="quiz-num">PERTANYAAN 1 / 5</div>
+                    <div class="quiz-question" id="quiz-q">Siapa orang yang paling kangen sama Mina setiap hari?</div>
+                    <div class="quiz-options" id="quiz-opts"></div>
+                </div>
+            </div>
+
+            <!-- HALAMAN 5: KUIS SELESAI (YEY BENAR SEMUA) -->
+            <div class="screen" id="page-success">
+                <div class="success-icon">🎉</div>
+                <div class="success-title">Yey! Jawaban kamu benar semua, sayang! ❤️</div>
+                <div class="success-desc">Hebat banget! Sekarang ada satu hal lagi nih buat kamu di dalam...</div>
+                <button class="modern-btn" onclick="goToLetterPage()">Buka Suratnya 💌</button>
+            </div>
+
+        </div>
+    </div>
+
+    <!-- HALAMAN 6: SURAT ESTETIK FULLSCREEN DENGAN 2 FOTO -->
+    <div class="letter-page" id="page-letter">
+        <div class="letter-content">
+            <p>嗯……宝贝，生日快乐。</p><br>
+            <p>其实写这些话之前，我想了很久，也不知道该怎么开口。说真的，我心里一直觉得很难过，也很抱歉。因为今天是你的生日，是对你来说这么特别的一天，可我却什么礼物都没办法送给你，甚至连一份可以亲手交给你的礼物都没有。</p><br>
+            <p>我真的很希望自己能为你做得更多，哪怕只是一件小小的礼物也好。可是现在，我好像只能把这些话写下来送给你。每次想到这里，我都会觉得有点难受。对不起呀，我知道这些文字代替不了真正的礼物，但我还是希望你不要觉得自己没有收到礼物，因为我真的有认真地为你准备这份心意。</p><br>
+            <p>嗯……说完这些，还是要好好祝我的宝贝生日快乐！</p><br>
+            <p>希望新的一岁里，你每天都能开开心心，身体健康，想做的事情都能顺利完成。希望你能遇到更多美好的事情，少一点烦恼，少一点难过。也希望你一直都能做自己喜欢的事情，慢慢变成自己想成为的样子。</p><br>
+            <p>不要总是给自己太大的压力，累了就休息，不开心了也可以跟我说。我想知道你的开心和难过，也想参与你生活里的每一个小瞬间。</p><br>
+            <p>还有一个愿望，希望以后有一天，我能真正陪在你身边，亲自陪你过生日，把准备好的礼物交到你手里。到那时候，我一定不想再只隔着屏幕跟你说生日快乐了。</p><br>
+            <p>最后，生日快乐呀，Mina。希望你一直被爱包围，希望你未来的每一天都能过得幸福。谢谢你来到我的生活里，我真的很珍惜你。</p><br>
+            <p>我爱你，宝贝。❤️</p>
+
+            <!-- DUA FOTO POLAROID MINA -->
+            <div class="photo-gallery">
+                <div class="photo-frame">
+                    <img src="mina.jpg" alt="Mina 1">
+                </div>
+                <div class="photo-frame">
+                    <img src="mina1.jpg" alt="Mina 2">
+                </div>
+            </div>
+
+            <div class="signature">From L</div>
+        </div>
+    </div>
+
+    <script>
+        // --- TEKS KETIK + GOMBALAN ---
+        const messages = [
+            "Happy Birthday, Mina! ✨",
+            "Emm... maaf ya aku cuma bisa ngasih ini...",
+            "Tapi tahu gak? Ada satu hal yang gak bisa dibeli pakai uang...",
+            "Yaitu rasa sayang aku yang banyak banget buat kamu! 💖",
+            "Sebelum buka suratnya, jawab 5 kuis singkat ini dulu yuk! 😉"
+        ];
+
+        let msgIndex = 0;
+        let charIndex = 0;
+        let isDeleting = false;
+
+        function goToPage2() {
+            const audio = document.getElementById('bg-music');
+            if (audio) {
+                audio.play().catch(function(error) {
+                    console.log("Audio diblokir browser, tetap lanjut.");
+                });
+            }
+
+            document.getElementById('page-1').classList.remove('active');
+            document.getElementById('page-2').classList.add('active');
+        }
+
+        function openGift() {
+            document.getElementById('page-2').classList.remove('active');
+            document.getElementById('page-3').classList.add('active');
+            typeLoop();
+        }
+
+        function typeLoop() {
+            const currentText = messages[msgIndex];
+            const typedElement = document.getElementById('typed-text');
+
+            if (isDeleting) {
+                typedElement.textContent = currentText.substring(0, charIndex - 1);
+                charIndex--;
+            } else {
+                typedElement.textContent = currentText.substring(0, charIndex + 1);
+                charIndex++;
+            }
+
+            let typeSpeed = isDeleting ? 30 : 65;
+
+            if (!isDeleting && charIndex === currentText.length) {
+                if (msgIndex === messages.length - 1) {
+                    document.getElementById('quiz-start-btn').style.display = 'block';
+                    return;
+                }
+                typeSpeed = 1600;
+                isDeleting = true;
+            } else if (isDeleting && charIndex === 0) {
+                isDeleting = false;
+                msgIndex++;
+                typeSpeed = 350;
+            }
+
+            setTimeout(typeLoop, typeSpeed);
+        }
+
+        // --- DATA KUIS 5 PERTANYAAN GOMBAL ---
+        const quizData = [
+            {
+                q: "1. Siapa orang yang paling kangen sama Mina setiap hari?",
+                options: [
+                    { text: "L (yang bikin web ini) ❤️", correct: true },
+                    { text: "Tetangga sebelah ❌", correct: false }
+                ]
+            },
+            {
+                q: "2. Apa makanan paling manis di dunia menurut L?",
+                options: [
+                    { text: "Cokelat / Permen 🍫", correct: false },
+                    { text: "Senyuman Mina lah! 😊", correct: true }
+                ]
+            },
+            {
+                q: "3. Tahu gak bedanya kamu sama bintang?",
+                options: [
+                    { text: "Bintang di langit, kalau kamu di hati L ✨", correct: true },
+                    { text: "Sama-sama jauh 😭", correct: false }
+                ]
+            },
+            {
+                q: "4. Kalau L disuruh pilih antara semua harta atau Mina?",
+                options: [
+                    { text: "Pilih Mina selamanya! 💖", correct: true },
+                    { text: "Pilih tidur aja 😴", correct: false }
+                ]
+            },
+            {
+                q: "5. Terakhir, Mina janji ya harus bahagia terus di hari ulang tahun ini?",
+                options: [
+                    { text: "Janji! Sayang L juga ❤️", correct: true },
+                    { text: "Pasti dong! 🌸", correct: true }
+                ]
+            }
+        ];
+
+        let currentQuizIndex = 0;
+
+        function goToQuiz() {
+            document.getElementById('page-3').classList.remove('active');
+            document.getElementById('page-quiz').classList.add('active');
+            loadQuiz();
+        }
+
+        function loadQuiz() {
+            const data = quizData[currentQuizIndex];
+            document.getElementById('quiz-num').textContent = `PERTANYAAN ${currentQuizIndex + 1} / 5`;
+            document.getElementById('quiz-q').textContent = data.q;
+
+            const optsContainer = document.getElementById('quiz-opts');
+            optsContainer.innerHTML = '';
+
+            data.options.forEach(opt => {
+                const btn = document.createElement('button');
+                btn.classList.add('quiz-btn');
+                btn.textContent = opt.text;
+                btn.onclick = () => handleAnswer(opt.correct);
+                optsContainer.appendChild(btn);
+            });
+        }
+
+        function handleAnswer(isCorrect) {
+            if (isCorrect) {
+                currentQuizIndex++;
+                if (currentQuizIndex < quizData.length) {
+                    loadQuiz();
+                } else {
+                    document.getElementById('page-quiz').classList.remove('active');
+                    document.getElementById('page-success').classList.add('active');
+                }
+            } else {
+                alert("Tetot! Jawaban salah 😜 Coba pilih jawaban yang benar dong!");
+            }
+        }
+
+        function goToLetterPage() {
+            document.getElementById('main-container').style.display = 'none';
+            document.getElementById('page-letter').classList.add('active');
+        }
+
+        // --- SKRIP BUNGA, LOVE & SPARKLE JATUH ---
+        const items = ['🌸', '🌺', '💖', '💕', '✨', '🌷', '⭐'];
+        
+        function createFallingItem() {
+            const item = document.createElement('div');
+            item.classList.add('falling-item');
+            item.textContent = items[Math.floor(Math.random() * items.length)];
+            
+            item.style.left = Math.random() * 100 + 'vw';
+            item.style.animationDuration = (Math.random() * 3 + 3) + 's';
+            item.style.fontSize = (Math.random() * 16 + 14) + 'px';
+            
+            document.body.appendChild(item);
+            
+            setTimeout(() => { item.remove(); }, 6000);
+        }
+
+        setInterval(createFallingItem, 350);
+    </script>
+</body>
+</html>
