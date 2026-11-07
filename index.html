@@ -24,40 +24,16 @@
             position: relative;
         }
 
-        body::before {
-            content: '';
-            position: fixed;
-            top: 0; left: 0; width: 100%; height: 100%;
-            background: rgba(255, 255, 255, 0.15);
-            pointer-events: none;
-            z-index: 1;
-        }
-
-        .falling-particle {
-            position: absolute;
-            top: -40px;
-            font-size: 20px;
-            user-select: none;
-            pointer-events: none;
-            animation: smoothFall linear infinite;
-            z-index: 2;
-        }
-
-        @keyframes smoothFall {
-            0% { transform: translateY(-20px) rotate(0deg); opacity: 0.9; }
-            100% { transform: translateY(105vh) rotate(360deg); opacity: 0.15; }
-        }
-
         .main-wrapper {
             width: 100%;
             max-width: 420px;
-            background: rgba(255, 255, 255, 0.98);
+            background: rgba(255, 255, 255, 0.99);
             border: 2px solid #f3c6df;
             box-shadow: 0 25px 50px rgba(0, 0, 0, 0.15);
             border-radius: 28px;
             overflow: hidden;
             position: relative;
-            z-index: 10;
+            z-index: 50;
         }
 
         .app-header {
@@ -110,6 +86,8 @@
             overflow-y: auto;
             padding-right: 4px;
             margin-bottom: 12px;
+            position: relative;
+            z-index: 60;
         }
 
         .music-item {
@@ -121,13 +99,14 @@
             align-items: center;
             gap: 12px;
             cursor: pointer;
-            transition: all 0.25s ease;
+            position: relative;
+            z-index: 70;
+            pointer-events: auto;
         }
 
         .music-item.active-song {
             background: #ffe6f0;
             border-color: #ffb5a7;
-            transform: scale(1.02);
         }
 
         .music-icon {
@@ -154,20 +133,13 @@
             cursor: pointer;
             display: inline-block;
             margin-bottom: 15px;
-            animation: giftFloat 2s infinite ease-in-out;
-            transition: transform 0.2s ease;
+            z-index: 70;
+            pointer-events: auto;
         }
-
-        .gift-box-area:active { transform: scale(0.9); }
 
         .gift-emoji {
             font-size: 80px;
             filter: drop-shadow(0 10px 20px rgba(255, 181, 167, 0.5));
-        }
-
-        @keyframes giftFloat {
-            0%, 100% { transform: translateY(0); }
-            50% { transform: translateY(-10px); }
         }
 
         .countdown-wrapper {
@@ -184,7 +156,6 @@
             color: #d47a9e;
             line-height: 1;
             margin-bottom: 10px;
-            text-shadow: 0 4px 12px rgba(212, 122, 158, 0.25);
         }
 
         .typewriter-box {
@@ -194,7 +165,6 @@
             border-radius: 16px;
             padding: 18px;
             margin-bottom: 15px;
-            box-shadow: inset 0 0 12px rgba(243, 198, 223, 0.3);
         }
 
         .typewriter-top {
@@ -232,7 +202,7 @@
 
         @keyframes cursorBlink { 0%, 50% { opacity: 1; } 51%, 100% { opacity: 0; } }
 
-        .quiz-container { width: 100%; text-align: center; }
+        .quiz-container { width: 100%; text-align: center; z-index: 60; position: relative; }
         .quiz-indicator { font-size: 0.72rem; color: #f08080; font-weight: 700; margin-bottom: 6px; text-transform: uppercase; }
         .quiz-ask { font-size: 0.88rem; font-weight: 700; color: #4a4a4a; margin-bottom: 14px; line-height: 1.4; }
         .quiz-choices { display: flex; flex-direction: column; gap: 8px; width: 100%; }
@@ -240,7 +210,7 @@
         .choice-btn {
             background: #ffffff;
             border: 1.5px solid #fbdde9;
-            padding: 10px 14px;
+            padding: 12px 14px;
             border-radius: 12px;
             font-size: 0.8rem;
             font-weight: 600;
@@ -248,10 +218,10 @@
             cursor: pointer;
             text-align: left;
             font-family: 'Quicksand', sans-serif;
-            transition: all 0.2s ease;
+            position: relative;
+            z-index: 70;
+            pointer-events: auto;
         }
-
-        .choice-btn:active { background: #ffe6f0; transform: scale(0.98); }
 
         .quiz-finish-card {
             width: 100%;
@@ -276,6 +246,8 @@
             gap: 10px;
             margin-bottom: 15px;
             width: 100%;
+            z-index: 60;
+            position: relative;
         }
 
         .star-box {
@@ -288,10 +260,11 @@
             flex-direction: column;
             align-items: center;
             gap: 6px;
-            transition: all 0.2s ease;
+            position: relative;
+            z-index: 70;
+            pointer-events: auto;
         }
 
-        .star-box:active { transform: scale(0.95); }
         .star-box.unlocked { background: #ffe6f0; border-color: #ffb5a7; }
 
         .star-icon-svg { width: 30px; height: 30px; fill: #ffcc00; }
@@ -310,10 +283,7 @@
 
         .modal-box {
             background: #fffdf9;
-            background-image: linear-gradient(#f0e6df 1px, transparent 1px);
-            background-size: 100% 2.2rem;
             border: 2px solid #e8d3c7;
-            box-shadow: 0 15px 30px rgba(0,0,0,0.2);
             border-radius: 20px;
             padding: 24px 20px;
             width: 100%;
@@ -344,14 +314,11 @@
             width: 100%;
             max-width: 580px;
             background: #fffdf9;
-            background-image: linear-gradient(#f0e6df 1px, transparent 1px);
-            background-size: 100% 2.4rem;
             border: 2px solid #e8d3c7;
-            box-shadow: 0 20px 40px rgba(0,0,0,0.15);
             border-radius: 24px;
             padding: 45px 30px;
             position: relative;
-            z-index: 20;
+            z-index: 100;
             text-align: left;
             margin: 20px 0;
             max-height: 85vh;
@@ -361,16 +328,6 @@
 
         .letter-container-page.active { display: block; }
 
-        .letter-container-page::before {
-            content: '🌹'; position: absolute; top: -18px; left: 30px;
-            font-size: 28px; background: #fffdf9; padding: 0 8px; border-radius: 50%;
-        }
-
-        .letter-container-page::after {
-            content: '💌'; position: absolute; top: -18px; right: 30px;
-            font-size: 28px; background: #fffdf9; padding: 0 8px; border-radius: 50%;
-        }
-
         .letter-inner-body { font-size: 0.95rem; color: #4a4a4a; }
         .letter-inner-body p { margin-bottom: 2.4rem; }
 
@@ -378,13 +335,12 @@
             display: none;
             width: 100%;
             max-width: 500px;
-            background: rgba(255, 255, 255, 0.98);
+            background: rgba(255, 255, 255, 0.99);
             border: 2.5px solid #f3c6df;
-            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.2);
             border-radius: 24px;
             padding: 22px 18px;
             position: relative;
-            z-index: 30;
+            z-index: 100;
             text-align: center;
             margin: 15px 0;
             max-height: 88vh;
@@ -409,7 +365,6 @@
             border: 1.5px solid #f3c6df;
             border-radius: 12px;
             padding: 8px 8px 12px 8px;
-            box-shadow: 0 4px 12px rgba(243, 198, 223, 0.4);
             display: flex;
             flex-direction: column;
             align-items: center;
@@ -431,15 +386,22 @@
 
         .action-btn {
             background: linear-gradient(135deg, #ffb5a7 0%, #f08080 100%);
-            color: #ffffff; border: none; padding: 12px 28px; font-size: 0.9rem;
-            font-weight: 700; cursor: pointer; border-radius: 50px;
+            color: #ffffff; 
+            border: none; 
+            padding: 14px 28px; 
+            font-size: 0.9rem;
+            font-weight: 700; 
+            cursor: pointer; 
+            border-radius: 50px;
             font-family: 'Quicksand', sans-serif;
             box-shadow: 0 4px 15px rgba(240, 128, 128, 0.4);
-            transition: transform 0.2s ease;
+            position: relative;
+            z-index: 70;
+            pointer-events: auto;
             -webkit-tap-highlight-color: transparent;
         }
 
-        .action-btn:active { transform: scale(0.95); }
+        .action-btn:active { transform: scale(0.96); }
     </style>
 </head>
 <body>
@@ -447,11 +409,6 @@
     <audio id="bg-audio" loop preload="auto"></audio>
 
     <div class="main-wrapper" id="main-box-container">
-        <span class="decoration-corner-tl">🌸</span>
-        <span class="decoration-corner-tr">✨</span>
-        <span class="decoration-corner-bl">💖</span>
-        <span class="decoration-corner-br">🌷</span>
-
         <div class="app-header">
             <span class="app-title">birthday_gift.exe</span>
             <div class="header-dots">
@@ -499,7 +456,7 @@
                 
                 <div class="hint-scroll" style="text-align: center;">▼ 向下滚动查看更多歌曲 ▼</div>
                 
-                <button class="action-btn" onclick="manualPlayAndStart()" style="margin-bottom: 8px; width: 100%;">点击播放音乐并开始 🎵</button>
+                <button class="action-btn" onclick="manualPlayAndStart()" style="margin-top: 5px; width: 100%;">点击播放音乐并开始 🎵</button>
             </div>
 
             <!-- VIEW 2 -->
@@ -595,284 +552,4 @@
     <div class="modal-shade" id="starModalOverlay">
         <div class="modal-box">
             <div class="modal-title">💌 来自星星的心意</div>
-            <div class="modal-content-text" id="modalBodyText"></div>
-            <button class="action-btn" onclick="dismissStarModal()" style="padding: 8px 20px; font-size: 0.8rem; width: 100%;">关闭 ✨</button>
-        </div>
-    </div>
-
-    <!-- VIEW 6: SURAT -->
-    <div class="letter-container-page" id="view-letter">
-        <div class="letter-inner-body">
-            <p>嗯……宝贝，生日快乐。</p>
-            <p>其实写这些话之前，我想了很久，也不知道该怎么开口。说真的，我心里一直觉得很难过，也很抱歉。因为今天是你的生日，是对你来说这么特别的一天，可我却什么礼物都没办法送给你，甚至连一份可以亲手交给你的礼物都没有。</p>
-            <p>我真的很希望自己能为你做得更多，哪怕只是一件小小的礼物也好。可是现在，我好像只能把这些话写下来送给你。每次想到这里，我都会觉得有点难受。对不起呀，我知道这些文字代替不了真正的礼物，但我还是希望你不要觉得自己没有收到礼物，因为我真的有认真地为你准备这份心意。</p>
-            <p>嗯……说完这些，还是要好好祝我的宝贝生日快乐！</p>
-            <p>希望新的一岁里，你每天都能开开心心，身体健康，想做的事情都能顺利完成。希望你能遇到更多美好的事情，少一点烦恼，少一点难过。也希望你一直都能做自己喜欢的事情，慢慢变成自己想成为的样子。</p>
-            <p>不要总是给自己太大的压力，累了就休息，不开心了也可以跟我说。我想知道你的开心和难过，也想参与你生活里的每一个小瞬间。</p>
-            <p>还有一个愿望，希望以后有一天，我能真正陪在你身边，亲自陪你过生日，把准备好的礼物交到你手里。到那时候，我一定不想再只隔着屏幕跟你说生日快乐了。</p>
-            <p>最后，生日快乐呀，Mina。希望你一直被爱包围，希望你未来的每一天都能过得幸福。谢谢你来到我的生活里，我真的很珍惜你。</p>
-            <p>我爱你，宝贝。❤️</p>
-
-            <div style="text-align: center; margin-top: 15px;">
-                <p style="font-size: 0.88rem; color: #8c7a6b; margin-bottom: 10px; font-weight: 600;">这里还有一个最后的惊喜给你... ✨</p>
-                <div style="font-size: 50px; cursor: pointer; display: inline-block;" onclick="openGalleryView()">🎁</div>
-            </div>
-        </div>
-    </div>
-
-    <!-- VIEW 7: GALERI FOTO LENGKAP 6 FOTO -->
-    <div class="gallery-page-box" id="view-gallery">
-        <div class="gallery-title-main">OUR LOVE STORY</div>
-        <div class="gallery-subtitle-main">我们的专属回忆相册 📖❤️</div>
-        
-        <div class="photo-grid">
-            <div class="polaroid-card">
-                <img src="mina.jpg" alt="Mina" class="polaroid-grid-img">
-                <div class="polaroid-grid-sign">My Love</div>
-            </div>
-            <div class="polaroid-card">
-                <img src="mina1.jpg" alt="Mina" class="polaroid-grid-img">
-                <div class="polaroid-grid-sign">Pretty Girl</div>
-            </div>
-            <div class="polaroid-card">
-                <img src="mina2.jpg" alt="Mina" class="polaroid-grid-img">
-                <div class="polaroid-grid-sign">Very Special</div>
-            </div>
-            <div class="polaroid-card">
-                <img src="mina3.jpg" alt="Mina" class="polaroid-grid-img">
-                <div class="polaroid-grid-sign">Forever</div>
-            </div>
-            <div class="polaroid-card">
-                <img src="mina5.jpg" alt="Mina" class="polaroid-grid-img">
-                <div class="polaroid-grid-sign">So Cute</div>
-            </div>
-            <div class="polaroid-card">
-                <img src="mina6.jpg" alt="Mina" class="polaroid-grid-img">
-                <div class="polaroid-grid-sign">My Treasure</div>
-            </div>
-        </div>
-
-        <div style="font-size: 0.82rem; color: #4a4a4a; line-height: 1.6; font-weight: 600; margin-bottom: 15px; padding: 0 10px;">
-            希望以后的每一个生日，我都能陪在你身边。愿你一直被幸福包围，永远做那个开心又可爱的自己。生日快乐，Mina，我好爱你。❤️
-        </div>
-
-        <button class="action-btn" onclick="location.reload()" style="width: 100%;">从头再来 💖</button>
-    </div>
-
-    <script>
-        let selectedSongFile = "Ed Sheeran - Perfect.mp3";
-
-        function pickSong(filename, element) {
-            selectedSongFile = filename;
-            document.querySelectorAll('.music-item').forEach(el => el.classList.remove('active-song'));
-            element.classList.add('active-song');
-        }
-
-        function manualPlayAndStart() {
-            const player = document.getElementById('bg-audio');
-            player.src = selectedSongFile;
-            player.load();
-            
-            // Paksa play dengan penanganan promise agar tidak memicu error interaksi browser
-            const playPromise = player.play();
-            if (playPromise !== undefined) {
-                playPromise.then(() => {
-                    goToGiftView();
-                }).catch(error => {
-                    console.log("Audio play blocked/error, bypassing to view 2:", error);
-                    goToGiftView();
-                });
-            } else {
-                goToGiftView();
-            }
-        }
-
-        function goToGiftView() {
-            document.getElementById('view-1').classList.remove('active');
-            document.getElementById('view-2').classList.add('active');
-        }
-
-        function launchGiftTimer() {
-            const giftElem = document.getElementById('interactive-gift');
-            const cueText = document.getElementById('gift-cue-text');
-            const timerBox = document.getElementById('timer-box');
-            const timerCount = document.getElementById('timer-count');
-
-            const player = document.getElementById('bg-audio');
-            if (player.paused) {
-                player.play().catch(e => console.log(e));
-            }
-
-            giftElem.style.display = 'none';
-            cueText.style.display = 'none';
-            timerBox.style.display = 'flex';
-
-            startRainParticles();
-
-            let count = 5;
-            timerCount.textContent = count;
-
-            const countdownInterval = setInterval(() => {
-                count--;
-                if (count > 0) {
-                    timerCount.textContent = count;
-                } else {
-                    clearInterval(countdownInterval);
-                    timerBox.style.display = 'none';
-                    document.getElementById('view-2').classList.remove('active');
-                    document.getElementById('view-3').classList.add('active');
-                    runTypewriter();
-                }
-            }, 1000);
-        }
-
-        function startRainParticles() {
-            const symbols = ['🌸', '💖', '✨', '💕', '🌷', '⭐', '🎈'];
-            setInterval(() => {
-                const p = document.createElement('div');
-                p.classList.add('falling-particle');
-                p.textContent = symbols[Math.floor(Math.random() * symbols.length)];
-                p.style.left = Math.random() * 100 + 'vw';
-                p.style.animationDuration = (Math.random() * 2 + 2.5) + 's';
-                p.style.fontSize = (Math.random() * 12 + 16) + 'px';
-                document.body.appendChild(p);
-                setTimeout(() => p.remove(), 4500);
-            }, 250);
-        }
-
-        const stringLines = [
-            "Happy Birthday, Mina! ✨",
-            "嗯……宝贝，对不起只能准备了这个……",
-            "但你知道吗？有些心意是金钱买不到的……",
-            "那就是我对你满满的爱与喜欢！ 💖",
-            "在打开信件之前，先来回答这5个专属小问题吧！ 😉"
-        ];
-
-        let lineIdx = 0;
-        let charIdx = 0;
-        let deletingFlag = false;
-
-        function runTypewriter() {
-            const currentLine = stringLines[lineIdx];
-            const outputElem = document.getElementById('typed-output');
-
-            if (deletingFlag) {
-                outputElem.textContent = currentLine.substring(0, charIdx - 1);
-                charIdx--;
-            } else {
-                outputElem.textContent = currentLine.substring(0, charIdx + 1);
-                charIdx++;
-            }
-
-            let speed = deletingFlag ? 20 : 50;
-
-            if (!deletingFlag && charIdx === currentLine.length) {
-                if (lineIdx === stringLines.length - 1) {
-                    document.getElementById('quiz-unlock-btn').style.display = 'block';
-                    return;
-                }
-                speed = 1400;
-                deletingFlag = true;
-            } else if (deletingFlag && charIdx === 0) {
-                deletingFlag = false;
-                lineIdx++;
-                speed = 250;
-            }
-
-            setTimeout(runTypewriter, speed);
-        }
-
-        const quizPool = [
-            { q: "1. 如果有一天我突然出现在你面前，你觉得我会先做什么？", options: ["A. 抱抱你", "B. 牵你的手", "C. 看着你笑", "D. 告诉你我很想你"] },
-            { q: "2. 如果我们可以一起看日落，你最想靠在哪里？", options: ["A. 我的肩膀", "B. 我的手臂", "C. 我的怀里", "D. 靠在我旁边就好"] },
-            { q: "3. 如果我有一个愿望，你觉得我会许什么愿？", options: ["A. 每天都能见到你", "B. 和你一起去很多地方", "C. 让你每天都开心", "D. 和你一直走下去"] },
-            { q: "4. 如果你问我，遇见你之后最大的变化是什么？", options: ["A. 每天都有了期待", "B. 开始喜欢上了中文", "C. 手机里多了一个特别的人", "D. 生活变得更加温柔"] },
-            { q: "5. 如果有一天我们真的见面了，我最想对你说什么？", options: ["A. 我终于见到你了", "B. 我真的很想你", "C. 你比我想象中还可爱", "D. 以后我们还有很多时间在一起"] }
-        ];
-
-        let activeQuizIdx = 0;
-
-        function enterQuizView() {
-            document.getElementById('view-3').classList.remove('active');
-            document.getElementById('view-4').classList.add('active');
-            renderQuizItem();
-        }
-
-        function renderQuizItem() {
-            const data = quizPool[activeQuizIdx];
-            document.getElementById('q-progress-label').textContent = `问题 ${activeQuizIdx + 1} / 5`;
-            document.getElementById('q-text-content').textContent = data.q;
-
-            const boxOpts = document.getElementById('q-options-list');
-            boxOpts.innerHTML = '';
-
-            data.options.forEach(opt => {
-                const btnChoice = document.createElement('button');
-                btnChoice.classList.add('choice-btn');
-                btnChoice.textContent = opt;
-                btnChoice.onclick = () => proceedNextQuiz();
-                boxOpts.appendChild(btnChoice);
-            });
-        }
-
-        function proceedNextQuiz() {
-            activeQuizIdx++;
-            if (activeQuizIdx < quizPool.length) {
-                renderQuizItem();
-            } else {
-                document.getElementById('view-4').classList.remove('active');
-                document.getElementById('view-4-result').classList.add('active');
-            }
-        }
-
-        function enterStarView() {
-            document.getElementById('view-4-result').classList.remove('active');
-            document.getElementById('view-5').classList.add('active');
-        }
-
-        const starNotes = [
-            "特别的相遇<br>在这么大的世界里，能遇见你，是我最幸运的事情之一。",
-            "你的笑容<br>希望你每天都能开心，因为你的笑容对我来说真的很珍贵。",
-            "我的温柔<br>即使我们相隔很远，只要有你在，我的每一天都会变得特别。",
-            "关于你<br>我喜欢你的每一个小细节，因为那都是独一无二的你。",
-            "我的承诺<br>无论遇到什么，我都希望我们能一直理解彼此，陪伴彼此。",
-            "我的愿望<br>如果能向星星许一个愿望，我希望未来的每一天都有你。❤️"
-        ];
-
-        let litStarsCount = 0;
-        const openedStarsSet = new Set();
-
-        function triggerStarModal(idx) {
-            const overlayElem = document.getElementById('starModalOverlay');
-            const bodyElem = document.getElementById('modalBodyText');
-            bodyElem.innerHTML = starNotes[idx];
-            overlayElem.style.display = 'flex';
-
-            if (!openedStarsSet.has(idx)) {
-                openedStarsSet.add(idx);
-                litStarsCount++;
-                document.getElementById(`star-box-${idx}`).classList.add('unlocked');
-                document.getElementById('star-counter-info').textContent = `已点亮星星: ${litStarsCount} / 6`;
-            }
-
-            if (litStarsCount === 6) {
-                document.getElementById('letter-unlocked-btn').style.display = 'block';
-            }
-        }
-
-        function dismissStarModal() {
-            document.getElementById('starModalOverlay').style.display = 'none';
-        }
-
-        function openLetterPage() {
-            document.getElementById('main-box-container').style.display = 'none';
-            document.getElementById('view-letter').classList.add('active');
-        }
-
-        function openGalleryView() {
-            document.getElementById('view-letter').classList.remove('active');
-            document.getElementById('view-gallery').classList.add('active');
-        }
-    </script>
-</body>
-</html>
+            <div class="modal-content-text" 
