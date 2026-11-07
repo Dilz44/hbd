@@ -14,7 +14,6 @@
         }
 
         body {
-            /* Background Utama menggunakan bg1.jpg */
             background: #e6f0fa url('bg1.jpg') no-repeat center center fixed;
             background-size: cover;
             min-height: 100vh;
@@ -28,30 +27,13 @@
             position: relative;
         }
 
-        /* --- ANIMASI BUNGA, LOVE & SPARKLE JATUH --- */
-        .falling-item {
-            position: absolute;
-            top: -50px;
-            font-size: 20px;
-            user-select: none;
-            pointer-events: none !important;
-            animation: fall linear infinite;
-            z-index: 1;
-        }
-
-        @keyframes fall {
-            0% { transform: translateY(0) rotate(0deg); opacity: 0.9; }
-            100% { transform: translateY(105vh) rotate(360deg); opacity: 0.2; }
-        }
-
         /* --- KOTAK JENDELA UTAMA --- */
         .window-card {
             width: 100%;
             max-width: 420px;
-            background: rgba(255, 255, 255, 0.93);
+            background: rgba(255, 255, 255, 0.95);
             background-image: radial-gradient(#f3c6df 1.5px, transparent 1.5px);
             background-size: 16px 16px;
-            backdrop-filter: blur(10px);
             border: 2.5px solid #f3c6df;
             box-shadow: 0 15px 35px rgba(0, 0, 0, 0.15);
             border-radius: 20px;
@@ -74,13 +56,12 @@
             background-image: linear-gradient(#f0e6df 1px, transparent 1px);
             background-size: 100% 2.4rem;
             border: 2px solid #e8d3c7;
-            box-shadow: 0 20px 40px rgba(0,0,0,0.15), inset 0 0 35px rgba(243, 198, 223, 0.25);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.15);
             border-radius: 24px;
             padding: 45px 30px;
             position: relative;
             z-index: 20;
             text-align: left;
-            animation: fadeIn 0.6s ease forwards;
             margin: 20px 0;
             max-height: 85vh;
             overflow-y: auto;
@@ -91,24 +72,16 @@
 
         .letter-page::before {
             content: '🌹'; position: absolute; top: -18px; left: 30px;
-            font-size: 28px; background: #fffdf9; padding: 0 8px;
-            border-radius: 50%; box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+            font-size: 28px; background: #fffdf9; padding: 0 8px; border-radius: 50%;
         }
 
         .letter-page::after {
             content: '💌'; position: absolute; top: -18px; right: 30px;
-            font-size: 28px; background: #fffdf9; padding: 0 8px;
-            border-radius: 50%; box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+            font-size: 28px; background: #fffdf9; padding: 0 8px; border-radius: 50%;
         }
 
-        .letter-content {
-            font-size: 0.95rem; color: #4a4a4a;
-            padding-right: 5px;
-        }
-
-        .letter-content p {
-            margin-bottom: 2.4rem;
-        }
+        .letter-content { font-size: 0.95rem; color: #4a4a4a; padding-right: 5px; }
+        .letter-content p { margin-bottom: 2.4rem; }
 
         /* --- HALAMAN FLIP BOOK 3D SURPRISE --- */
         .surprise-page {
@@ -116,7 +89,6 @@
             width: 100%;
             max-width: 480px;
             background: rgba(255, 255, 255, 0.95);
-            backdrop-filter: blur(12px);
             border: 2.5px solid #f3c6df;
             box-shadow: 0 20px 50px rgba(0, 0, 0, 0.2);
             border-radius: 24px;
@@ -124,7 +96,6 @@
             position: relative;
             z-index: 30;
             text-align: center;
-            animation: fadeIn 0.8s ease forwards;
             margin: 20px 0;
         }
 
@@ -135,7 +106,6 @@
             font-weight: 700;
             color: #d47a9e;
             margin-bottom: 2px;
-            text-shadow: 0 2px 10px rgba(212, 122, 158, 0.3);
         }
 
         .subtitle-romantic {
@@ -161,7 +131,7 @@
             top: 0;
             left: 0;
             transform-origin: left center;
-            transition: transform 0.8s cubic-bezier(0.645, 0.045, 0.355, 1);
+            transition: transform 0.6s ease;
             transform-style: preserve-3d;
             border-radius: 16px;
             box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
@@ -195,14 +165,13 @@
             background: #fffdf9;
         }
 
-        /* SAMPUL DEPAN BUKU MENGGUNAKAN bg2.jpg */
+        /* SAMPUL DEPAN BUKU */
         .cover-page {
             background: url('bg2.jpg') no-repeat center center;
             background-size: cover;
             border: 3px solid #e09bbd;
             text-align: center;
             position: relative;
-            box-shadow: inset 0 0 20px rgba(255, 255, 255, 0.3);
         }
 
         .cover-ribbon {
@@ -212,7 +181,6 @@
             border-radius: 20px;
             font-size: 0.85rem;
             font-weight: 700;
-            box-shadow: 0 4px 10px rgba(0,0,0,0.15);
             margin-bottom: 15px;
             border: 1.5px dashed #2b5b84;
         }
@@ -248,10 +216,7 @@
             font-weight: 700;
             cursor: pointer;
             box-shadow: 0 4px 10px rgba(243, 198, 223, 0.3);
-            transition: all 0.2s;
         }
-
-        .nav-btn:active { transform: scale(0.95); background: #ffe6f0; }
 
         /* --- TITLE BAR UTAMA --- */
         .title-bar {
@@ -273,7 +238,7 @@
             position: relative;
         }
 
-        .screen { display: none; width: 100%; flex-direction: column; align-items: center; animation: fadeIn 0.4s ease forwards; }
+        .screen { display: none; width: 100%; flex-direction: column; align-items: center; }
         .screen.active { display: flex; }
 
         /* --- SPOTIFY PLAYLIST PILIHAN --- */
@@ -293,33 +258,24 @@
             color: #d47a9e;
             font-weight: 700;
             margin-bottom: 10px;
-            animation: bounceHint 1.5s infinite ease-in-out;
-        }
-
-        @keyframes bounceHint {
-            0%, 100% { transform: translateY(0); }
-            50% { transform: translateY(3px); }
         }
 
         .spotify-card {
             background: #faf2f6; border: 1.5px solid #f3c6df; padding: 8px 10px;
             border-radius: 12px; width: 100%;
             display: flex; align-items: center; gap: 10px; text-align: left;
-            cursor: pointer; transition: all 0.2s ease;
-            box-shadow: 0 4px 10px rgba(243, 198, 223, 0.2);
+            cursor: pointer;
         }
 
-        .spotify-card:hover, .spotify-card.selected {
+        .spotify-card.selected {
             background: #ffe6f0;
             border-color: #ffb5a7;
-            transform: scale(1.02);
         }
 
         .spotify-art {
             width: 34px; height: 34px; background: #ffb5a7; border-radius: 8px;
             display: flex; justify-content: center; align-items: center;
             font-size: 16px; flex-shrink: 0;
-            box-shadow: 0 3px 8px rgba(255, 181, 167, 0.5);
         }
 
         .spotify-info h4 { font-size: 0.78rem; color: #4a4a4a; font-weight: 700; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
@@ -327,15 +283,22 @@
 
         .instruction-text { font-size: 0.85rem; color: #6b6b6b; font-weight: 600; line-height: 1.4; margin-bottom: 6px; }
 
-        /* --- KOTAK KADO AWAL --- */
+        /* --- KOTAK KADO & HITUNG MUNDUR 5 DETIK --- */
         .gift-wrapper { position: relative; cursor: pointer; display: inline-block; margin-bottom: 15px; z-index: 20; }
         .gift-box {
-            font-size: 75px; animation: bounceGift 1.5s infinite ease-in-out;
-            user-select: none; transition: transform 0.2s ease;
+            font-size: 75px;
+            user-select: none;
             filter: drop-shadow(0 8px 15px rgba(255, 181, 167, 0.6));
         }
 
-        /* --- DESAIN BINGKAI KARTUN RAMAI --- */
+        #countdown-display {
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: #d47a9e;
+            margin-bottom: 10px;
+        }
+
+        /* --- DESAIN BINGKAI KARTUN --- */
         .typing-wrapper {
             width: 100%;
             background: #fff5f8;
@@ -343,7 +306,6 @@
             border-radius: 18px;
             padding: 15px;
             position: relative;
-            box-shadow: inset 0 0 15px rgba(243, 198, 223, 0.35), 0 8px 20px rgba(243, 198, 223, 0.25);
             margin-bottom: 12px;
         }
 
@@ -363,12 +325,6 @@
             font-size: 0.95rem; color: #d47a9e; font-weight: 700; line-height: 1.6;
             min-height: 75px; display: flex; justify-content: center;
             align-items: center; text-align: center;
-            position: relative;
-        }
-
-        .cursor {
-            display: inline-block; width: 2px; height: 18px;
-            background-color: #d47a9e; animation: blink 0.8s infinite; margin-left: 4px;
         }
 
         /* --- DESAIN KUIS --- */
@@ -380,14 +336,11 @@
         .quiz-btn {
             background: #ffffff; border: 1.5px solid #f3c6df; padding: 10px 12px;
             border-radius: 12px; font-size: 0.8rem; font-weight: 600; color: #4a4a4a;
-            cursor: pointer; transition: all 0.2s ease; font-family: 'Quicksand', sans-serif;
-            box-shadow: 0 4px 10px rgba(243, 198, 223, 0.2);
+            cursor: pointer; font-family: 'Quicksand', sans-serif;
             text-align: left;
         }
 
-        .quiz-btn:active { transform: scale(0.97); background: #fff0f5; }
-
-        /* --- HASIL KUIS / PESAN PENUTUP KUIS --- */
+        /* --- HASIL KUIS --- */
         .quiz-result-box {
             width: 100%;
             background: #fff5f8;
@@ -395,7 +348,6 @@
             border-radius: 18px;
             padding: 20px 15px;
             text-align: center;
-            box-shadow: inset 0 0 15px rgba(243, 198, 223, 0.35);
             margin-bottom: 15px;
         }
 
@@ -406,7 +358,7 @@
             line-height: 1.6;
         }
 
-        /* --- A LITTLE UNIVERSE (STABIL TOTAL TANPA GOYANG) --- */
+        /* --- A LITTLE UNIVERSE (STABIL TOTAL, TIDAK GOYANG) --- */
         .universe-box { width: 100%; text-align: center; }
         .universe-title { font-size: 1.1rem; font-weight: 700; color: #d47a9e; margin-bottom: 4px; }
         .universe-subtitle { font-size: 0.75rem; color: #8c7a6b; margin-bottom: 15px; }
@@ -424,17 +376,15 @@
             border-radius: 14px;
             padding: 12px 8px;
             cursor: pointer;
-            transition: background 0.2s ease, border-color 0.2s ease;
             display: flex;
             flex-direction: column;
             align-items: center;
             gap: 6px;
-            box-shadow: 0 4px 10px rgba(243, 198, 223, 0.3);
             transform: none !important;
             animation: none !important;
         }
 
-        .star-item:hover, .star-item.clicked {
+        .star-item.clicked {
             background: #ffe6f0;
             border-color: #ffb5a7;
         }
@@ -443,7 +393,6 @@
             width: 32px;
             height: 32px;
             fill: #ffcc00;
-            filter: drop-shadow(0 2px 5px rgba(255, 204, 0, 0.5));
             transform: none !important;
             animation: none !important;
         }
@@ -500,7 +449,6 @@
             background: linear-gradient(135deg, #ffb5a7 0%, #f08080 100%);
             color: #ffffff; border: none; padding: 8px 20px; font-size: 0.8rem;
             font-weight: 700; cursor: pointer; border-radius: 50px;
-            box-shadow: 0 4px 12px rgba(255, 181, 167, 0.5);
             font-family: 'Quicksand', sans-serif;
         }
 
@@ -508,17 +456,10 @@
         .modern-btn {
             background: linear-gradient(135deg, #ffb5a7 0%, #f08080 100%);
             color: #ffffff; border: none; padding: 10px 24px; font-size: 0.85rem;
-            font-weight: 700; cursor: pointer; box-shadow: 0 6px 15px rgba(255, 181, 167, 0.5);
-            transition: all 0.2s ease; margin-top: 5px; border-radius: 50px;
+            font-weight: 700; cursor: pointer; border-radius: 50px;
             position: relative; z-index: 20; font-family: 'Quicksand', sans-serif;
             -webkit-tap-highlight-color: transparent;
         }
-
-        .modern-btn:active { transform: scale(0.95); }
-
-        @keyframes fadeIn { from { opacity: 0; transform: scale(0.95); } to { opacity: 1; transform: scale(1); } }
-        @keyframes bounceGift { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-8px); } }
-        @keyframes blink { 0%, 50% { opacity: 1; } 51%, 100% { opacity: 0; } }
     </style>
 </head>
 <body>
@@ -528,13 +469,11 @@
 
     <!-- KOTAK UTAMA -->
     <div class="window-card" id="main-container">
-        <!-- Hiasan Stiker Pojok -->
         <span class="decoration-corner-tl">🌸</span>
         <span class="decoration-corner-tr">✨</span>
         <span class="decoration-corner-bl">💖</span>
         <span class="decoration-corner-br">🌷</span>
 
-        <!-- Title Bar Utama -->
         <div class="title-bar">
             <span class="window-title">birthday_gift.exe</span>
             <div class="title-dots">
@@ -580,36 +519,35 @@
                     </div>
                 </div>
                 
-                <!-- Indikator Scroll -->
                 <div class="scroll-hint">▼ 向下滚动查看更多歌曲 ▼</div>
 
                 <button class="modern-btn" onclick="goToPage2()">开始 💖</button>
             </div>
 
-            <!-- HALAMAN 2: KOTAK KADO -->
+            <!-- HALAMAN 2: KOTAK KADO & HITUNG MUNDUR 5 DETIK -->
             <div class="screen" id="page-2">
-                <div class="gift-wrapper" onclick="openGift()">
+                <div class="gift-wrapper" id="gift-box-container" onclick="startGiftCountdown()">
                     <div class="gift-box">🎁</div>
                 </div>
-                <div class="instruction-text">你有一个小礼物！<br><span style="font-size: 0.8rem; color: #b0b0b0;">( 请点击礼盒 )</span></div>
+                <div id="countdown-display" style="display: none;">5</div>
+                <div class="instruction-text" id="gift-instruction">你有一个小礼物！<br><span style="font-size: 0.8rem; color: #b0b0b0;">( 请点击礼盒 )</span></div>
             </div>
 
-            <!-- HALAMAN 3: EFEK KETIK BERGANTI -->
+            <!-- HALAMAN 3: EFEK KETIK -->
             <div class="screen" id="page-3">
                 <div class="typing-wrapper">
                     <div class="typing-sub-header">
                         <span>🎀 message.txt</span>
                         <span>💌 for_mina</span>
                     </div>
-
                     <div class="typing-container">
-                        <span id="typed-text"></span><span class="cursor"></span>
+                        <span id="typed-text"></span>
                     </div>
                 </div>
                 <button class="modern-btn" id="quiz-start-btn" style="display: none;" onclick="goToQuiz()">先玩个小测试 🎮</button>
             </div>
 
-            <!-- HALAMAN 4: KUIS MANDARIN 5 PERTANYAAN -->
+            <!-- HALAMAN 4: KUIS -->
             <div class="screen" id="page-quiz">
                 <div class="quiz-box">
                     <div class="quiz-title" id="quiz-num">问题 1 / 5</div>
@@ -618,7 +556,7 @@
                 </div>
             </div>
 
-            <!-- HALAMAN 4.5: HASIL KUIS / PESAN PENUTUP KUIS -->
+            <!-- HALAMAN 4.5: HASIL KUIS -->
             <div class="screen" id="page-quiz-result">
                 <div class="quiz-result-box">
                     <div class="quiz-result-text">
@@ -630,7 +568,7 @@
                 <button class="modern-btn" onclick="goToUniverse()">开启幸运星 ✨</button>
             </div>
 
-            <!-- HALAMAN 5: A LITTLE UNIVERSE (BINTANG KEBERUNTUNGAN) -->
+            <!-- HALAMAN 5: BINTANG KEBERUNTUNGAN -->
             <div class="screen" id="page-universe">
                 <div class="universe-box">
                     <div class="universe-title">✨ 我们的幸运星 ✨</div>
@@ -683,7 +621,7 @@
         </div>
     </div>
 
-    <!-- HALAMAN 6: SURAT ESTETIK VINTAGE -->
+    <!-- HALAMAN 6: SURAT -->
     <div class="letter-page" id="page-letter">
         <div class="letter-content">
             <p>嗯……宝贝，生日快乐。</p>
@@ -696,7 +634,6 @@
             <p>最后，生日快乐呀，Mina。希望你一直被爱包围，希望你未来的每一天都能过得幸福。谢谢你来到我的生活里，我真的很珍惜你。</p>
             <p>我爱你，宝贝。❤️</p>
 
-            <!-- KADO KECIL DI BAWAH SURAT -->
             <div class="end-gift-section">
                 <p style="font-size: 0.9rem; color: #8c7a6b; margin-bottom: 10px; font-weight: 600;">这里还有一个最后的惊喜给你... ✨</p>
                 <div class="mini-gift" onclick="openSurprisePage()">🎁</div>
@@ -704,15 +641,13 @@
         </div>
     </div>
 
-    <!-- HALAMAN 7: BUKU KENANGAN 3D INTERAKTIF -->
+    <!-- HALAMAN 7: BUKU KENANGAN 3D (LENGKAP 6 HALAMAN) -->
     <div class="surprise-page" id="page-surprise">
         <div class="chinese-title">OUR LOVE STORY</div>
         <div class="subtitle-romantic">点击翻页看我们的相册 📖❤️</div>
         
-        <!-- FLIP BOOK CONTAINER -->
         <div class="book-container">
-            
-            <!-- PAGE 1: COVER BUKU MENGGUNAKAN bg2.jpg -->
+            <!-- HALAMAN 1: SAMPUL -->
             <div class="book-page" id="p1" style="z-index: 6;" onclick="flipPage(1)">
                 <div class="page-front cover-page">
                     <div style="height: 100%; display: flex; flex-direction: column; justify-content: space-between; align-items: center; padding: 25px 10px;">
@@ -729,7 +664,7 @@
                 </div>
             </div>
 
-            <!-- PAGE 2 (mina1.jpg & mina2.jpg) -->
+            <!-- HALAMAN 2 -->
             <div class="book-page" id="p2" style="z-index: 5;" onclick="flipPage(2)">
                 <div class="page-front">
                     <img src="mina1.jpg" alt="Mina" class="polaroid-img">
@@ -741,7 +676,7 @@
                 </div>
             </div>
 
-            <!-- PAGE 3 (mina3.jpg & mina5.jpg) -->
+            <!-- HALAMAN 3 -->
             <div class="book-page" id="p3" style="z-index: 4;" onclick="flipPage(3)">
                 <div class="page-front">
                     <img src="mina3.jpg" alt="Mina" class="polaroid-img">
@@ -753,7 +688,7 @@
                 </div>
             </div>
 
-            <!-- PAGE 4 (mina6.jpg & Halaman Penutup Pesan) -->
+            <!-- HALAMAN 4 -->
             <div class="book-page" id="p4" style="z-index: 3;" onclick="flipPage(4)">
                 <div class="page-front">
                     <img src="mina6.jpg" alt="Mina" class="polaroid-img">
@@ -765,10 +700,8 @@
                     </div>
                 </div>
             </div>
-
         </div>
 
-        <!-- TOMBOL CONTROL BUKU -->
         <div class="book-nav-btn">
             <button class="nav-btn" onclick="prevPage()">◀ 上一页</button>
             <button class="nav-btn" onclick="nextPage()">下一页 ▶</button>
@@ -778,7 +711,6 @@
     </div>
 
     <script>
-        // --- LOGIC 3D PAGE FLIP BOOK ---
         let currentBookPage = 0;
         const totalPages = 4;
 
@@ -807,7 +739,6 @@
             }
         }
 
-        // --- PEMILIHAN LAGU SPOTIFY CARD ---
         let chosenSong = "Mitski - My Love Mine All Mine.mp3";
 
         function selectSong(songName, element) {
@@ -821,14 +752,43 @@
         function goToPage2() {
             const audio = document.getElementById('bg-music');
             audio.src = chosenSong;
-            audio.play().catch(function(error) {
-                console.log("Audio blocked by browser, continuing.");
+            audio.play().then(() => {
+                console.log("Audio playing successfully");
+            }).catch(error => {
+                console.log("Audio autoplay prevented", error);
             });
             document.getElementById('page-1').classList.remove('active');
             document.getElementById('page-2').classList.add('active');
         }
 
-        // --- TEKS KETIK + GOMBALAN ---
+        // FUNGSI HITUNG MUNDUR 5 DETIK SEBELUM LANJUT KE PESAN
+        function startGiftCountdown() {
+            const giftBox = document.getElementById('gift-box-container');
+            const countdownDisplay = document.getElementById('countdown-display');
+            const instructionText = document.getElementById('gift-instruction');
+
+            // Sembunyikan kado dan instruksi, tampilkan angka hitung mundur
+            giftBox.style.display = 'none';
+            instructionText.style.display = 'none';
+            countdownDisplay.style.display = 'block';
+
+            let timeLeft = 5;
+            countdownDisplay.textContent = timeLeft;
+
+            const timer = setInterval(() => {
+                timeLeft--;
+                if (timeLeft > 0) {
+                    countdownDisplay.textContent = timeLeft;
+                } else {
+                    clearInterval(timer);
+                    // Pindah ke halaman 3 (teks pesan) setelah 5 detik pas
+                    document.getElementById('page-2').classList.remove('active');
+                    document.getElementById('page-3').classList.add('active');
+                    typeText();
+                }
+            }, 1000);
+        }
+
         const messages = [
             "Happy Birthday, Mina! ✨",
             "嗯……宝贝，对不起只能准备了这个……",
@@ -837,93 +797,17 @@
             "在打开信件之前，先来回答这5个专属小问题吧！ 😉"
         ];
 
-        let msgIndex = 0;
-        let charIndex = 0;
-        let isDeleting = false;
-
-        function openGift() {
-            document.getElementById('page-2').classList.remove('active');
-            document.getElementById('page-3').classList.add('active');
-            typeLoop();
+        function typeText() {
+            document.getElementById('typed-text').textContent = messages[0];
+            document.getElementById('quiz-start-btn').style.display = 'block';
         }
 
-        function typeLoop() {
-            const currentText = messages[msgIndex];
-            const typedElement = document.getElementById('typed-text');
-
-            if (isDeleting) {
-                typedElement.textContent = currentText.substring(0, charIndex - 1);
-                charIndex--;
-            } else {
-                typedElement.textContent = currentText.substring(0, charIndex + 1);
-                charIndex++;
-            }
-
-            let typeSpeed = isDeleting ? 30 : 65;
-
-            if (!isDeleting && charIndex === currentText.length) {
-                if (msgIndex === messages.length - 1) {
-                    document.getElementById('quiz-start-btn').style.display = 'block';
-                    return;
-                }
-                typeSpeed = 1600;
-                isDeleting = true;
-            } else if (isDeleting && charIndex === 0) {
-                isDeleting = false;
-                msgIndex++;
-                typeSpeed = 350;
-            }
-
-            setTimeout(typeLoop, typeSpeed);
-        }
-
-        // --- DATA KUIS MANDARIN FULL ---
         const quizData = [
-            {
-                q: "1. 如果有一天我突然出现在你面前，你觉得我会先做什么？",
-                options: [
-                    "A. 抱抱你",
-                    "B. 牵你的手",
-                    "C. 看着你笑",
-                    "D. 告诉你我很想你"
-                ]
-            },
-            {
-                q: "2. 如果我们可以一起看日落，你最想靠在哪里？",
-                options: [
-                    "A. 我的肩膀",
-                    "B. 我的手臂",
-                    "C. 我的怀里",
-                    "D. 靠在我旁边就好"
-                ]
-            },
-            {
-                q: "3. 如果我有一个愿望，你觉得我会许什么愿？",
-                options: [
-                    "A. 每天都能见到你",
-                    "B. 和你一起去很多地方",
-                    "C. 让你每天都开心",
-                    "D. 和你一直走下去"
-                ]
-            },
-            {
-                q: "4. 如果你问我，遇见你之后最大的变化是什么？",
-                options: [
-                    "A. 每天都有了期待",
-                    "B. 开始喜欢上了中文",
-                    "C. 手机里多了一个特别的人",
-                    "D. 生活变得更加温柔"
-                ]
-            },
-            {
-                q: "5. 如果有一天我们真的见面了，我最想对你说什么？",
-                options: [
-                    "A. 我终于见到你了",
-                    "B. 我真的很想你",
-                    "C. 你比我想象中还可爱",
-                    "D. 以后我们还有很多时间在一起"
-                ]
-            }
+            { q: "1. 如果有一天我突然出现在你面前，你觉得我会先做什么？", options: ["A. 抱抱你", "B. 牵你的手", "C. 看着你笑", "D. 告诉你我很想你"] },
+            { q: "2. 如果我们可以一起看日落，你最想靠在哪里？", options: ["A. 我的肩膀", "B. 我的手臂", "C. 我的怀里", "D. 靠在我旁边就好"] },
+            { q: "3. 如果我有一个愿望，你觉得我会许什么愿？", options: ["A. 每天都能见到你", "B. 和你一起去很多地方", "C. 让你每天都开心", "D. 和你一直走下去"] },
+            { q: "4. 如果你问我，遇见你之后最大的变化是什么？", options: ["A. 每天都有了期待", "B. 开始喜欢上了中文", "C. 手机里多了一个特别的人", "D. 生活变得更加温柔"] },
+            { q: "5. 如果有一天我们真的见面了，我最想对你说什么？", options: ["A. 我终于见到你了", "B. 我真的很想你", "C. 你比我想象中还可爱", "D. 以后我们还有很多时间在一起"] }
         ];
 
         let currentQuizIndex = 0;
@@ -966,7 +850,6 @@
             document.getElementById('page-universe').classList.add('active');
         }
 
-        // --- A LITTLE UNIVERSE MODAL LOGIC (STABIL) ---
         const reasons = [
             "特别的相遇<br>在这么大的世界里，能遇见你，是我最幸运的事情之一。",
             "你的笑容<br>希望你每天都能开心，因为你的笑容对我来说真的很珍贵。",
@@ -1010,25 +893,6 @@
             document.getElementById('page-letter').classList.remove('active');
             document.getElementById('page-surprise').classList.add('active');
         }
-
-        // --- SKRIP BUNGA, LOVE & SPARKLE JATUH ---
-        const items = ['🌸', '🌺', '💖', '💕', '✨', '🌷', '⭐'];
-        
-        function createFallingItem() {
-            const item = document.createElement('div');
-            item.classList.add('falling-item');
-            item.textContent = items[Math.floor(Math.random() * items.length)];
-            
-            item.style.left = Math.random() * 100 + 'vw';
-            item.style.animationDuration = (Math.random() * 3 + 3) + 's';
-            item.style.fontSize = (Math.random() * 16 + 14) + 'px';
-            
-            document.body.appendChild(item);
-            
-            setTimeout(() => { item.remove(); }, 6000);
-        }
-
-        setInterval(createFallingItem, 350);
     </script>
 </body>
 </html>
