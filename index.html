@@ -86,8 +86,6 @@
             overflow-y: auto;
             padding-right: 4px;
             margin-bottom: 12px;
-            position: relative;
-            z-index: 60;
         }
 
         .music-item {
@@ -99,9 +97,7 @@
             align-items: center;
             gap: 12px;
             cursor: pointer;
-            position: relative;
-            z-index: 70;
-            pointer-events: auto;
+            transition: all 0.25s ease;
         }
 
         .music-item.active-song {
@@ -133,8 +129,6 @@
             cursor: pointer;
             display: inline-block;
             margin-bottom: 15px;
-            z-index: 70;
-            pointer-events: auto;
         }
 
         .gift-emoji {
@@ -202,7 +196,7 @@
 
         @keyframes cursorBlink { 0%, 50% { opacity: 1; } 51%, 100% { opacity: 0; } }
 
-        .quiz-container { width: 100%; text-align: center; z-index: 60; position: relative; }
+        .quiz-container { width: 100%; text-align: center; }
         .quiz-indicator { font-size: 0.72rem; color: #f08080; font-weight: 700; margin-bottom: 6px; text-transform: uppercase; }
         .quiz-ask { font-size: 0.88rem; font-weight: 700; color: #4a4a4a; margin-bottom: 14px; line-height: 1.4; }
         .quiz-choices { display: flex; flex-direction: column; gap: 8px; width: 100%; }
@@ -218,9 +212,6 @@
             cursor: pointer;
             text-align: left;
             font-family: 'Quicksand', sans-serif;
-            position: relative;
-            z-index: 70;
-            pointer-events: auto;
         }
 
         .quiz-finish-card {
@@ -246,8 +237,6 @@
             gap: 10px;
             margin-bottom: 15px;
             width: 100%;
-            z-index: 60;
-            position: relative;
         }
 
         .star-box {
@@ -260,9 +249,6 @@
             flex-direction: column;
             align-items: center;
             gap: 6px;
-            position: relative;
-            z-index: 70;
-            pointer-events: auto;
         }
 
         .star-box.unlocked { background: #ffe6f0; border-color: #ffb5a7; }
@@ -395,10 +381,8 @@
             border-radius: 50px;
             font-family: 'Quicksand', sans-serif;
             box-shadow: 0 4px 15px rgba(240, 128, 128, 0.4);
-            position: relative;
-            z-index: 70;
-            pointer-events: auto;
             -webkit-tap-highlight-color: transparent;
+            width: 100%;
         }
 
         .action-btn:active { transform: scale(0.96); }
@@ -423,29 +407,29 @@
             <div class="view-panel active" id="view-1">
                 <div class="instruction-text" style="margin-bottom: 10px; font-weight: 700; color: #6b6b6b; text-align: center;">请先选择你喜欢的音乐，宝贝 🎶</div>
                 
-                <div class="music-list">
-                    <div class="music-item active-song" onclick="pickSong('Ed Sheeran - Perfect.mp3', this)">
+                <div class="music-list" id="music-list-container">
+                    <div class="music-item active-song" data-file="Ed Sheeran - Perfect.mp3">
                         <div class="music-icon">🎵</div>
                         <div class="music-meta">
                             <h4>Perfect</h4>
                             <p>Ed Sheeran</p>
                         </div>
                     </div>
-                    <div class="music-item" onclick="pickSong('Mitski - My Love Mine All Mine.mp3', this)">
+                    <div class="music-item" data-file="Mitski - My Love Mine All Mine.mp3">
                         <div class="music-icon">🎵</div>
                         <div class="music-meta">
                             <h4>My Love Mine All Mine</h4>
                             <p>Mitski</p>
                         </div>
                     </div>
-                    <div class="music-item" onclick="pickSong('Taylor Swift - Love Story (Lyrics).mp3', this)">
+                    <div class="music-item" data-file="Taylor Swift - Love Story (Lyrics).mp3">
                         <div class="music-icon">🎵</div>
                         <div class="music-meta">
                             <h4>Love Story</h4>
                             <p>Taylor Swift</p>
                         </div>
                     </div>
-                    <div class="music-item" onclick="pickSong('The 1975 - About You.mp3', this)">
+                    <div class="music-item" data-file="The 1975 - About You.mp3">
                         <div class="music-icon">🎵</div>
                         <div class="music-meta">
                             <h4>About You</h4>
@@ -456,12 +440,12 @@
                 
                 <div class="hint-scroll" style="text-align: center;">▼ 向下滚动查看更多歌曲 ▼</div>
                 
-                <button class="action-btn" onclick="manualPlayAndStart()" style="margin-top: 5px; width: 100%;">点击播放音乐并开始 🎵</button>
+                <button class="action-btn" id="start-music-btn" style="margin-top: 5px;">点击播放音乐并开始 🎵</button>
             </div>
 
             <!-- VIEW 2 -->
             <div class="view-panel" id="view-2">
-                <div class="gift-box-area" id="interactive-gift" onclick="launchGiftTimer()">
+                <div class="gift-box-area" id="interactive-gift">
                     <div class="gift-emoji">🎁</div>
                 </div>
                 <div class="instruction-text" id="gift-cue-text" style="text-align: center;">你有一个小礼物！<br><span style="font-size: 0.78rem; color: #b0b0b0;">( 请点击礼盒 )</span></div>
@@ -483,7 +467,7 @@
                         <span id="typed-output"></span><span class="blinking-caret"></span>
                     </div>
                 </div>
-                <button class="action-btn" id="quiz-unlock-btn" style="display: none; width: 100%;" onclick="enterQuizView()">先玩个小测试 🎮</button>
+                <button class="action-btn" id="quiz-unlock-btn" style="display: none;">先玩个小测试 🎮</button>
             </div>
 
             <!-- VIEW 4 -->
@@ -504,7 +488,7 @@
                         希望有一天，我们可以把这些问题里的每一个愿望都变成现实。❤️
                     </div>
                 </div>
-                <button class="action-btn" onclick="enterStarView()" style="width: 100%;">开启幸运星 ✨</button>
+                <button class="action-btn" id="to-star-btn">开启幸运星 ✨</button>
             </div>
 
             <!-- VIEW 5 -->
@@ -514,34 +498,34 @@
                     <div style="font-size: 0.75rem; color: #8c7a6b; margin-bottom: 14px;">轻触下方的星星，解锁专属心意 🌟</div>
                     
                     <div class="stars-layout">
-                        <div class="star-box" id="star-box-0" onclick="triggerStarModal(0)">
+                        <div class="star-box" data-star="0">
                             <svg class="star-icon-svg" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
                             <div class="star-text-label">星星 1</div>
                         </div>
-                        <div class="star-box" id="star-box-1" onclick="triggerStarModal(1)">
+                        <div class="star-box" data-star="1">
                             <svg class="star-icon-svg" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
                             <div class="star-text-label">星星 2</div>
                         </div>
-                        <div class="star-box" id="star-box-2" onclick="triggerStarModal(2)">
+                        <div class="star-box" data-star="2">
                             <svg class="star-icon-svg" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
                             <div class="star-text-label">星星 3</div>
                         </div>
-                        <div class="star-box" id="star-box-3" onclick="triggerStarModal(3)">
+                        <div class="star-box" data-star="3">
                             <svg class="star-icon-svg" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
                             <div class="star-text-label">星星 4</div>
                         </div>
-                        <div class="star-box" id="star-box-4" onclick="triggerStarModal(4)">
+                        <div class="star-box" data-star="4">
                             <svg class="star-icon-svg" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
                             <div class="star-text-label">星星 5</div>
                         </div>
-                        <div class="star-box" id="star-box-5" onclick="triggerStarModal(5)">
+                        <div class="star-box" data-star="5">
                             <svg class="star-icon-svg" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
                             <div class="star-text-label">星星 6</div>
                         </div>
                     </div>
 
                     <div style="font-size: 0.75rem; color: #8c7a6b; margin-bottom: 12px;" id="star-counter-info">已点亮星星: 0 / 6</div>
-                    <button class="action-btn" id="letter-unlocked-btn" style="display: none; width: 100%;" onclick="openLetterPage()">打开信件 💌</button>
+                    <button class="action-btn" id="letter-unlocked-btn" style="display: none;">打开信件 💌</button>
                 </div>
             </div>
 
@@ -552,4 +536,84 @@
     <div class="modal-shade" id="starModalOverlay">
         <div class="modal-box">
             <div class="modal-title">💌 来自星星的心意</div>
-            <div class="modal-content-text" 
+            <div class="modal-content-text" id="modalBodyText"></div>
+            <button class="action-btn" id="close-modal-btn" style="padding: 10px 20px; font-size: 0.85rem;">关闭 ✨</button>
+        </div>
+    </div>
+
+    <!-- VIEW 6: SURAT -->
+    <div class="letter-container-page" id="view-letter">
+        <div class="letter-inner-body">
+            <p>嗯……宝贝，生日快乐。</p>
+            <p>其实写这些话之前，我想了很久，也不知道该怎么开口。说真的，我心里一直觉得很难过，也很抱歉。因为今天是你的生日，是对你来说这么特别的一天，可我却什么礼物都没办法送给你，甚至连一份可以亲手交给你的礼物都没有。</p>
+            <p>我真的很希望自己能为你做得更多，哪怕只是一件小小的礼物也好。可是现在，我好像只能把这些话写下来送给你。每次想到这里，我都会觉得有点难受。对不起呀，我知道这些文字代替不了真正的礼物，但我还是希望你不要觉得自己没有收到礼物，因为我真的有认真地为你准备这份心意。</p>
+            <p>嗯……说完这些，还是要好好祝我的宝贝生日快乐！</p>
+            <p>希望新的一岁里，你每天都能开开心心，身体健康，想做的事情都能顺利完成。希望你能遇到更多美好的事情，少一点烦恼，少一点难过。也希望你一直都能做自己喜欢的事情，慢慢变成自己想成为的样子。</p>
+            <p>不要总是给自己太大的压力，累了就休息，不开心了也可以跟我说。我想知道你的开心和难过，也想参与你生活里的每一个小瞬间。</p>
+            <p>还有一个愿望，希望以后有一天，我能真正陪在你身边，亲自陪你过生日，把准备好的礼物交到你手里。到那时候，我一定不想再只隔着屏幕跟你说生日快乐了。</p>
+            <p>最后，生日快乐呀，Mina。希望你一直被爱包围，希望你未来的每一天都能过得幸福。谢谢你来到我的生活里，我真的很珍惜你。</p>
+            <p>我爱你，宝贝。❤️</p>
+
+            <div style="text-align: center; margin-top: 15px;">
+                <p style="font-size: 0.88rem; color: #8c7a6b; margin-bottom: 10px; font-weight: 600;">这里还有一个最后的惊喜给你... ✨</p>
+                <div id="open-gallery-trigger" style="font-size: 50px; cursor: pointer; display: inline-block;">🎁</div>
+            </div>
+        </div>
+    </div>
+
+    <!-- VIEW 7 -->
+    <div class="gallery-page-box" id="view-gallery">
+        <div class="gallery-title-main">OUR LOVE STORY</div>
+        <div class="gallery-subtitle-main">我们的专属回忆相册 📖❤️</div>
+        
+        <div class="photo-grid">
+            <div class="polaroid-card">
+                <img src="mina.jpg" alt="Mina" class="polaroid-grid-img">
+                <div class="polaroid-grid-sign">My Love</div>
+            </div>
+            <div class="polaroid-card">
+                <img src="mina1.jpg" alt="Mina" class="polaroid-grid-img">
+                <div class="polaroid-grid-sign">Pretty Girl</div>
+            </div>
+            <div class="polaroid-card">
+                <img src="mina2.jpg" alt="Mina" class="polaroid-grid-img">
+                <div class="polaroid-grid-sign">Very Special</div>
+            </div>
+            <div class="polaroid-card">
+                <img src="mina3.jpg" alt="Mina" class="polaroid-grid-img">
+                <div class="polaroid-grid-sign">Forever</div>
+            </div>
+            <div class="polaroid-card">
+                <img src="mina5.jpg" alt="Mina" class="polaroid-grid-img">
+                <div class="polaroid-grid-sign">So Cute</div>
+            </div>
+            <div class="polaroid-card">
+                <img src="mina6.jpg" alt="Mina" class="polaroid-grid-img">
+                <div class="polaroid-grid-sign">My Treasure</div>
+            </div>
+        </div>
+
+        <div style="font-size: 0.82rem; color: #4a4a4a; line-height: 1.6; font-weight: 600; margin-bottom: 15px; padding: 0 10px;">
+            希望以后的每一个生日，我都能陪在你身边。愿你一直被幸福包围，永远做那个开心又可爱的自己。生日快乐，Mina，我好爱你。❤️
+        </div>
+
+        <button class="action-btn" id="reload-btn">从头再来 💖</button>
+    </div>
+
+    <script>
+        let selectedSongFile = "Ed Sheeran - Perfect.mp3";
+
+        // Pemilihan lagu via Event Listener
+        document.querySelectorAll('.music-item').forEach(item => {
+            item.addEventListener('click', function() {
+                selectedSongFile = this.getAttribute('data-file');
+                document.querySelectorAll('.music-item').forEach(el => el.classList.remove('active-song'));
+                this.classList.add('active-song');
+            });
+        });
+
+        // Tombol Play & Start
+        document.getElementById('start-music-btn').addEventListener('click', function() {
+            const player = document.getElementById('bg-audio');
+            player.src = selectedSongFile;
+            player.load();
