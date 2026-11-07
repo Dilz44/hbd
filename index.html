@@ -492,10 +492,8 @@
 </head>
 <body>
 
-    <!-- AUDIO PEMUTAR LAGU -->
     <audio id="bg-audio" loop preload="auto"></audio>
 
-    <!-- KOTAK UTAMA -->
     <div class="main-wrapper" id="main-box-container">
         <span class="decoration-corner-tl">🌸</span>
         <span class="decoration-corner-tr">✨</span>
@@ -512,12 +510,19 @@
 
         <div class="app-body">
             
-            <!-- VIEW 1: PEMILIHAN LAGU & TOMBOL PLAY MANUAL -->
+            <!-- VIEW 1: PILIH LAGU SESUAI NAMA FILE GITHUB -->
             <div class="view-panel active" id="view-1">
                 <div class="instruction-text" style="margin-bottom: 10px; font-weight: 700; color: #6b6b6b; text-align: center;">请先选择你喜欢的音乐，宝贝 🎶</div>
                 
                 <div class="music-list">
-                    <div class="music-item active-song" onclick="pickSong('Mitski - My Love Mine All Mine.mp3', this)">
+                    <div class="music-item active-song" onclick="pickSong('Ed Sheeran - Perfect.mp3', this)">
+                        <div class="music-icon">🎵</div>
+                        <div class="music-meta">
+                            <h4>Perfect</h4>
+                            <p>Ed Sheeran</p>
+                        </div>
+                    </div>
+                    <div class="music-item" onclick="pickSong('Mitski - My Love Mine All Mine.mp3', this)">
                         <div class="music-icon">🎵</div>
                         <div class="music-meta">
                             <h4>My Love Mine All Mine</h4>
@@ -531,13 +536,6 @@
                             <p>Taylor Swift</p>
                         </div>
                     </div>
-                    <div class="music-item" onclick="pickSong('Ed Sheeran - Perfect.mp3', this)">
-                        <div class="music-icon">🎵</div>
-                        <div class="music-meta">
-                            <h4>Perfect</h4>
-                            <p>Ed Sheeran</p>
-                        </div>
-                    </div>
                     <div class="music-item" onclick="pickSong('The 1975 - About You.mp3', this)">
                         <div class="music-icon">🎵</div>
                         <div class="music-meta">
@@ -549,12 +547,10 @@
                 
                 <div class="hint-scroll" style="text-align: center;">▼ 向下滚动查看更多歌曲 ▼</div>
                 
-                <!-- TOMBOL PLAY KHUSUS AGAR AUDIO DIJAMIN AKTIF OLEH BROWSER -->
                 <button class="action-btn" onclick="manualPlayAndStart()" style="margin-bottom: 8px;">点击播放音乐并开始 🎵</button>
-                <button class="action-btn" onclick="goToGiftView()" style="background: #ccc; font-size: 0.75rem; padding: 6px 16px;">( 网页无声直接进入 )</button>
             </div>
 
-            <!-- VIEW 2: KOTAK KADO & HITUNG MUNDUR -->
+            <!-- VIEW 2: KADO -->
             <div class="view-panel" id="view-2">
                 <div class="gift-box-area" id="interactive-gift" onclick="launchGiftTimer()">
                     <div class="gift-emoji">🎁</div>
@@ -567,7 +563,7 @@
                 </div>
             </div>
 
-            <!-- VIEW 3: EFEK KETIK PESAN -->
+            <!-- VIEW 3: TEKS KETIK -->
             <div class="view-panel" id="view-3">
                 <div class="typewriter-box">
                     <div class="typewriter-top">
@@ -581,7 +577,7 @@
                 <button class="action-btn" id="quiz-unlock-btn" style="display: none;" onclick="enterQuizView()">先玩个小测试 🎮</button>
             </div>
 
-            <!-- VIEW 4: KUIS SPESIAL -->
+            <!-- VIEW 4: KUIS -->
             <div class="view-panel" id="view-4">
                 <div class="quiz-container">
                     <div class="quiz-indicator" id="q-progress-label">问题 1 / 5</div>
@@ -602,7 +598,7 @@
                 <button class="action-btn" onclick="enterStarView()">开启幸运星 ✨</button>
             </div>
 
-            <!-- VIEW 5: BINTANG KEBERUNTUNGAN -->
+            <!-- VIEW 5: BINTANG -->
             <div class="view-panel" id="view-5">
                 <div style="width: 100%; text-align: center;">
                     <div style="font-size: 1.1rem; font-weight: 700; color: #d47a9e; margin-bottom: 4px;">✨ 我们的幸运星 ✨</div>
@@ -652,7 +648,7 @@
         </div>
     </div>
 
-    <!-- VIEW 6: SURAT PANJANG -->
+    <!-- VIEW 6: SURAT -->
     <div class="letter-container-page" id="view-letter">
         <div class="letter-inner-body">
             <p>嗯……宝贝，生日快乐。</p>
@@ -734,11 +730,11 @@
             <button class="ctrl-btn" onclick="nextSheet()">下一页 ▶</button>
         </div>
 
-        <action-btn class="action-btn" onclick="location.reload()" style="margin-top: 8px;">从头再来 💖</action-btn>
+        <button class="action-btn" onclick="location.reload()" style="margin-top: 8px;">从头再来 💖</button>
     </div>
 
     <script>
-        let selectedSongFile = "Mitski - My Love Mine All Mine.mp3";
+        let selectedSongFile = "Ed Sheeran - Perfect.mp3";
 
         function pickSong(filename, element) {
             selectedSongFile = filename;
@@ -746,7 +742,6 @@
             element.classList.add('active-song');
         }
 
-        // FUNGSI UTAMA UNTUK MENGATASI BLOKIR AUDIO BROWSER
         function manualPlayAndStart() {
             const player = document.getElementById('bg-audio');
             player.src = selectedSongFile;
@@ -755,7 +750,7 @@
                 goToGiftView();
             }).catch(error => {
                 console.log("Audio play error:", error);
-                goToGiftView(); // Tetap lanjut walau audio gagal total agar web tidak macet
+                goToGiftView();
             });
         }
 
