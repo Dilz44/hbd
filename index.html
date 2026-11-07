@@ -60,7 +60,6 @@
             position: relative;
         }
 
-        /* TRANSISI PANEL DENGAN EFEK FADE & SLIDE */
         .view-panel {
             display: none;
             width: 100%;
@@ -126,7 +125,6 @@
             text-align: center;
         }
 
-        /* ANIMASI KADO BERGERAK & EFEK KLIK MEMBESAR */
         .gift-box-area {
             cursor: pointer;
             text-align: center;
@@ -214,7 +212,6 @@
         .quiz-ask { font-size: 0.85rem; font-weight: 700; color: #4a4a4a; margin-bottom: 12px; line-height: 1.4; }
         .quiz-choices { display: flex; flex-direction: column; gap: 8px; width: 100%; }
 
-        /* ANIMASI HALUS SAAT PILIHAN KUIS DIKLIK */
         .choice-btn {
             background: #ffffff;
             border: 1.5px solid #fbdde9;
@@ -332,7 +329,6 @@
             font-weight: 600;
         }
 
-        /* SURAT DENGAN PITA DI ATASNYA */
         .letter-container-page {
             display: none;
             width: 100%;
@@ -572,4 +568,306 @@
                             <div class="star-text-label">星星 3</div>
                         </div>
                         <div class="star-box" data-star="3">
-                            <svg class="star-icon-svg" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 
+                            <svg class="star-icon-svg" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+                            <div class="star-text-label">星星 4</div>
+                        </div>
+                        <div class="star-box" data-star="4">
+                            <svg class="star-icon-svg" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+                            <div class="star-text-label">星星 5</div>
+                        </div>
+                        <div class="star-box" data-star="5">
+                            <svg class="star-icon-svg" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+                            <div class="star-text-label">星星 6</div>
+                        </div>
+                    </div>
+
+                    <div style="font-size: 0.72rem; color: #8c7a6b; margin-bottom: 10px;" id="star-counter-info">已点亮星星: 0 / 6</div>
+                    <button class="action-btn" id="letter-unlocked-btn" style="display: none;">打开信件 💌</button>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+    <!-- MODAL -->
+    <div class="modal-shade" id="starModalOverlay">
+        <div class="modal-box">
+            <div class="modal-title">💌 来自星星的心意</div>
+            <div class="modal-content-text" id="modalBodyText"></div>
+            <button class="action-btn" id="close-modal-btn">关闭 ✨</button>
+        </div>
+    </div>
+
+    <!-- VIEW 6: SURAT -->
+    <div class="letter-container-page" id="view-letter">
+        <div class="letter-ribbon-header">🎀</div>
+        <div class="letter-inner-body">
+            <p>嗯……宝贝，生日快乐。</p>
+            <p>其实写这些话之前，我想了很久，也不知道该怎么开口。说真的，我心里一直觉得很难过，也很抱歉。因为今天是你的生日，是对你来说这么特别的一天，可我却什么礼物都没办法送给你，甚至连一份可以亲手交给你的礼物都没有。</p>
+            <p>我真的很希望自己能为你做得更多，哪怕只是一件小小的礼物也好。可是现在，我好像只能把这些话写下来送给你。每次想到这里，我都会觉得有点难受。对不起呀，我知道这些文字代替不了真正的礼物，但我还是希望你不要觉得自己没有收到礼物，因为我真的有认真地为你准备这份心意。</p>
+            <p>嗯……说完这些，还是要好好祝我的宝贝生日快乐！</p>
+            <p>希望新的一岁里，你每天都能开开心心，身体健康，想做的事情都能顺利完成。希望你能遇到更多美好的事情，少一点烦恼，少一点难过。也希望你一直都能做自己喜欢的事情，慢慢变成自己想成为的样子。</p>
+            <p>不要总是给自己太大的压力，累了就休息，不开心了也可以跟我说。我想知道你的开心和难过，也想参与你生活里的每一个小瞬间。</p>
+            <p>还有一个愿望，希望以后有一天，我能真正陪在你身边，亲自陪你过生日，把准备好的礼物交到你手里。到那时候，我一定不想再只隔着屏幕跟你说生日快乐了。</p>
+            <p>最后，生日快乐呀，Mina。希望你一直被爱包围，希望你未来的每一天都能过得幸福。谢谢你来到我的生活里，我真的很珍惜你。</p>
+            <p>我爱你，宝贝。❤️</p>
+
+            <div style="text-align: center; margin-top: 15px;">
+                <p style="font-size: 0.85rem; color: #8c7a6b; margin-bottom: 8px; font-weight: 600;">这里还有一个最后的惊喜给你... ✨</p>
+                <div id="open-gallery-trigger" style="font-size: 45px; cursor: pointer; display: inline-block;">🎁</div>
+            </div>
+        </div>
+    </div>
+
+    <!-- VIEW 7 -->
+    <div class="gallery-page-box" id="view-gallery">
+        <div class="gallery-title-main">OUR LOVE STORY</div>
+        <div class="gallery-subtitle-main">我们的专属回忆相册 📖❤️</div>
+        
+        <div class="photo-grid">
+            <div class="polaroid-card">
+                <img src="mina.jpg" alt="Mina" class="polaroid-grid-img">
+                <div class="polaroid-grid-sign">My Love</div>
+            </div>
+            <div class="polaroid-card">
+                <img src="mina1.jpg" alt="Mina" class="polaroid-grid-img">
+                <div class="polaroid-grid-sign">Pretty Girl</div>
+            </div>
+            <div class="polaroid-card">
+                <img src="mina2.jpg" alt="Mina" class="polaroid-grid-img">
+                <div class="polaroid-grid-sign">Very Special</div>
+            </div>
+            <div class="polaroid-card">
+                <img src="mina3.jpg" alt="Mina" class="polaroid-grid-img">
+                <div class="polaroid-grid-sign">Forever</div>
+            </div>
+            <div class="polaroid-card">
+                <img src="mina5.jpg" alt="Mina" class="polaroid-grid-img">
+                <div class="polaroid-grid-sign">So Cute</div>
+            </div>
+            <div class="polaroid-card">
+                <img src="mina6.jpg" alt="Mina" class="polaroid-grid-img">
+                <div class="polaroid-grid-sign">My Treasure</div>
+            </div>
+        </div>
+
+        <div style="font-size: 0.8rem; color: #4a4a4a; line-height: 1.5; font-weight: 600; margin-bottom: 12px; padding: 0 5px;">
+            希望以后的每一个生日，我都能陪在你身边。愿你一直被幸福包围，永远做那个开心又可爱的自己。生日快乐，Mina，我好爱你。❤️
+        </div>
+
+        <button class="action-btn" id="reload-btn">从头再来 💖</button>
+    </div>
+
+    <script>
+        let selectedSongFile = "Ed Sheeran - Perfect.mp3";
+        const player = document.getElementById('bg-audio');
+
+        // Event listener untuk memilih lagu dari list
+        document.querySelectorAll('.music-item').forEach(item => {
+            item.addEventListener('click', function() {
+                selectedSongFile = this.getAttribute('data-file');
+                document.querySelectorAll('.music-item').forEach(el => el.classList.remove('active-song'));
+                this.classList.add('active-song');
+                player.src = selectedSongFile;
+                player.load();
+            });
+        });
+
+        // Inisialisasi lagu pertama
+        player.src = selectedSongFile;
+        player.load();
+
+        // Tombol play musik & masuk ke halaman kado
+        document.getElementById('start-music-btn').addEventListener('click', function() {
+            player.play().catch(e => console.log("Audio play error:", e));
+            goToGiftView();
+        });
+
+        function goToGiftView() {
+            document.getElementById('view-1').classList.remove('active');
+            document.getElementById('view-2').classList.add('active');
+        }
+
+        document.getElementById('interactive-gift').addEventListener('click', function() {
+            const giftElem = document.getElementById('interactive-gift');
+            const cueText = document.getElementById('gift-cue-text');
+            const timerBox = document.getElementById('timer-box');
+            const timerCount = document.getElementById('timer-count');
+
+            if (player.paused) {
+                player.play().catch(e => console.log(e));
+            }
+
+            giftElem.style.display = 'none';
+            cueText.style.display = 'none';
+            timerBox.style.display = 'flex';
+
+            let count = 5;
+            timerCount.textContent = count;
+
+            const countdownInterval = setInterval(() => {
+                count--;
+                if (count > 0) {
+                    timerCount.textContent = count;
+                } else {
+                    clearInterval(countdownInterval);
+                    timerBox.style.display = 'none';
+                    document.getElementById('view-2').classList.remove('active');
+                    document.getElementById('view-3').classList.add('active');
+                    runTypewriter();
+                }
+            }, 1000);
+        });
+
+        const stringLines = [
+            "Happy Birthday, Mina! ✨",
+            "嗯……宝贝，对不起只能准备了这个……",
+            "但你知道吗？有些心意是金钱买不到的……",
+            "那就是我对你满满的爱与喜欢！ 💖",
+            "在打开信件之前，先来回答这5个专属小问题吧！ 😉"
+        ];
+
+        let lineIdx = 0;
+        let charIdx = 0;
+        let deletingFlag = false;
+
+        function runTypewriter() {
+            const currentLine = stringLines[lineIdx];
+            const outputElem = document.getElementById('typed-output');
+
+            if (deletingFlag) {
+                outputElem.textContent = currentLine.substring(0, charIdx - 1);
+                charIdx--;
+            } else {
+                outputElem.textContent = currentLine.substring(0, charIdx + 1);
+                charIdx++;
+            }
+
+            let speed = deletingFlag ? 20 : 50;
+
+            if (!deletingFlag && charIdx === currentLine.length) {
+                if (lineIdx === stringLines.length - 1) {
+                    document.getElementById('quiz-unlock-btn').style.display = 'block';
+                    return;
+                }
+                speed = 1400;
+                deletingFlag = true;
+            } else if (deletingFlag && charIdx === 0) {
+                deletingFlag = false;
+                lineIdx++;
+                speed = 250;
+            }
+
+            setTimeout(runTypewriter, speed);
+        }
+
+        document.getElementById('quiz-unlock-btn').addEventListener('click', enterQuizView);
+
+        const quizPool = [
+            { q: "1. 如果有一天我突然出现在你面前，你觉得我会先做什么？", options: ["A. 抱抱你", "B. 牵你的手", "C. 看着你笑", "D. 告诉你我很想你"] },
+            { q: "2. 如果我们可以一起看日落，你最想靠在哪里？", options: ["A. 我的肩膀", "B. 我的手臂", "C. 我的怀里", "D. 靠在我旁边就好"] },
+            { q: "3. 如果我有一个愿望，你觉得我会许什么愿？", options: ["A. 每天都能见到你", "B. 和你一起去很多地方", "C. 让你每天都开心", "D. 和你一直走下去"] },
+            { q: "4. 如果你问我，遇见你之后最大的变化是什么？", options: ["A. 每天都有了期待", "B. 开始喜欢上了中文", "C. 手机里多了一个特别的人", "D. 生活变得更加温柔"] },
+            { q: "5. 如果有一天我们真的见面了，我最想对你说什么？", options: ["A. 我终于见到你了", "B. 我真的很想你", "C. 你比我想象中还可爱", "D. 以后我们还有很多时间在一起"] }
+        ];
+
+        let activeQuizIdx = 0;
+
+        function enterQuizView() {
+            document.getElementById('view-3').classList.remove('active');
+            document.getElementById('view-4').classList.add('active');
+            renderQuizItem();
+        }
+
+        function renderQuizItem() {
+            const data = quizPool[activeQuizIdx];
+            document.getElementById('q-progress-label').textContent = `问题 ${activeQuizIdx + 1} / 5`;
+            document.getElementById('q-text-content').textContent = data.q;
+
+            const boxOpts = document.getElementById('q-options-list');
+            boxOpts.innerHTML = '';
+
+            data.options.forEach(opt => {
+                const btnChoice = document.createElement('button');
+                btnChoice.classList.add('choice-btn');
+                btnChoice.textContent = opt;
+                
+                btnChoice.addEventListener('click', function() {
+                    this.classList.add('selected-anim');
+                    setTimeout(() => {
+                        proceedNextQuiz();
+                    }, 300);
+                });
+
+                boxOpts.appendChild(btnChoice);
+            });
+        }
+
+        function proceedNextQuiz() {
+            activeQuizIdx++;
+            if (activeQuizIdx < quizPool.length) {
+                renderQuizItem();
+            } else {
+                document.getElementById('view-4').classList.remove('active');
+                document.getElementById('view-4-result').classList.add('active');
+            }
+        }
+
+        document.getElementById('to-star-btn').addEventListener('click', function() {
+            document.getElementById('view-4-result').classList.remove('active');
+            document.getElementById('view-5').classList.add('active');
+        });
+
+        const starNotes = [
+            "特别的相遇<br>在这么大的世界里，能遇见你，是我最幸运的事情之一。",
+            "你的笑容<br>希望你每天都能开心，因为你的笑容对我来说真的很珍贵。",
+            "我的温柔<br>即使我们相隔很远，只要有你在，我的每一天都会变得特别。",
+            "关于你<br>我喜欢你的每一个小细节，因为那都是独一无二的你。",
+            "我的承诺<br>无论遇到什么，我都希望我们能一直理解彼此，陪伴彼此。",
+            "我的愿望<br>如果能向星星许一个愿望，我希望未来的每一天都有你。❤️"
+        ];
+
+        let litStarsCount = 0;
+        const openedStarsSet = new Set();
+
+        document.querySelectorAll('.star-box').forEach(box => {
+            box.addEventListener('click', function() {
+                const idx = parseInt(this.getAttribute('data-star'));
+                const overlayElem = document.getElementById('starModalOverlay');
+                const bodyElem = document.getElementById('modalBodyText');
+                bodyElem.innerHTML = starNotes[idx];
+                overlayElem.style.display = 'flex';
+
+                if (!openedStarsSet.has(idx)) {
+                    openedStarsSet.add(idx);
+                    litStarsCount++;
+                    this.classList.add('unlocked');
+                    document.getElementById('star-counter-info').textContent = `已点亮星星: ${litStarsCount} / 6`;
+                }
+
+                if (litStarsCount === 6) {
+                    document.getElementById('letter-unlocked-btn').style.display = 'block';
+                }
+            });
+        });
+
+        document.getElementById('close-modal-btn').addEventListener('click', function() {
+            document.getElementById('starModalOverlay').style.display = 'none';
+        });
+
+        document.getElementById('letter-unlocked-btn').addEventListener('click', function() {
+            document.getElementById('main-box-container').style.display = 'none';
+            document.getElementById('view-letter').classList.add('active');
+        });
+
+        document.getElementById('open-gallery-trigger').addEventListener('click', function() {
+            document.getElementById('view-letter').classList.remove('active');
+            document.getElementById('view-gallery').classList.add('active');
+        });
+
+        document.getElementById('reload-btn').addEventListener('click', function() {
+            location.reload();
+        });
+    </script>
+</body>
+</html>
