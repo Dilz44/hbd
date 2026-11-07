@@ -340,7 +340,6 @@
             font-weight: 600;
         }
 
-        /* SURAT DENGAN PITA DI ATAS DAN ANIMASI HALUS */
         .letter-container-page {
             display: none;
             width: 100%;
@@ -379,7 +378,6 @@
         .letter-inner-body { font-size: 0.9rem; color: #4a4a4a; }
         .letter-inner-body p { margin-bottom: 1.8rem; }
 
-        /* KADO DI DALAM SURAT DENGAN INSTRUKSI JELAS & NAMA L */
         .letter-gift-wrapper {
             text-align: center;
             margin-top: 25px;
@@ -414,7 +412,6 @@
             50% { transform: translateY(-8px); }
         }
 
-        /* GALERI FOTO DENGAN TRANSISI HALUS */
         .gallery-page-box {
             display: none;
             width: 100%;
@@ -646,7 +643,7 @@
         </div>
     </div>
 
-    <!-- VIEW 6: SURAT (DENGAN PITA, INSTRUKSI NAMA L, & KADO ANIMASI) -->
+    <!-- VIEW 6: SURAT -->
     <div class="letter-container-page" id="view-letter">
         <div class="letter-ribbon-header">🎀</div>
         <div class="letter-inner-body">
@@ -660,7 +657,6 @@
             <p>最后，生日快乐呀，Mina。希望你一直被爱包围，希望你未来的每一天都能过得幸福。谢谢你来到我的生活里，我真的很珍惜你。</p>
             <p>我爱你，宝贝。❤️</p>
 
-            <!-- KOTAK KADO DENGAN PESAN KHUSUS DARI L -->
             <div class="letter-gift-wrapper">
                 <div class="letter-gift-cue">✨ 专属于你的最后惊喜 (from L)<br>👇 快点点击下面的小礼盒吧！ 👇</div>
                 <div id="open-gallery-trigger" class="letter-gift-icon">🎁</div>
@@ -711,7 +707,6 @@
         let selectedSongFile = "Ed Sheeran - Perfect.mp3";
         const player = document.getElementById('bg-audio');
 
-        // Pilih lagu dari list
         document.querySelectorAll('.music-item').forEach(item => {
             item.addEventListener('click', function() {
                 selectedSongFile = this.getAttribute('data-file');
@@ -725,7 +720,6 @@
         player.src = selectedSongFile;
         player.load();
 
-        // Tombol play musik dipercepat & dioptimalkan agar tidak delay
         document.getElementById('start-music-btn').addEventListener('click', function() {
             player.playbackRate = 1.0;
             player.play().then(() => {
