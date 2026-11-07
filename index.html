@@ -510,7 +510,7 @@
 
         <div class="app-body">
             
-            <!-- VIEW 1: PILIH LAGU SESUAI NAMA FILE GITHUB -->
+            <!-- VIEW 1 -->
             <div class="view-panel active" id="view-1">
                 <div class="instruction-text" style="margin-bottom: 10px; font-weight: 700; color: #6b6b6b; text-align: center;">请先选择你喜欢的音乐，宝贝 🎶</div>
                 
@@ -550,7 +550,7 @@
                 <button class="action-btn" onclick="manualPlayAndStart()" style="margin-bottom: 8px;">点击播放音乐并开始 🎵</button>
             </div>
 
-            <!-- VIEW 2: KADO -->
+            <!-- VIEW 2 -->
             <div class="view-panel" id="view-2">
                 <div class="gift-box-area" id="interactive-gift" onclick="launchGiftTimer()">
                     <div class="gift-emoji">🎁</div>
@@ -563,7 +563,7 @@
                 </div>
             </div>
 
-            <!-- VIEW 3: TEKS KETIK -->
+            <!-- VIEW 3 -->
             <div class="view-panel" id="view-3">
                 <div class="typewriter-box">
                     <div class="typewriter-top">
@@ -577,7 +577,7 @@
                 <button class="action-btn" id="quiz-unlock-btn" style="display: none;" onclick="enterQuizView()">先玩个小测试 🎮</button>
             </div>
 
-            <!-- VIEW 4: KUIS -->
+            <!-- VIEW 4 -->
             <div class="view-panel" id="view-4">
                 <div class="quiz-container">
                     <div class="quiz-indicator" id="q-progress-label">问题 1 / 5</div>
@@ -586,7 +586,7 @@
                 </div>
             </div>
 
-            <!-- VIEW 4.5: HASIL KUIS -->
+            <!-- VIEW 4.5 -->
             <div class="view-panel" id="view-4-result">
                 <div class="quiz-finish-card">
                     <div class="quiz-finish-msg">
@@ -598,7 +598,7 @@
                 <button class="action-btn" onclick="enterStarView()">开启幸运星 ✨</button>
             </div>
 
-            <!-- VIEW 5: BINTANG -->
+            <!-- VIEW 5 -->
             <div class="view-panel" id="view-5">
                 <div style="width: 100%; text-align: center;">
                     <div style="font-size: 1.1rem; font-weight: 700; color: #d47a9e; margin-bottom: 4px;">✨ 我们的幸运星 ✨</div>
@@ -639,7 +639,7 @@
         </div>
     </div>
 
-    <!-- MODAL POPUP BINTANG -->
+    <!-- MODAL -->
     <div class="modal-shade" id="starModalOverlay">
         <div class="modal-box">
             <div class="modal-title">💌 来自星星的心意</div>
@@ -648,7 +648,7 @@
         </div>
     </div>
 
-    <!-- VIEW 6: SURAT -->
+    <!-- VIEW 6 -->
     <div class="letter-container-page" id="view-letter">
         <div class="letter-inner-body">
             <p>嗯……宝贝，生日快乐。</p>
@@ -668,7 +668,7 @@
         </div>
     </div>
 
-    <!-- VIEW 7: ALBUM FOTO 3D -->
+    <!-- VIEW 7 -->
     <div class="album-page-box" id="view-album">
         <div class="album-title-main">OUR LOVE STORY</div>
         <div class="album-subtitle-main">点击翻页看我们的相册 📖❤️</div>
@@ -785,6 +785,7 @@
                     timerCount.textContent = count;
                 } else {
                     clearInterval(countdownInterval);
+                    timerBox.style.display = 'none'; // Pastikan box timer benar-benar hilang bersih
                     document.getElementById('view-2').classList.remove('active');
                     document.getElementById('view-3').classList.add('active');
                     runTypewriter();
