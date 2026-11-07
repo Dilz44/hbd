@@ -668,12 +668,13 @@
         </div>
     </div>
 
-    <!-- VIEW 7 -->
+    <!-- VIEW 7: ALBUM FOTO LENGKAP 6 HALAMAN -->
     <div class="album-page-box" id="view-album">
         <div class="album-title-main">OUR LOVE STORY</div>
         <div class="album-subtitle-main">点击翻页看我们的相册 📖❤️</div>
         
         <div class="book-stage">
+            <!-- SHEET 1 (Sampul & mina.jpg) -->
             <div class="sheet" id="sheet-1" style="z-index: 4;" onclick="flipSheet(1)">
                 <div class="sheet-front cover-bg-art">
                     <div style="height: 100%; display: flex; flex-direction: column; justify-content: space-between; align-items: center; padding: 25px 10px;">
@@ -690,6 +691,7 @@
                 </div>
             </div>
 
+            <!-- SHEET 2 (mina1.jpg & mina2.jpg) -->
             <div class="sheet" id="sheet-2" style="z-index: 3;" onclick="flipSheet(2)">
                 <div class="sheet-front">
                     <img src="mina1.jpg" alt="Mina" class="polaroid-photo">
@@ -701,6 +703,7 @@
                 </div>
             </div>
 
+            <!-- SHEET 3 (mina3.jpg & mina5.jpg) -->
             <div class="sheet" id="sheet-3" style="z-index: 2;" onclick="flipSheet(3)">
                 <div class="sheet-front">
                     <img src="mina3.jpg" alt="Mina" class="polaroid-photo">
@@ -712,6 +715,7 @@
                 </div>
             </div>
 
+            <!-- SHEET 4 (mina6.jpg & Pesan Penutup) -->
             <div class="sheet" id="sheet-4" style="z-index: 1;" onclick="flipSheet(4)">
                 <div class="sheet-front">
                     <img src="mina6.jpg" alt="Mina" class="polaroid-photo">
@@ -785,7 +789,7 @@
                     timerCount.textContent = count;
                 } else {
                     clearInterval(countdownInterval);
-                    timerBox.style.display = 'none'; // Pastikan box timer benar-benar hilang bersih
+                    timerBox.style.display = 'none';
                     document.getElementById('view-2').classList.remove('active');
                     document.getElementById('view-3').classList.add('active');
                     runTypewriter();
@@ -854,7 +858,7 @@
             { q: "2. 如果我们可以一起看日落，你最想靠在哪里？", options: ["A. 我的肩膀", "B. 我的手臂", "C. 我的怀里", "D. 靠在我旁边就好"] },
             { q: "3. 如果我有一个愿望，你觉得我会许什么愿？", options: ["A. 每天都能见到你", "B. 和你一起去很多地方", "C. 让你每天都开心", "D. 和你一直走下去"] },
             { q: "4. 如果你问我，遇见你之后最大的变化是什么？", options: ["A. 每天都有了期待", "B. 开始喜欢上了中文", "C. 手机里多了一个特别的人", "D. 生活变得更加温柔"] },
-            { q: "5. 如果有一天我们真的见面了，我最想对你说什么？", options: ["A. 我终于见到你了", "B. 我真的很想你", "C. 你比我想象中还可爱", "D. 以后我们还有很多时间在一起"] }
+            { q: "5. 如果有一天我们真的见面了，我最想对说什么？", options: ["A. 我终于见到你了", "B. 我真的很想你", "C. 你比我想象中还可爱", "D. 以后我们还有很多时间在一起"] }
         ];
 
         let activeQuizIdx = 0;
