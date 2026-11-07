@@ -13,16 +13,13 @@
             height: 100%;
             width: 100%;
             overflow: hidden;
-        }
-
-        body {
             background: #e6f0fa url('bg1.jpg') no-repeat center center fixed;
             background-size: cover;
             display: flex;
             justify-content: center;
             align-items: center;
             font-family: 'Quicksand', sans-serif;
-            padding: 20px;
+            padding: 15px;
             color: #4a4a4a;
             position: relative;
         }
@@ -79,7 +76,7 @@
         .app-title { font-size: 0.78rem; color: #d47a9e; font-weight: 700; }
 
         .app-body {
-            padding: 25px 20px;
+            padding: 22px 18px;
             min-height: 360px;
             display: flex;
             flex-direction: column;
@@ -377,118 +374,69 @@
         .letter-inner-body { font-size: 0.95rem; color: #4a4a4a; }
         .letter-inner-body p { margin-bottom: 2.4rem; }
 
-        .album-page-box {
+        .gallery-page-box {
             display: none;
             width: 100%;
-            max-width: 480px;
+            max-width: 500px;
             background: rgba(255, 255, 255, 0.98);
             border: 2.5px solid #f3c6df;
             box-shadow: 0 20px 50px rgba(0, 0, 0, 0.2);
             border-radius: 24px;
-            padding: 30px 20px;
+            padding: 22px 18px;
             position: relative;
             z-index: 30;
             text-align: center;
-            margin: 20px 0;
+            margin: 15px 0;
+            max-height: 88vh;
+            overflow-y: auto;
         }
 
-        .album-page-box.active { display: flex; flex-direction: column; align-items: center; }
+        .gallery-page-box.active { display: flex; flex-direction: column; align-items: center; }
 
-        .album-title-main { font-size: 1.8rem; font-weight: 700; color: #d47a9e; margin-bottom: 2px; }
-        .album-subtitle-main { font-size: 0.85rem; color: #8c7a6b; margin-bottom: 18px; font-weight: 600; }
+        .gallery-title-main { font-size: 1.5rem; font-weight: 700; color: #d47a9e; margin-bottom: 2px; }
+        .gallery-subtitle-main { font-size: 0.78rem; color: #8c7a6b; margin-bottom: 14px; font-weight: 600; }
 
-        .book-stage {
-            width: 280px;
-            height: 380px;
-            position: relative;
-            perspective: 1400px;
-            margin-bottom: 18px;
-        }
-
-        .sheet {
+        .photo-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 12px;
             width: 100%;
-            height: 100%;
-            position: absolute;
-            top: 0; left: 0;
-            transform-origin: left center;
-            transition: transform 0.8s cubic-bezier(0.645, 0.045, 0.355, 1);
-            transform-style: preserve-3d;
-            border-radius: 16px;
-            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
-            cursor: pointer;
-            background: #ffffff;
-            border: 2px solid #f3c6df;
-            overflow: hidden;
+            margin-bottom: 15px;
         }
 
-        .sheet.turned { transform: rotateY(-180deg); }
-
-        .sheet-front, .sheet-back {
-            width: 100%; height: 100%;
-            position: absolute; top: 0; left: 0;
-            backface-visibility: hidden;
-            display: flex; flex-direction: column;
-            justify-content: center; align-items: center;
-            padding: 20px;
-            box-sizing: border-box;
-        }
-
-        .sheet-back { transform: rotateY(180deg); background: #fffdf9; }
-
-        .cover-bg-art {
-            background: url('bg2.jpg') no-repeat center center;
-            background-size: cover;
-            border: 3px solid #e09bbd;
-            text-align: center;
-        }
-
-        .cover-tag {
-            background: rgba(255, 255, 255, 0.9);
-            color: #2b5b84;
-            padding: 6px 18px;
-            border-radius: 20px;
-            font-size: 0.82rem;
-            font-weight: 700;
-            margin-bottom: 12px;
-            border: 1.5px dashed #2b5b84;
-        }
-
-        .polaroid-photo {
-            width: 100%;
-            height: 220px;
-            object-fit: cover;
-            border-radius: 10px;
+        .polaroid-card {
+            background: #fff;
             border: 1.5px solid #f3c6df;
+            border-radius: 12px;
+            padding: 8px 8px 12px 8px;
             box-shadow: 0 4px 12px rgba(243, 198, 223, 0.4);
-            margin-bottom: 12px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
         }
 
-        .polaroid-sign {
+        .polaroid-grid-img {
+            width: 100%;
+            height: 130px;
+            object-fit: cover;
+            border-radius: 8px;
+            margin-bottom: 6px;
+        }
+
+        .polaroid-grid-sign {
             font-family: 'Sacramento', cursive;
-            font-size: 1.5rem;
+            font-size: 1.25rem;
             color: #d47a9e;
-        }
-
-        .book-controls { display: flex; gap: 15px; margin-bottom: 10px; }
-
-        .ctrl-btn {
-            background: #ffffff;
-            border: 1.5px solid #f3c6df;
-            color: #d47a9e;
-            padding: 6px 16px;
-            border-radius: 20px;
-            font-weight: 700;
-            cursor: pointer;
-            box-shadow: 0 4px 10px rgba(243, 198, 223, 0.3);
         }
 
         .action-btn {
             background: linear-gradient(135deg, #ffb5a7 0%, #f08080 100%);
-            color: #ffffff; border: none; padding: 10px 24px; font-size: 0.85rem;
+            color: #ffffff; border: none; padding: 12px 28px; font-size: 0.9rem;
             font-weight: 700; cursor: pointer; border-radius: 50px;
             font-family: 'Quicksand', sans-serif;
             box-shadow: 0 4px 15px rgba(240, 128, 128, 0.4);
             transition: transform 0.2s ease;
+            -webkit-tap-highlight-color: transparent;
         }
 
         .action-btn:active { transform: scale(0.95); }
@@ -551,7 +499,7 @@
                 
                 <div class="hint-scroll" style="text-align: center;">▼ 向下滚动查看更多歌曲 ▼</div>
                 
-                <button class="action-btn" onclick="manualPlayAndStart()" style="margin-bottom: 8px;">点击播放音乐并开始 🎵</button>
+                <button class="action-btn" onclick="manualPlayAndStart()" style="margin-bottom: 8px; width: 100%;">点击播放音乐并开始 🎵</button>
             </div>
 
             <!-- VIEW 2 -->
@@ -578,10 +526,353 @@
                         <span id="typed-output"></span><span class="blinking-caret"></span>
                     </div>
                 </div>
-                <button class="action-btn" id="quiz-unlock-btn" style="display: none;" onclick="enterQuizView()">先玩个小测试 🎮</button>
+                <button class="action-btn" id="quiz-unlock-btn" style="display: none; width: 100%;" onclick="enterQuizView()">先玩个小测试 🎮</button>
             </div>
 
             <!-- VIEW 4 -->
             <div class="view-panel" id="view-4">
                 <div class="quiz-container">
-                    <div class="quiz-indi
+                    <div class="quiz-indicator" id="q-progress-label">问题 1 / 5</div>
+                    <div class="quiz-ask" id="q-text-content"></div>
+                    <div class="quiz-choices" id="q-options-list"></div>
+                </div>
+            </div>
+
+            <!-- VIEW 4.5 -->
+            <div class="view-panel" id="view-4-result">
+                <div class="quiz-finish-card">
+                    <div class="quiz-finish-msg">
+                        恭喜你完成了所有问题！<br><br>
+                        其实这些问题没有标准答案，因为我只是想让你知道，无论选择哪一个答案，你都是我最特别的人。<br><br>
+                        希望有一天，我们可以把这些问题里的每一个愿望都变成现实。❤️
+                    </div>
+                </div>
+                <button class="action-btn" onclick="enterStarView()" style="width: 100%;">开启幸运星 ✨</button>
+            </div>
+
+            <!-- VIEW 5 -->
+            <div class="view-panel" id="view-5">
+                <div style="width: 100%; text-align: center;">
+                    <div style="font-size: 1.1rem; font-weight: 700; color: #d47a9e; margin-bottom: 4px;">✨ 我们的幸运星 ✨</div>
+                    <div style="font-size: 0.75rem; color: #8c7a6b; margin-bottom: 14px;">轻触下方的星星，解锁专属心意 🌟</div>
+                    
+                    <div class="stars-layout">
+                        <div class="star-box" id="star-box-0" onclick="triggerStarModal(0)">
+                            <svg class="star-icon-svg" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+                            <div class="star-text-label">星星 1</div>
+                        </div>
+                        <div class="star-box" id="star-box-1" onclick="triggerStarModal(1)">
+                            <svg class="star-icon-svg" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+                            <div class="star-text-label">星星 2</div>
+                        </div>
+                        <div class="star-box" id="star-box-2" onclick="triggerStarModal(2)">
+                            <svg class="star-icon-svg" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+                            <div class="star-text-label">星星 3</div>
+                        </div>
+                        <div class="star-box" id="star-box-3" onclick="triggerStarModal(3)">
+                            <svg class="star-icon-svg" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+                            <div class="star-text-label">星星 4</div>
+                        </div>
+                        <div class="star-box" id="star-box-4" onclick="triggerStarModal(4)">
+                            <svg class="star-icon-svg" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+                            <div class="star-text-label">星星 5</div>
+                        </div>
+                        <div class="star-box" id="star-box-5" onclick="triggerStarModal(5)">
+                            <svg class="star-icon-svg" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+                            <div class="star-text-label">星星 6</div>
+                        </div>
+                    </div>
+
+                    <div style="font-size: 0.75rem; color: #8c7a6b; margin-bottom: 12px;" id="star-counter-info">已点亮星星: 0 / 6</div>
+                    <button class="action-btn" id="letter-unlocked-btn" style="display: none; width: 100%;" onclick="openLetterPage()">打开信件 💌</button>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+    <!-- MODAL -->
+    <div class="modal-shade" id="starModalOverlay">
+        <div class="modal-box">
+            <div class="modal-title">💌 来自星星的心意</div>
+            <div class="modal-content-text" id="modalBodyText"></div>
+            <button class="action-btn" onclick="dismissStarModal()" style="padding: 8px 20px; font-size: 0.8rem; width: 100%;">关闭 ✨</button>
+        </div>
+    </div>
+
+    <!-- VIEW 6: SURAT -->
+    <div class="letter-container-page" id="view-letter">
+        <div class="letter-inner-body">
+            <p>嗯……宝贝，生日快乐。</p>
+            <p>其实写这些话之前，我想了很久，也不知道该怎么开口。说真的，我心里一直觉得很难过，也很抱歉。因为今天是你的生日，是对你来说这么特别的一天，可我却什么礼物都没办法送给你，甚至连一份可以亲手交给你的礼物都没有。</p>
+            <p>我真的很希望自己能为你做得更多，哪怕只是一件小小的礼物也好。可是现在，我好像只能把这些话写下来送给你。每次想到这里，我都会觉得有点难受。对不起呀，我知道这些文字代替不了真正的礼物，但我还是希望你不要觉得自己没有收到礼物，因为我真的有认真地为你准备这份心意。</p>
+            <p>嗯……说完这些，还是要好好祝我的宝贝生日快乐！</p>
+            <p>希望新的一岁里，你每天都能开开心心，身体健康，想做的事情都能顺利完成。希望你能遇到更多美好的事情，少一点烦恼，少一点难过。也希望你一直都能做自己喜欢的事情，慢慢变成自己想成为的样子。</p>
+            <p>不要总是给自己太大的压力，累了就休息，不开心了也可以跟我说。我想知道你的开心和难过，也想参与你生活里的每一个小瞬间。</p>
+            <p>还有一个愿望，希望以后有一天，我能真正陪在你身边，亲自陪你过生日，把准备好的礼物交到你手里。到那时候，我一定不想再只隔着屏幕跟你说生日快乐了。</p>
+            <p>最后，生日快乐呀，Mina。希望你一直被爱包围，希望你未来的每一天都能过得幸福。谢谢你来到我的生活里，我真的很珍惜你。</p>
+            <p>我爱你，宝贝。❤️</p>
+
+            <div style="text-align: center; margin-top: 15px;">
+                <p style="font-size: 0.88rem; color: #8c7a6b; margin-bottom: 10px; font-weight: 600;">这里还有一个最后的惊喜给你... ✨</p>
+                <div style="font-size: 50px; cursor: pointer; display: inline-block;" onclick="openGalleryView()">🎁</div>
+            </div>
+        </div>
+    </div>
+
+    <!-- VIEW 7: GALERI FOTO LENGKAP 6 FOTO -->
+    <div class="gallery-page-box" id="view-gallery">
+        <div class="gallery-title-main">OUR LOVE STORY</div>
+        <div class="gallery-subtitle-main">我们的专属回忆相册 📖❤️</div>
+        
+        <div class="photo-grid">
+            <div class="polaroid-card">
+                <img src="mina.jpg" alt="Mina" class="polaroid-grid-img">
+                <div class="polaroid-grid-sign">My Love</div>
+            </div>
+            <div class="polaroid-card">
+                <img src="mina1.jpg" alt="Mina" class="polaroid-grid-img">
+                <div class="polaroid-grid-sign">Pretty Girl</div>
+            </div>
+            <div class="polaroid-card">
+                <img src="mina2.jpg" alt="Mina" class="polaroid-grid-img">
+                <div class="polaroid-grid-sign">Very Special</div>
+            </div>
+            <div class="polaroid-card">
+                <img src="mina3.jpg" alt="Mina" class="polaroid-grid-img">
+                <div class="polaroid-grid-sign">Forever</div>
+            </div>
+            <div class="polaroid-card">
+                <img src="mina5.jpg" alt="Mina" class="polaroid-grid-img">
+                <div class="polaroid-grid-sign">So Cute</div>
+            </div>
+            <div class="polaroid-card">
+                <img src="mina6.jpg" alt="Mina" class="polaroid-grid-img">
+                <div class="polaroid-grid-sign">My Treasure</div>
+            </div>
+        </div>
+
+        <div style="font-size: 0.82rem; color: #4a4a4a; line-height: 1.6; font-weight: 600; margin-bottom: 15px; padding: 0 10px;">
+            希望以后的每一个生日，我都能陪在你身边。愿你一直被幸福包围，永远做那个开心又可爱的自己。生日快乐，Mina，我好爱你。❤️
+        </div>
+
+        <button class="action-btn" onclick="location.reload()" style="width: 100%;">从头再来 💖</button>
+    </div>
+
+    <script>
+        let selectedSongFile = "Ed Sheeran - Perfect.mp3";
+
+        function pickSong(filename, element) {
+            selectedSongFile = filename;
+            document.querySelectorAll('.music-item').forEach(el => el.classList.remove('active-song'));
+            element.classList.add('active-song');
+        }
+
+        function manualPlayAndStart() {
+            const player = document.getElementById('bg-audio');
+            player.src = selectedSongFile;
+            player.load();
+            
+            // Paksa play dengan penanganan promise agar tidak memicu error interaksi browser
+            const playPromise = player.play();
+            if (playPromise !== undefined) {
+                playPromise.then(() => {
+                    goToGiftView();
+                }).catch(error => {
+                    console.log("Audio play blocked/error, bypassing to view 2:", error);
+                    goToGiftView();
+                });
+            } else {
+                goToGiftView();
+            }
+        }
+
+        function goToGiftView() {
+            document.getElementById('view-1').classList.remove('active');
+            document.getElementById('view-2').classList.add('active');
+        }
+
+        function launchGiftTimer() {
+            const giftElem = document.getElementById('interactive-gift');
+            const cueText = document.getElementById('gift-cue-text');
+            const timerBox = document.getElementById('timer-box');
+            const timerCount = document.getElementById('timer-count');
+
+            const player = document.getElementById('bg-audio');
+            if (player.paused) {
+                player.play().catch(e => console.log(e));
+            }
+
+            giftElem.style.display = 'none';
+            cueText.style.display = 'none';
+            timerBox.style.display = 'flex';
+
+            startRainParticles();
+
+            let count = 5;
+            timerCount.textContent = count;
+
+            const countdownInterval = setInterval(() => {
+                count--;
+                if (count > 0) {
+                    timerCount.textContent = count;
+                } else {
+                    clearInterval(countdownInterval);
+                    timerBox.style.display = 'none';
+                    document.getElementById('view-2').classList.remove('active');
+                    document.getElementById('view-3').classList.add('active');
+                    runTypewriter();
+                }
+            }, 1000);
+        }
+
+        function startRainParticles() {
+            const symbols = ['🌸', '💖', '✨', '💕', '🌷', '⭐', '🎈'];
+            setInterval(() => {
+                const p = document.createElement('div');
+                p.classList.add('falling-particle');
+                p.textContent = symbols[Math.floor(Math.random() * symbols.length)];
+                p.style.left = Math.random() * 100 + 'vw';
+                p.style.animationDuration = (Math.random() * 2 + 2.5) + 's';
+                p.style.fontSize = (Math.random() * 12 + 16) + 'px';
+                document.body.appendChild(p);
+                setTimeout(() => p.remove(), 4500);
+            }, 250);
+        }
+
+        const stringLines = [
+            "Happy Birthday, Mina! ✨",
+            "嗯……宝贝，对不起只能准备了这个……",
+            "但你知道吗？有些心意是金钱买不到的……",
+            "那就是我对你满满的爱与喜欢！ 💖",
+            "在打开信件之前，先来回答这5个专属小问题吧！ 😉"
+        ];
+
+        let lineIdx = 0;
+        let charIdx = 0;
+        let deletingFlag = false;
+
+        function runTypewriter() {
+            const currentLine = stringLines[lineIdx];
+            const outputElem = document.getElementById('typed-output');
+
+            if (deletingFlag) {
+                outputElem.textContent = currentLine.substring(0, charIdx - 1);
+                charIdx--;
+            } else {
+                outputElem.textContent = currentLine.substring(0, charIdx + 1);
+                charIdx++;
+            }
+
+            let speed = deletingFlag ? 20 : 50;
+
+            if (!deletingFlag && charIdx === currentLine.length) {
+                if (lineIdx === stringLines.length - 1) {
+                    document.getElementById('quiz-unlock-btn').style.display = 'block';
+                    return;
+                }
+                speed = 1400;
+                deletingFlag = true;
+            } else if (deletingFlag && charIdx === 0) {
+                deletingFlag = false;
+                lineIdx++;
+                speed = 250;
+            }
+
+            setTimeout(runTypewriter, speed);
+        }
+
+        const quizPool = [
+            { q: "1. 如果有一天我突然出现在你面前，你觉得我会先做什么？", options: ["A. 抱抱你", "B. 牵你的手", "C. 看着你笑", "D. 告诉你我很想你"] },
+            { q: "2. 如果我们可以一起看日落，你最想靠在哪里？", options: ["A. 我的肩膀", "B. 我的手臂", "C. 我的怀里", "D. 靠在我旁边就好"] },
+            { q: "3. 如果我有一个愿望，你觉得我会许什么愿？", options: ["A. 每天都能见到你", "B. 和你一起去很多地方", "C. 让你每天都开心", "D. 和你一直走下去"] },
+            { q: "4. 如果你问我，遇见你之后最大的变化是什么？", options: ["A. 每天都有了期待", "B. 开始喜欢上了中文", "C. 手机里多了一个特别的人", "D. 生活变得更加温柔"] },
+            { q: "5. 如果有一天我们真的见面了，我最想对你说什么？", options: ["A. 我终于见到你了", "B. 我真的很想你", "C. 你比我想象中还可爱", "D. 以后我们还有很多时间在一起"] }
+        ];
+
+        let activeQuizIdx = 0;
+
+        function enterQuizView() {
+            document.getElementById('view-3').classList.remove('active');
+            document.getElementById('view-4').classList.add('active');
+            renderQuizItem();
+        }
+
+        function renderQuizItem() {
+            const data = quizPool[activeQuizIdx];
+            document.getElementById('q-progress-label').textContent = `问题 ${activeQuizIdx + 1} / 5`;
+            document.getElementById('q-text-content').textContent = data.q;
+
+            const boxOpts = document.getElementById('q-options-list');
+            boxOpts.innerHTML = '';
+
+            data.options.forEach(opt => {
+                const btnChoice = document.createElement('button');
+                btnChoice.classList.add('choice-btn');
+                btnChoice.textContent = opt;
+                btnChoice.onclick = () => proceedNextQuiz();
+                boxOpts.appendChild(btnChoice);
+            });
+        }
+
+        function proceedNextQuiz() {
+            activeQuizIdx++;
+            if (activeQuizIdx < quizPool.length) {
+                renderQuizItem();
+            } else {
+                document.getElementById('view-4').classList.remove('active');
+                document.getElementById('view-4-result').classList.add('active');
+            }
+        }
+
+        function enterStarView() {
+            document.getElementById('view-4-result').classList.remove('active');
+            document.getElementById('view-5').classList.add('active');
+        }
+
+        const starNotes = [
+            "特别的相遇<br>在这么大的世界里，能遇见你，是我最幸运的事情之一。",
+            "你的笑容<br>希望你每天都能开心，因为你的笑容对我来说真的很珍贵。",
+            "我的温柔<br>即使我们相隔很远，只要有你在，我的每一天都会变得特别。",
+            "关于你<br>我喜欢你的每一个小细节，因为那都是独一无二的你。",
+            "我的承诺<br>无论遇到什么，我都希望我们能一直理解彼此，陪伴彼此。",
+            "我的愿望<br>如果能向星星许一个愿望，我希望未来的每一天都有你。❤️"
+        ];
+
+        let litStarsCount = 0;
+        const openedStarsSet = new Set();
+
+        function triggerStarModal(idx) {
+            const overlayElem = document.getElementById('starModalOverlay');
+            const bodyElem = document.getElementById('modalBodyText');
+            bodyElem.innerHTML = starNotes[idx];
+            overlayElem.style.display = 'flex';
+
+            if (!openedStarsSet.has(idx)) {
+                openedStarsSet.add(idx);
+                litStarsCount++;
+                document.getElementById(`star-box-${idx}`).classList.add('unlocked');
+                document.getElementById('star-counter-info').textContent = `已点亮星星: ${litStarsCount} / 6`;
+            }
+
+            if (litStarsCount === 6) {
+                document.getElementById('letter-unlocked-btn').style.display = 'block';
+            }
+        }
+
+        function dismissStarModal() {
+            document.getElementById('starModalOverlay').style.display = 'none';
+        }
+
+        function openLetterPage() {
+            document.getElementById('main-box-container').style.display = 'none';
+            document.getElementById('view-letter').classList.add('active');
+        }
+
+        function openGalleryView() {
+            document.getElementById('view-letter').classList.remove('active');
+            document.getElementById('view-gallery').classList.add('active');
+        }
+    </script>
+</body>
+</html>
