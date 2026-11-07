@@ -14,7 +14,6 @@
         }
 
         body {
-            /* Background diam, kaku, dan stabil total tanpa goyang */
             background: #e6f0fa url('bg1.jpg') no-repeat center center fixed;
             background-size: cover;
             min-height: 100vh;
@@ -28,7 +27,7 @@
             position: relative;
         }
 
-        /* --- ANIMASI PARTIKEL JATUH DI KADO --- */
+        /* --- PARTIKEL JATUH SAAT KADO --- */
         .falling-particle {
             position: absolute;
             top: -50px;
@@ -44,7 +43,7 @@
             100% { transform: translateY(105vh) rotate(360deg); opacity: 0.2; }
         }
 
-        /* --- KOTAK JENDELA UTAMA (DIJAMIN STABIL) --- */
+        /* --- KOTAK UTAMA (STABIL 100%) --- */
         .window-card {
             width: 100%;
             max-width: 420px;
@@ -64,7 +63,7 @@
         .decoration-corner-bl { position: absolute; bottom: 15px; left: 15px; font-size: 18px; z-index: 5; }
         .decoration-corner-br { position: absolute; bottom: 15px; right: 15px; font-size: 18px; z-index: 5; }
 
-        /* --- HALAMAN SURAT VINTAGE --- */
+        /* --- SURAT VINTAGE --- */
         .letter-page {
             display: none;
             width: 100%;
@@ -100,7 +99,7 @@
         .letter-content { font-size: 0.95rem; color: #4a4a4a; padding-right: 5px; }
         .letter-content p { margin-bottom: 2.4rem; }
 
-        /* --- HALAMAN FLIP BOOK 3D (LENGKAP 6 HALAMAN / FOTO FULL) --- */
+        /* --- BUKU 3D ALBUM (6 HALAMAN LENGKAP) --- */
         .surprise-page {
             display: none;
             width: 100%;
@@ -132,7 +131,6 @@
             font-weight: 600;
         }
 
-        /* WIDGET BUKU 3D */
         .book-container {
             width: 280px;
             height: 380px;
@@ -182,7 +180,6 @@
             background: #fffdf9;
         }
 
-        /* SAMPUL DEPAN BUKU MENGGUNAKAN bg2.jpg */
         .cover-page {
             background: url('bg2.jpg') no-repeat center center;
             background-size: cover;
@@ -235,7 +232,7 @@
             box-shadow: 0 4px 10px rgba(243, 198, 223, 0.3);
         }
 
-        /* --- TITLE BAR UTAMA --- */
+        /* --- TITLE BAR --- */
         .title-bar {
             background: #fff5f8; padding: 12px 18px; display: flex;
             justify-content: space-between; align-items: center; border-bottom: 1px solid #f3c6df;
@@ -247,7 +244,6 @@
         .dot-close { background: #ef476f; }
         .window-title { font-size: 0.8rem; color: #d47a9e; font-weight: 700; }
 
-        /* --- ISI KONTEN --- */
         .window-body {
             padding: 20px 20px; text-align: center; min-height: 380px;
             display: flex; flex-direction: column; justify-content: center; align-items: center;
@@ -412,7 +408,7 @@
             line-height: 1.6;
         }
 
-        /* --- BINTANG (DIJAMIN KAKU & STABIL TANPA GOYANG) --- */
+        /* --- BINTANG (DIJAMIN KAKU & STABIL) --- */
         .universe-box { width: 100%; text-align: center; }
         .universe-title { font-size: 1.1rem; font-weight: 700; color: #d47a9e; margin-bottom: 4px; }
         .universe-subtitle { font-size: 0.75rem; color: #8c7a6b; margin-bottom: 15px; }
@@ -453,7 +449,7 @@
 
         .star-label { font-size: 0.72rem; color: #d47a9e; font-weight: 700; }
 
-        /* --- MODAL BINTANG (DIJAMIN STABIL) --- */
+        /* --- MODAL BINTANG (STABIL) --- */
         .star-modal-overlay {
             display: none;
             position: fixed;
@@ -506,7 +502,6 @@
             font-family: 'Quicksand', sans-serif;
         }
 
-        /* --- TOMBOL MODERN --- */
         .modern-btn {
             background: linear-gradient(135deg, #ffb5a7 0%, #f08080 100%);
             color: #ffffff; border: none; padding: 10px 24px; font-size: 0.85rem;
@@ -518,7 +513,7 @@
 </head>
 <body>
 
-    <!-- AUDIO LATAR BELAKANG -->
+    <!-- AUDIO -->
     <audio id="bg-music" loop preload="auto"></audio>
 
     <!-- KOTAK UTAMA -->
@@ -578,7 +573,7 @@
                 <button class="modern-btn" onclick="goToPage2()">开始 💖</button>
             </div>
 
-            <!-- HALAMAN 2: KOTAK KADO & HITUNG MUNDUR -->
+            <!-- HALAMAN 2: KADO & HITUNG MUNDUR -->
             <div class="screen" id="page-2">
                 <div class="gift-wrapper" id="gift-box-container" onclick="startGiftCountdown()">
                     <div class="gift-box">🎁</div>
@@ -594,414 +589,4 @@
             <!-- HALAMAN 3: EFEK KETIK TEKS -->
             <div class="screen" id="page-3">
                 <div class="typing-wrapper">
-                    <div class="typing-sub-header">
-                        <span>🎀 message.txt</span>
-                        <span>💌 for_mina</span>
-                    </div>
-                    <div class="typing-container">
-                        <span id="typed-text"></span><span class="cursor"></span>
-                    </div>
-                </div>
-                <button class="modern-btn" id="quiz-start-btn" style="display: none;" onclick="goToQuiz()">先玩个小测试 🎮</button>
-            </div>
-
-            <!-- HALAMAN 4: KUIS -->
-            <div class="screen" id="page-quiz">
-                <div class="quiz-box">
-                    <div class="quiz-title" id="quiz-num">问题 1 / 5</div>
-                    <div class="quiz-question" id="quiz-q"></div>
-                    <div class="quiz-options" id="quiz-opts"></div>
-                </div>
-            </div>
-
-            <!-- HALAMAN 4.5: HASIL KUIS -->
-            <div class="screen" id="page-quiz-result">
-                <div class="quiz-result-box">
-                    <div class="quiz-result-text">
-                        恭喜你完成了所有问题！<br><br>
-                        其实这些问题没有标准答案，因为我只是想让你知道，无论选择哪一个答案，你都是我最特别的人。<br><br>
-                        希望有一天，我们可以把这些问题里的每一个愿望都变成现实。❤️
-                    </div>
-                </div>
-                <button class="modern-btn" onclick="goToUniverse()">开启幸运星 ✨</button>
-            </div>
-
-            <!-- HALAMAN 5: BINTANG (STABIL) -->
-            <div class="screen" id="page-universe">
-                <div class="universe-box">
-                    <div class="universe-title">✨ 我们的幸运星 ✨</div>
-                    <div class="universe-subtitle">轻触下方的星星，解锁专属心意 🌟</div>
-                    
-                    <div class="stars-grid">
-                        <div class="star-item" id="star-0" onclick="openStarModal(0)">
-                            <svg class="star-svg" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
-                            <div class="star-label">星星 1</div>
-                        </div>
-                        <div class="star-item" id="star-1" onclick="openStarModal(1)">
-                            <svg class="star-svg" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
-                            <div class="star-label">星星 2</div>
-                        </div>
-                        <div class="star-item" id="star-2" onclick="openStarModal(2)">
-                            <svg class="star-svg" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
-                            <div class="star-label">星星 3</div>
-                        </div>
-                        <div class="star-item" id="star-3" onclick="openStarModal(3)">
-                            <svg class="star-svg" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
-                            <div class="star-label">星星 4</div>
-                        </div>
-                        <div class="star-item" id="star-4" onclick="openStarModal(4)">
-                            <svg class="star-svg" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
-                            <div class="star-label">星星 5</div>
-                        </div>
-                        <div class="star-item" id="star-5" onclick="openStarModal(5)">
-                            <svg class="star-svg" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
-                            <div class="star-label">星星 6</div>
-                        </div>
-                    </div>
-
-                    <div style="font-size: 0.75rem; color: #8c7a6b; margin-bottom: 10px;" id="universe-progress">
-                        已点亮星星: 0 / 6
-                    </div>
-
-                    <button class="modern-btn" id="to-letter-btn" style="display: none;" onclick="goToLetterPage()">打开信件 💌</button>
-                </div>
-            </div>
-
-        </div>
-    </div>
-
-    <!-- MODAL BINTANG -->
-    <div class="star-modal-overlay" id="starModal">
-        <div class="star-modal-card">
-            <div class="star-modal-title">💌 来自星星的心意</div>
-            <div class="star-modal-text" id="modalTextContent"></div>
-            <button class="close-modal-btn" onclick="closeStarModal()">关闭 ✨</button>
-        </div>
-    </div>
-
-    <!-- HALAMAN 6: SURAT -->
-    <div class="letter-page" id="page-letter">
-        <div class="letter-content">
-            <p>嗯……宝贝，生日快乐。</p>
-            <p>其实写这些话之前，我想了很久，也不知道该怎么开口。说真的，我心里一直觉得很难过，也很抱歉。因为今天是你的生日，是对你来说这么特别的一天，可我却什么礼物都没办法送给你，甚至连一份可以亲手交给你的礼物都没有。</p>
-            <p>我真的很希望自己能为你做得更多，哪怕只是一件小小的礼物也好。可是现在，我好像只能把这些话写下来送给你。每次想到这里，我都会觉得有点难受。对不起呀，我知道这些文字代替不了真正的礼物，但我还是希望你不要觉得自己没有收到礼物，因为我真的有认真地为你准备这份心意。</p>
-            <p>嗯……说完这些，还是要好好祝我的宝贝生日快乐！</p>
-            <p>希望新的一岁里，你每天都能开开心心，身体健康，想做的事情都能顺利完成。希望你能遇到更多美好的事情，少一点烦恼，少一点难过。也希望你一直都能做自己喜欢的事情，慢慢变成自己想成为的样子。</p>
-            <p>不要总是给自己太大的压力，累了就休息，不开心了也可以跟我说。我想知道你的开心和难过，也想参与你生活里的每一个小瞬间。</p>
-            <p>还有一个愿望，希望以后有一天，我能真正陪在你身边，亲自陪你过生日，把准备好的礼物交到你手里。到那时候，我一定不想再只隔着屏幕跟你说生日快乐了。</p>
-            <p>最后，生日快乐呀，Mina。希望你一直被爱包围，希望你未来的每一天都能过得幸福。谢谢你来到我的生活里，我真的很珍惜你。</p>
-            <p>我爱你，宝贝。❤️</p>
-
-            <div class="end-gift-section">
-                <p style="font-size: 0.9rem; color: #8c7a6b; margin-bottom: 10px; font-weight: 600;">这里还有一个最后的惊喜给你... ✨</p>
-                <div class="mini-gift" onclick="openSurprisePage()">🎁</div>
-            </div>
-        </div>
-    </div>
-
-    <!-- HALAMAN 7: BUKU KENANGAN 3D (LENGKAP 6 HALAMAN / FOTO FULL) -->
-    <div class="surprise-page" id="page-surprise">
-        <div class="chinese-title">OUR LOVE STORY</div>
-        <div class="subtitle-romantic">点击翻页看我们的相册 📖❤️</div>
-        
-        <div class="book-container">
-            <!-- HALAMAN 1: SAMPUL -->
-            <div class="book-page" id="p1" style="z-index: 6;" onclick="flipPage(1)">
-                <div class="page-front cover-page">
-                    <div style="height: 100%; display: flex; flex-direction: column; justify-content: space-between; align-items: center; padding: 25px 10px;">
-                        <div class="cover-ribbon">Mina's Special Album</div>
-                        <div>
-                            <div style="font-size: 1.2rem; font-weight: 700; color: #ffffff; text-shadow: 0 2px 8px rgba(0,0,0,0.6); margin-bottom: 6px;">For My Love ❤️</div>
-                            <div style="font-size: 0.75rem; color: #ffffff; background: rgba(0,0,0,0.35); padding: 4px 10px; border-radius: 10px; display: inline-block;">(点击翻开纪念册)</div>
-                        </div>
-                    </div>
-                </div>
-                <div class="page-back">
-                    <img src="mina.jpg" alt="Mina" class="polaroid-img">
-                    <div class="polaroid-caption">My Love</div>
-                </div>
-            </div>
-
-            <!-- HALAMAN 2 -->
-            <div class="book-page" id="p2" style="z-index: 5;" onclick="flipPage(2)">
-                <div class="page-front">
-                    <img src="mina1.jpg" alt="Mina" class="polaroid-img">
-                    <div class="polaroid-caption">Pretty Girl</div>
-                </div>
-                <div class="page-back">
-                    <img src="mina2.jpg" alt="Mina" class="polaroid-img">
-                    <div class="polaroid-caption">Very Special</div>
-                </div>
-            </div>
-
-            <!-- HALAMAN 3 -->
-            <div class="book-page" id="p3" style="z-index: 4;" onclick="flipPage(3)">
-                <div class="page-front">
-                    <img src="mina3.jpg" alt="Mina" class="polaroid-img">
-                    <div class="polaroid-caption">Forever & Always</div>
-                </div>
-                <div class="page-back">
-                    <img src="mina5.jpg" alt="Mina" class="polaroid-img">
-                    <div class="polaroid-caption">So Cute</div>
-                </div>
-            </div>
-
-            <!-- HALAMAN 4 -->
-            <div class="book-page" id="p4" style="z-index: 3;" onclick="flipPage(4)">
-                <div class="page-front">
-                    <img src="mina6.jpg" alt="Mina" class="polaroid-img">
-                    <div class="polaroid-caption">My Treasure</div>
-                </div>
-                <div class="page-back" style="padding: 22px 16px; text-align: center;">
-                    <div style="font-size: 0.88rem; color: #4a4a4a; line-height: 1.7; font-weight: 600;">
-                        希望以后的每一个生日，我都能陪在你身边。愿你一直被幸福包围，永远做那个开心又可爱的自己。我真的很庆幸能遇见你。生日快乐，Mina，我好爱你。❤️
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <div class="book-nav-btn">
-            <button class="nav-btn" onclick="prevPage()">◀ 上一页</button>
-            <button class="nav-btn" onclick="nextPage()">下一页 ▶</button>
-        </div>
-
-        <button class="modern-btn" onclick="location.reload()" style="margin-top: 10px;">从头再来 💖</button>
-    </div>
-
-    <script>
-        let currentBookPage = 0;
-        const totalPages = 4;
-
-        function flipPage(pageNumber) {
-            const page = document.getElementById(`p${pageNumber}`);
-            if (page.classList.contains('flipped')) {
-                page.classList.remove('flipped');
-                currentBookPage = pageNumber - 1;
-            } else {
-                page.classList.add('flipped');
-                currentBookPage = pageNumber;
-            }
-        }
-
-        function nextPage() {
-            if (currentBookPage < totalPages) {
-                currentBookPage++;
-                document.getElementById(`p${currentBookPage}`).classList.add('flipped');
-            }
-        }
-
-        function prevPage() {
-            if (currentBookPage > 0) {
-                document.getElementById(`p${currentBookPage}`).classList.remove('flipped');
-                currentBookPage--;
-            }
-        }
-
-        let chosenSong = "Mitski - My Love Mine All Mine.mp3";
-
-        function selectSong(songName, element) {
-            chosenSong = songName;
-            document.querySelectorAll('.spotify-card').forEach(card => {
-                card.classList.remove('selected');
-            });
-            element.classList.add('selected');
-        }
-
-        function goToPage2() {
-            const audio = document.getElementById('bg-music');
-            audio.src = chosenSong;
-            audio.load();
-            audio.play().then(() => {
-                console.log("Audio playing");
-            }).catch(error => {
-                console.log("Audio deferred", error);
-            });
-
-            document.getElementById('page-1').classList.remove('active');
-            document.getElementById('page-2').classList.add('active');
-        }
-
-        function startGiftCountdown() {
-            const giftBox = document.getElementById('gift-box-container');
-            const instructionText = document.getElementById('gift-instruction');
-            const countdownDisplay = document.getElementById('countdown-display');
-            const countdownNum = document.getElementById('countdown-num');
-
-            const audio = document.getElementById('bg-music');
-            if (audio.paused) {
-                audio.play().catch(e => console.log(e));
-            }
-
-            giftBox.style.display = 'none';
-            instructionText.style.display = 'none';
-            countdownDisplay.style.display = 'flex';
-
-            startParticleShower();
-
-            let timeLeft = 5;
-            countdownNum.textContent = timeLeft;
-
-            const timer = setInterval(() => {
-                timeLeft--;
-                if (timeLeft > 0) {
-                    countdownNum.textContent = timeLeft;
-                } else {
-                    clearInterval(timer);
-                    document.getElementById('page-2').classList.remove('active');
-                    document.getElementById('page-3').classList.add('active');
-                    typeLoop();
-                }
-            }, 1000);
-        }
-
-        function startParticleShower() {
-            const particles = ['🌸', '💖', '✨', '💕', '🌷', '⭐', '🎈'];
-            setInterval(() => {
-                const p = document.createElement('div');
-                p.classList.add('falling-particle');
-                p.textContent = particles[Math.floor(Math.random() * particles.length)];
-                p.style.left = Math.random() * 100 + 'vw';
-                p.style.animationDuration = (Math.random() * 2 + 2) + 's';
-                p.style.fontSize = (Math.random() * 14 + 16) + 'px';
-                document.body.appendChild(p);
-
-                setTimeout(() => { p.remove(); }, 4000);
-            }, 250);
-        }
-
-        const messages = [
-            "Happy Birthday, Mina! ✨",
-            "嗯……宝贝，对不起只能准备了这个……",
-            "但你知道吗？有些心意是金钱买不到的……",
-            "那就是我对你满满的爱与喜欢！ 💖",
-            "在打开信件之前，先来回答这5个专属小问题吧！ 😉"
-        ];
-
-        let msgIndex = 0;
-        let charIndex = 0;
-        let isDeleting = false;
-
-        function typeLoop() {
-            const currentText = messages[msgIndex];
-            const typedElement = document.getElementById('typed-text');
-
-            if (isDeleting) {
-                typedElement.textContent = currentText.substring(0, charIndex - 1);
-                charIndex--;
-            } else {
-                typedElement.textContent = currentText.substring(0, charIndex + 1);
-                charIndex++;
-            }
-
-            let typeSpeed = isDeleting ? 30 : 65;
-
-            if (!isDeleting && charIndex === currentText.length) {
-                if (msgIndex === messages.length - 1) {
-                    document.getElementById('quiz-start-btn').style.display = 'block';
-                    return;
-                }
-                typeSpeed = 1600;
-                isDeleting = true;
-            } else if (isDeleting && charIndex === 0) {
-                isDeleting = false;
-                msgIndex++;
-                typeSpeed = 350;
-            }
-
-            setTimeout(typeLoop, typeSpeed);
-        }
-
-        const quizData = [
-            { q: "1. 如果有一天我突然出现在你面前，你觉得我会先做什么？", options: ["A. 抱抱你", "B. 牵你的手", "C. 看着你笑", "D. 告诉你我很想你"] },
-            { q: "2. 如果我们可以一起看日落，你最想靠在哪里？", options: ["A. 我的肩膀", "B. 我的手臂", "C. 我的怀里", "D. 靠在我旁边就好"] },
-            { q: "3. 如果我有一个愿望，你觉得我会许什么愿？", options: ["A. 每天都能见到你", "B. 和你一起去很多地方", "C. 让你每天都开心", "D. 和你一直走下去"] },
-            { q: "4. 如果你问我，遇见你之后最大的变化是什么？", options: ["A. 每天都有了期待", "B. 开始喜欢上了中文", "C. 手机里多了一个特别的人", "D. 生活变得更加温柔"] },
-            { q: "5. 如果有一天我们真的见面了，我最想对你说什么？", options: ["A. 我终于见到你了", "B. 我真的很想你", "C. 你比我想象中还可爱", "D. 以后我们还有很多时间在一起"] }
-        ];
-
-        let currentQuizIndex = 0;
-
-        function goToQuiz() {
-            document.getElementById('page-3').classList.remove('active');
-            document.getElementById('page-quiz').classList.add('active');
-            loadQuiz();
-        }
-
-        function loadQuiz() {
-            const data = quizData[currentQuizIndex];
-            document.getElementById('quiz-num').textContent = `问题 ${currentQuizIndex + 1} / 5`;
-            document.getElementById('quiz-q').textContent = data.q;
-
-            const optsContainer = document.getElementById('quiz-opts');
-            optsContainer.innerHTML = '';
-
-            data.options.forEach(optText => {
-                const btn = document.createElement('button');
-                btn.classList.add('quiz-btn');
-                btn.textContent = optText;
-                btn.onclick = () => handleNextQuiz();
-                optsContainer.appendChild(btn);
-            });
-        }
-
-        function handleNextQuiz() {
-            currentQuizIndex++;
-            if (currentQuizIndex < quizData.length) {
-                loadQuiz();
-            } else {
-                document.getElementById('page-quiz').classList.remove('active');
-                document.getElementById('page-quiz-result').classList.add('active');
-            }
-        }
-
-        function goToUniverse() {
-            document.getElementById('page-quiz-result').classList.remove('active');
-            document.getElementById('page-universe').classList.add('active');
-        }
-
-        const reasons = [
-            "特别的相遇<br>在这么大的世界里，能遇见你，是我最幸运的事情之一。",
-            "你的笑容<br>希望你每天都能开心，因为你的笑容对我来说真的很珍贵。",
-            "我的温柔<br>即使我们相隔很远，只要有你在，我的每一天都会变得特别。",
-            "关于你<br>我喜欢你的每一个小细节，因为那都是独一无二的你。",
-            "我的承诺<br>无论遇到什么，我都希望我们能一直理解彼此，陪伴彼此。",
-            "我的愿望<br>如果能向星星许一个愿望，我希望未来的每一天都有你。❤️"
-        ];
-
-        let clickedStars = 0;
-        const viewedStars = new Set();
-
-        function openStarModal(index) {
-            const modal = document.getElementById('starModal');
-            const textContent = document.getElementById('modalTextContent');
-            textContent.innerHTML = reasons[index];
-            modal.style.display = 'flex';
-
-            if (!viewedStars.has(index)) {
-                viewedStars.add(index);
-                clickedStars++;
-                document.getElementById(`star-${index}`).classList.add('clicked');
-                document.getElementById('universe-progress').textContent = `已点亮星星: ${clickedStars} / 6`;
-            }
-
-            if (clickedStars === 6) {
-                document.getElementById('to-letter-btn').style.display = 'block';
-            }
-        }
-
-        function closeStarModal() {
-            document.getElementById('starModal').style.display = 'none';
-        }
-
-        function goToLetterPage() {
-            document.getElementById('main-container').style.display = 'none';
-            document.getElementById('page-letter').classList.add('active');
-        }
-
-        function openSurprisePage() {
-            document.getElementById('page-letter').classList.remove('active');
-            document.getElementById('page-surprise').classList.add('active');
-        }
-    </script>
-</body>
-</html>
+                    <div class="typing-
