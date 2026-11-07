@@ -60,14 +60,15 @@
             position: relative;
         }
 
+        /* TRANSISI PANEL DENGAN EFEK FADE & SLIDE */
         .view-panel {
             display: none;
             width: 100%;
             flex-direction: column;
             align-items: center;
             opacity: 0;
-            transform: translateY(12px);
-            transition: opacity 0.4s ease, transform 0.4s ease;
+            transform: translateY(15px);
+            transition: opacity 0.4s cubic-bezier(0.4, 0, 0.2, 1), transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
         }
 
         .view-panel.active {
@@ -98,7 +99,7 @@
             transition: transform 0.2s ease, background 0.2s ease;
         }
 
-        .music-item:active { transform: scale(0.98); }
+        .music-item:active { transform: scale(0.97); }
 
         .music-item.active-song {
             background: #ffe6f0;
@@ -125,11 +126,17 @@
             text-align: center;
         }
 
+        /* ANIMASI KADO BERGERAK & EFEK KLIK MEMBESAR */
         .gift-box-area {
             cursor: pointer;
             text-align: center;
             margin-bottom: 12px;
             animation: giftFloat 2s infinite ease-in-out;
+            transition: transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        }
+
+        .gift-box-area:active {
+            transform: scale(0.85) rotate(-5deg);
         }
 
         @keyframes giftFloat {
@@ -207,7 +214,7 @@
         .quiz-ask { font-size: 0.85rem; font-weight: 700; color: #4a4a4a; margin-bottom: 12px; line-height: 1.4; }
         .quiz-choices { display: flex; flex-direction: column; gap: 8px; width: 100%; }
 
-        /* ANIMASI KLIK PILIHAN KUIS */
+        /* ANIMASI HALUS SAAT PILIHAN KUIS DIKLIK */
         .choice-btn {
             background: #ffffff;
             border: 1.5px solid #fbdde9;
@@ -224,14 +231,15 @@
         }
 
         .choice-btn:active {
-            background: #ffe6f0;
-            transform: scale(0.95);
+            transform: scale(0.96);
         }
 
-        .choice-btn.clicked {
-            background: #ffb5a7;
-            color: #fff;
-            transform: scale(1.03);
+        .choice-btn.selected-anim {
+            background: #ffe6f0;
+            border-color: #ffb5a7;
+            color: #d47a9e;
+            transform: scale(1.02);
+            box-shadow: 0 4px 12px rgba(255, 181, 167, 0.4);
         }
 
         .quiz-finish-card {
@@ -275,7 +283,7 @@
             transition: transform 0.2s ease;
         }
 
-        .star-box:active { transform: scale(0.94); }
+        .star-box:active { transform: scale(0.92); }
         .star-box.unlocked { background: #ffe6f0; border-color: #ffb5a7; }
         .star-icon-svg { width: 28px; height: 28px; fill: #ffcc00; }
         .star-text-label { font-size: 0.7rem; color: #d47a9e; font-weight: 700; }
@@ -324,7 +332,7 @@
             font-weight: 600;
         }
 
-        /* SURAT PANJANG DENGAN PITA DI ATASNYA */
+        /* SURAT DENGAN PITA DI ATASNYA */
         .letter-container-page {
             display: none;
             width: 100%;
@@ -434,7 +442,7 @@
             transition: transform 0.2s ease;
         }
 
-        .action-btn:active { transform: scale(0.96); }
+        .action-btn:active { transform: scale(0.95); }
     </style>
 </head>
 <body>
@@ -564,8 +572,4 @@
                             <div class="star-text-label">星星 3</div>
                         </div>
                         <div class="star-box" data-star="3">
-                            <svg class="star-icon-svg" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
-                            <div class="star-text-label">星星 4</div>
-                        </div>
-                        <div class="star-box" data-star="4">
-                            <svg class="star-icon-svg" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 
+                            <svg class="star-icon-svg" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 
