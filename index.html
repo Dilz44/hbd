@@ -20,6 +20,7 @@
             font-family: 'Quicksand', sans-serif;
             padding: 15px;
             color: #4a4a4a;
+            overflow: hidden;
         }
 
         .main-wrapper {
@@ -56,17 +57,24 @@
             flex-direction: column;
             justify-content: center;
             align-items: center;
+            position: relative;
         }
 
+        /* ANIMASI TRANSISI HALUS ANTAR PANEL */
         .view-panel {
             display: none;
             width: 100%;
             flex-direction: column;
             align-items: center;
+            opacity: 0;
+            transform: translateY(12px);
+            transition: opacity 0.4s ease, transform 0.4s ease;
         }
 
         .view-panel.active {
             display: flex;
+            opacity: 1;
+            transform: translateY(0);
         }
 
         .music-list {
@@ -88,7 +96,10 @@
             align-items: center;
             gap: 10px;
             cursor: pointer;
+            transition: transform 0.2s ease, background 0.2s ease;
         }
+
+        .music-item:active { transform: scale(0.98); }
 
         .music-item.active-song {
             background: #ffe6f0;
@@ -118,14 +129,20 @@
         .gift-box-area {
             cursor: pointer;
             text-align: center;
-            margin-bottom: 15px;
+            margin-bottom: 12px;
+            animation: giftFloat 2s infinite ease-in-out;
+        }
+
+        @keyframes giftFloat {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-8px); }
         }
 
         .gift-emoji {
-            font-size: 80px;
+            font-size: 75px;
         }
 
-        /* PERBAIKAN COUNTDOWN DI SINI (DIBIKIN VERTIKAL KE BAWAH) */
+        /* COUNTDOWN DIKERJAKAN ABSOLUT TENGAH SUPAYA TIDAK MIRING */
         .countdown-wrapper {
             display: flex;
             flex-direction: column;
@@ -133,21 +150,28 @@
             justify-content: center;
             width: 100%;
             text-align: center;
-            padding: 10px 0;
+            padding: 15px 0;
         }
 
         .countdown-digits {
-            font-size: 5rem;
+            font-size: 5.2rem;
             font-weight: 700;
             color: #d47a9e;
             line-height: 1;
             margin-bottom: 12px;
+            animation: pulseNum 0.8s infinite alternate;
+        }
+
+        @keyframes pulseNum {
+            0% { transform: scale(1); }
+            100% { transform: scale(1.08); }
         }
 
         .countdown-label {
             font-size: 0.85rem;
             color: #8c7a6b;
             font-weight: 600;
+            letter-spacing: 0.5px;
         }
 
         .typewriter-box {
@@ -197,7 +221,10 @@
             text-align: left;
             font-family: 'Quicksand', sans-serif;
             width: 100%;
+            transition: all 0.2s ease;
         }
+
+        .choice-btn:active { background: #ffe6f0; transform: scale(0.98); }
 
         .quiz-finish-card {
             width: 100%;
@@ -231,8 +258,10 @@
             flex-direction: column;
             align-items: center;
             gap: 4px;
+            transition: transform 0.2s ease;
         }
 
+        .star-box:active { transform: scale(0.94); }
         .star-box.unlocked { background: #ffe6f0; border-color: #ffb5a7; }
         .star-icon-svg { width: 28px; height: 28px; fill: #ffcc00; }
         .star-text-label { font-size: 0.7rem; color: #d47a9e; font-weight: 700; }
@@ -256,6 +285,12 @@
             width: 100%;
             max-width: 300px;
             text-align: center;
+            animation: modalPop 0.3s ease;
+        }
+
+        @keyframes modalPop {
+            0% { transform: scale(0.8); opacity: 0; }
+            100% { transform: scale(1); opacity: 1; }
         }
 
         .modal-title {
@@ -290,9 +325,12 @@
             max-height: 85vh;
             overflow-y: auto;
             line-height: 2rem;
+            opacity: 0;
+            transform: translateY(15px);
+            transition: opacity 0.5s ease, transform 0.5s ease;
         }
 
-        .letter-container-page.active { display: block; }
+        .letter-container-page.active { display: block; opacity: 1; transform: translateY(0); }
         .letter-inner-body { font-size: 0.9rem; color: #4a4a4a; }
         .letter-inner-body p { margin-bottom: 1.8rem; }
 
@@ -310,9 +348,12 @@
             margin: 15px auto;
             max-height: 85vh;
             overflow-y: auto;
+            opacity: 0;
+            transform: translateY(15px);
+            transition: opacity 0.5s ease, transform 0.5s ease;
         }
 
-        .gallery-page-box.active { display: flex; flex-direction: column; align-items: center; }
+        .gallery-page-box.active { display: flex; flex-direction: column; align-items: center; opacity: 1; transform: translateY(0); }
 
         .gallery-title-main { font-size: 1.4rem; font-weight: 700; color: #d47a9e; margin-bottom: 2px; }
         .gallery-subtitle-main { font-size: 0.75rem; color: #8c7a6b; margin-bottom: 12px; font-weight: 600; }
@@ -361,6 +402,7 @@
             font-family: 'Quicksand', sans-serif;
             width: 100%;
             box-shadow: 0 4px 12px rgba(240, 128, 128, 0.4);
+            transition: transform 0.2s ease;
         }
 
         .action-btn:active { transform: scale(0.96); }
@@ -538,7 +580,7 @@
 
             <div style="text-align: center; margin-top: 15px;">
                 <p style="font-size: 0.85rem; color: #8c7a6b; margin-bottom: 8px; font-weight: 600;">这里还有一个最后的惊喜给你... ✨</p>
-                <div id="open-gallery-trigger" style="font-size: 45px; cursor: pointer; display: inline-block;">🎁</div>
+                <div id="open-gallery-trigger" style="font-size: 45px; cursor: pointer; display: inline-block; transition: transform 0.2s;">🎁</div>
             </div>
         </div>
     </div>
@@ -576,7 +618,7 @@
         </div>
 
         <div style="font-size: 0.8rem; color: #4a4a4a; line-height: 1.5; font-weight: 600; margin-bottom: 12px; padding: 0 5px;">
-            希望以后的每一个生日，我都能陪在你身边。愿你一直被幸福包围，永远做那个开心又可爱的自己。生日快乐，Mina，我好爱你。❤️
+            希望以后的每一个生日，我都能陪在你身边。愿你一直被幸福包围，永远做那个开心又可爱的自己。生日快乐，Mina，Mina，我好爱你。❤️
         </div>
 
         <button class="action-btn" id="reload-btn">从头再来 💖</button>
@@ -591,14 +633,11 @@
                 selectedSongFile = this.getAttribute('data-file');
                 document.querySelectorAll('.music-item').forEach(el => el.classList.remove('active-song'));
                 this.classList.add('active-song');
-                
-                // Preload audio begitu lagu dipilih supaya nggak delay pas diputar
                 player.src = selectedSongFile;
                 player.load();
             });
         });
 
-        // Set lagu awal saat pertama buka web
         player.src = selectedSongFile;
         player.load();
 
