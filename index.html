@@ -193,7 +193,6 @@
             background: #fffdf9;
         }
 
-        /* SAMPUL BUKU CANTIK DENGAN PITA & WARNA PINK PASTEL */
         .cover-page {
             background: linear-gradient(135deg, #f8b8d0 0%, #f3c6df 50%, #fcd5e5 100%);
             border: 3px solid #e09bbd;
@@ -384,7 +383,26 @@
 
         .quiz-btn:active { transform: scale(0.97); background: #fff0f5; }
 
-        /* --- A LITTLE UNIVERSE --- */
+        /* --- HASIL KUIS / PESAN PENUTUP KUIS --- */
+        .quiz-result-box {
+            width: 100%;
+            background: #fff5f8;
+            border: 2px dashed #f3c6df;
+            border-radius: 18px;
+            padding: 20px 15px;
+            text-align: center;
+            box-shadow: inset 0 0 15px rgba(243, 198, 223, 0.35);
+            margin-bottom: 15px;
+        }
+
+        .quiz-result-text {
+            font-size: 0.9rem;
+            color: #d47a9e;
+            font-weight: 700;
+            line-height: 1.7;
+        }
+
+        /* --- A LITTLE UNIVERSE (STABIL TANPA GOYANG) --- */
         .universe-box { width: 100%; text-align: center; }
         .universe-title { font-size: 1.1rem; font-weight: 700; color: #d47a9e; margin-bottom: 4px; }
         .universe-subtitle { font-size: 0.75rem; color: #8c7a6b; margin-bottom: 15px; }
@@ -402,7 +420,7 @@
             border-radius: 14px;
             padding: 12px 8px;
             cursor: pointer;
-            transition: all 0.25s ease;
+            transition: all 0.2s ease;
             display: flex;
             flex-direction: column;
             align-items: center;
@@ -413,7 +431,6 @@
         .star-item:hover, .star-item.clicked {
             background: #ffe6f0;
             border-color: #ffb5a7;
-            transform: scale(1.05);
         }
 
         .star-svg {
@@ -421,17 +438,11 @@
             height: 32px;
             fill: #ffcc00;
             filter: drop-shadow(0 2px 5px rgba(255, 204, 0, 0.5));
-            animation: bounceStar 1.5s infinite ease-in-out;
-        }
-
-        @keyframes bounceStar {
-            0%, 100% { transform: translateY(0); }
-            50% { transform: translateY(-5px); }
         }
 
         .star-label { font-size: 0.72rem; color: #d47a9e; font-weight: 700; }
 
-        /* --- MODAL / POP-UP SURAT KECIL (ANTI GLITCH) --- */
+        /* --- MODAL / POP-UP SURAT KECIL (STABIL) --- */
         .star-modal-overlay {
             display: none;
             position: fixed;
@@ -524,16 +535,16 @@
 
         <div class="window-body">
             
-            <!-- HALAMAN 1: PLAYLIST SPOTIFY PILIHAN -->
+            <!-- HALAMAN 1: PLAYLIST SPOTIFY PILIHAN (DISESUAIKAN DENGAN NAMA FILE GITHUB) -->
             <div class="screen active" id="page-1">
                 <div class="instruction-text">请先选择你喜欢的音乐，宝贝 🎶</div>
                 
                 <div class="playlist-container">
-                    <div class="spotify-card selected" onclick="selectSong('The 1975 - About You.mp3', this)">
+                    <div class="spotify-card selected" onclick="selectSong('Mitaki - My Love Mine All Mine.mp3', this)">
                         <div class="spotify-art">🎵</div>
                         <div class="spotify-info">
-                            <h4>About You</h4>
-                            <p>The 1975</p>
+                            <h4>My Love Mine All Mine</h4>
+                            <p>Mitaki</p>
                         </div>
                     </div>
                     <div class="spotify-card" onclick="selectSong('Ed Sheeran - Perfect.mp3', this)">
@@ -550,451 +561,4 @@
                             <p>Elvis Presley</p>
                         </div>
                     </div>
-                    <div class="spotify-card" onclick="selectSong('Keshi - My Love Mine All Mine.mp3', this)">
-                        <div class="spotify-art">🎵</div>
-                        <div class="spotify-info">
-                            <h4>My Love Mine All Mine</h4>
-                            <p>Keshi</p>
-                        </div>
-                    </div>
-                    <div class="spotify-card" onclick="selectSong('Taylor Swift - Love Story (Lyrics).mp3', this)">
-                        <div class="spotify-art">🎵</div>
-                        <div class="spotify-info">
-                            <h4>Love Story</h4>
-                            <p>Taylor Swift</p>
-                        </div>
-                    </div>
-                </div>
-                
-                <!-- Indikator Scroll -->
-                <div class="scroll-hint">▼ 向下滚动查看更多歌曲 ▼</div>
-
-                <button class="modern-btn" onclick="goToPage2()">开始 💖</button>
-            </div>
-
-            <!-- HALAMAN 2: KOTAK KADO -->
-            <div class="screen" id="page-2">
-                <div class="gift-wrapper" onclick="openGift()">
-                    <div class="gift-box">🎁</div>
-                </div>
-                <div class="instruction-text">你有一个小礼物！<br><span style="font-size: 0.8rem; color: #b0b0b0;">( 请点击礼盒 )</span></div>
-            </div>
-
-            <!-- HALAMAN 3: EFEK KETIK BERGANTI -->
-            <div class="screen" id="page-3">
-                <div class="typing-wrapper">
-                    <div class="typing-sub-header">
-                        <span>🎀 message.txt</span>
-                        <span>💌 for_mina</span>
-                    </div>
-
-                    <div class="typing-container">
-                        <span id="typed-text"></span><span class="cursor"></span>
-                    </div>
-                </div>
-                <button class="modern-btn" id="quiz-start-btn" style="display: none;" onclick="goToQuiz()">先玩个小测试 🎮</button>
-            </div>
-
-            <!-- HALAMAN 4: KUIS MANDARIN 5 PERTANYAAN -->
-            <div class="screen" id="page-quiz">
-                <div class="quiz-box">
-                    <div class="quiz-title" id="quiz-num">问题 1 / 5</div>
-                    <div class="quiz-question" id="quiz-q"></div>
-                    <div class="quiz-options" id="quiz-opts"></div>
-                </div>
-            </div>
-
-            <!-- HALAMAN 5: A LITTLE UNIVERSE -->
-            <div class="screen" id="page-universe">
-                <div class="universe-box">
-                    <div class="universe-title">✨ A Little Universe ✨</div>
-                    <div class="universe-subtitle">轻触下方的星星 🌟</div>
-                    
-                    <div class="stars-grid">
-                        <div class="star-item" id="star-0" onclick="openStarModal(0)">
-                            <svg class="star-svg" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
-                            <div class="star-label">星星 1</div>
-                        </div>
-                        <div class="star-item" id="star-1" onclick="openStarModal(1)">
-                            <svg class="star-svg" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
-                            <div class="star-label">星星 2</div>
-                        </div>
-                        <div class="star-item" id="star-2" onclick="openStarModal(2)">
-                            <svg class="star-svg" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
-                            <div class="star-label">星星 3</div>
-                        </div>
-                        <div class="star-item" id="star-3" onclick="openStarModal(3)">
-                            <svg class="star-svg" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
-                            <div class="star-label">星星 4</div>
-                        </div>
-                        <div class="star-item" id="star-4" onclick="openStarModal(4)">
-                            <svg class="star-svg" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
-                            <div class="star-label">星星 5</div>
-                        </div>
-                        <div class="star-item" id="star-5" onclick="openStarModal(5)">
-                            <svg class="star-svg" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
-                            <div class="star-label">星星 6</div>
-                        </div>
-                    </div>
-
-                    <div style="font-size: 0.75rem; color: #8c7a6b; margin-bottom: 10px;" id="universe-progress">
-                        已点亮星星: 0 / 6
-                    </div>
-
-                    <button class="modern-btn" id="to-letter-btn" style="display: none;" onclick="goToLetterPage()">打开信件 💌</button>
-                </div>
-            </div>
-
-        </div>
-    </div>
-
-    <!-- MODAL POP-UP SURAT KECIL (ANTI GLITCH) -->
-    <div class="star-modal-overlay" id="starModal">
-        <div class="star-modal-card">
-            <div class="star-modal-title">💌 来自星星的心意</div>
-            <div class="star-modal-text" id="modalTextContent"></div>
-            <button class="close-modal-btn" onclick="closeStarModal()">关闭 ✨</button>
-        </div>
-    </div>
-
-    <!-- HALAMAN 6: SURAT ESTETIK VINTAGE -->
-    <div class="letter-page" id="page-letter">
-        <div class="letter-content">
-            <p>嗯……宝贝，生日快乐。</p>
-            <p>其实写这些话之前，我想了很久，也不知道该怎么开口。说真的，我心里一直觉得很难过，也很抱歉。因为今天是你的生日，是对你来说这么特别的一天，可我却什么礼物都没办法送给你，甚至连一份可以亲手交给你的礼物都没有。</p>
-            <p>我真的很希望自己能为你做得更多，哪怕只是一件小小的礼物也好。可是现在，我好像只能把这些话写下来送给你。每次想到这里，我都会觉得有点难受。对不起呀，我知道这些文字代替不了真正的礼物，但我还是希望你不要觉得自己没有收到礼物，因为我真的有认真地为你准备这份心意。</p>
-            <p>嗯……说完这些，还是要好好祝我的宝贝生日快乐！</p>
-            <p>希望新的一岁里，你每天都能开开心心，身体健康，想做的事情都能顺利完成。希望你能遇到更多美好的事情，少一点烦恼，少一点难过。也希望你一直都能做自己喜欢的事情，慢慢变成自己想成为的样子。</p>
-            <p>不要总是给自己太大的压力，累了就休息，不开心了也可以跟我说。我想知道你的开心和难过，也想参与你生活里的每一个小瞬间。</p>
-            <p>还有一个愿愿望，希望以后有一天，我能真正陪在你身边，亲自陪你过生日，把准备好的礼物交到你手里。到那时候，我一定不想再只隔着屏幕跟你说生日快乐了。</p>
-            <p>最后，生日快乐呀，Mina。希望你一直被爱包围，希望你未来的每一天都能过得幸福。谢谢你来到我的生活里，我真的很珍惜你。</p>
-            <p>我爱你，宝贝。❤️</p>
-
-            <!-- KADO KECIL DI BAWAH SURAT -->
-            <div class="end-gift-section">
-                <p style="font-size: 0.9rem; color: #8c7a6b; margin-bottom: 10px; font-weight: 600;">这里还有一个最后的惊喜给你... ✨</p>
-                <div class="mini-gift" onclick="openSurprisePage()">🎁</div>
-            </div>
-        </div>
-    </div>
-
-    <!-- HALAMAN 7: BUKU KENANGAN 3D INTERAKTIF (SAMPUL BERPITA & 6 HALAMAN LENGKAP) -->
-    <div class="surprise-page" id="page-surprise">
-        <div class="chinese-title">OUR LOVE STORY</div>
-        <div class="subtitle-romantic">点击翻页看我们的相册 📖❤️</div>
-        
-        <!-- FLIP BOOK CONTAINER -->
-        <div class="book-container">
-            
-            <!-- PAGE 1: COVER BUKU BERPITA -->
-            <div class="book-page" id="p1" style="z-index: 6;" onclick="flipPage(1)">
-                <div class="page-front cover-page">
-                    <div style="font-size: 45px; margin-bottom: 5px;">🎀📖✨</div>
-                    <div class="cover-ribbon">Mina's Special Album</div>
-                    <div style="font-size: 1.2rem; font-weight: 700; color: #7a3e59; margin-bottom: 6px;">For My Love ❤️</div>
-                    <div style="font-size: 0.75rem; color: #8c7a6b; background: rgba(255,255,255,0.7); padding: 4px 10px; border-radius: 10px; display: inline-block;">(点击翻开纪念册)</div>
-                </div>
-                <div class="page-back">
-                    <img src="mina.jpg" alt="Mina" class="polaroid-img">
-                    <div class="polaroid-caption">My Love</div>
-                </div>
-            </div>
-
-            <!-- PAGE 2 -->
-            <div class="book-page" id="p2" style="z-index: 5;" onclick="flipPage(2)">
-                <div class="page-front">
-                    <img src="mina1.jpg" alt="Mina" class="polaroid-img">
-                    <div class="polaroid-caption">Pretty Girl</div>
-                </div>
-                <div class="page-back">
-                    <img src="mina2.jpg" alt="Mina" class="polaroid-img">
-                    <div class="polaroid-caption">Very Special</div>
-                </div>
-            </div>
-
-            <!-- PAGE 3 -->
-            <div class="book-page" id="p3" style="z-index: 4;" onclick="flipPage(3)">
-                <div class="page-front">
-                    <img src="mina3.jpg" alt="Mina" class="polaroid-img">
-                    <div class="polaroid-caption">Forever & Always</div>
-                </div>
-                <div class="page-back">
-                    <img src="mina5.jpg" alt="Mina" class="polaroid-img">
-                    <div class="polaroid-caption">So Cute</div>
-                </div>
-            </div>
-
-            <!-- PAGE 4 -->
-            <div class="book-page" id="p4" style="z-index: 3;" onclick="flipPage(4)">
-                <div class="page-front">
-                    <img src="mina6.jpg" alt="Mina" class="polaroid-img">
-                    <div class="polaroid-caption">My Treasure</div>
-                </div>
-                <div class="page-back" style="padding: 22px 16px; text-align: center;">
-                    <div style="font-size: 0.88rem; color: #4a4a4a; line-height: 1.7; font-weight: 600;">
-                        希望以后的每一个生日，我都能陪在你身边。愿你一直被幸福包围，永远做那个开心又可爱的自己。我真的很庆幸能遇见你。生日快乐，Mina，我好爱你。❤️
-                    </div>
-                </div>
-            </div>
-
-        </div>
-
-        <!-- TOMBOL CONTROL BUKU -->
-        <div class="book-nav-btn">
-            <button class="nav-btn" onclick="prevPage()">◀ 上一页</button>
-            <button class="nav-btn" onclick="nextPage()">下一页 ▶</button>
-        </div>
-
-        <button class="modern-btn" onclick="location.reload()" style="margin-top: 10px;">从头再来 💖</button>
-    </div>
-
-    <script>
-        // --- LOGIC 3D PAGE FLIP BOOK ---
-        let currentBookPage = 0;
-        const totalPages = 4;
-
-        function flipPage(pageNumber) {
-            const page = document.getElementById(`p${pageNumber}`);
-            if (page.classList.contains('flipped')) {
-                page.classList.remove('flipped');
-                currentBookPage = pageNumber - 1;
-            } else {
-                page.classList.add('flipped');
-                currentBookPage = pageNumber;
-            }
-        }
-
-        function nextPage() {
-            if (currentBookPage < totalPages) {
-                currentBookPage++;
-                document.getElementById(`p${currentBookPage}`).classList.add('flipped');
-            }
-        }
-
-        function prevPage() {
-            if (currentBookPage > 0) {
-                document.getElementById(`p${currentBookPage}`).classList.remove('flipped');
-                currentBookPage--;
-            }
-        }
-
-        // --- PEMILIHAN LAGU SPOTIFY CARD ---
-        let chosenSong = "The 1975 - About You.mp3";
-
-        function selectSong(songName, element) {
-            chosenSong = songName;
-            document.querySelectorAll('.spotify-card').forEach(card => {
-                card.classList.remove('selected');
-            });
-            element.classList.add('selected');
-        }
-
-        function goToPage2() {
-            const audio = document.getElementById('bg-music');
-            audio.src = chosenSong;
-            audio.play().catch(function(error) {
-                console.log("Audio blocked by browser, continuing.");
-            });
-            document.getElementById('page-1').classList.remove('active');
-            document.getElementById('page-2').classList.add('active');
-        }
-
-        // --- TEKS KETIK + GOMBALAN ---
-        const messages = [
-            "Happy Birthday, Mina! ✨",
-            "嗯……宝贝，对不起只能准备了这个……",
-            "但你知道吗？有些心意是金钱买不到的……",
-            "那就是我对你满满的爱与喜欢！ 💖",
-            "在打开信件之前，先来回答这5个专属小问题吧！ 😉"
-        ];
-
-        let msgIndex = 0;
-        let charIndex = 0;
-        let isDeleting = false;
-
-        function openGift() {
-            document.getElementById('page-2').classList.remove('active');
-            document.getElementById('page-3').classList.add('active');
-            typeLoop();
-        }
-
-        function typeLoop() {
-            const currentText = messages[msgIndex];
-            const typedElement = document.getElementById('typed-text');
-
-            if (isDeleting) {
-                typedElement.textContent = currentText.substring(0, charIndex - 1);
-                charIndex--;
-            } else {
-                typedElement.textContent = currentText.substring(0, charIndex + 1);
-                charIndex++;
-            }
-
-            let typeSpeed = isDeleting ? 30 : 65;
-
-            if (!isDeleting && charIndex === currentText.length) {
-                if (msgIndex === messages.length - 1) {
-                    document.getElementById('quiz-start-btn').style.display = 'block';
-                    return;
-                }
-                typeSpeed = 1600;
-                isDeleting = true;
-            } else if (isDeleting && charIndex === 0) {
-                isDeleting = false;
-                msgIndex++;
-                typeSpeed = 350;
-            }
-
-            setTimeout(typeLoop, typeSpeed);
-        }
-
-        // --- DATA KUIS MANDARIN FULL ---
-        const quizData = [
-            {
-                q: "1. 如果有一天我突然出现在你面前，你觉得我会先做什么？",
-                options: [
-                    "A. 抱抱你",
-                    "B. 牵你的手",
-                    "C. 看着你笑",
-                    "D. 告诉你我很想你"
-                ]
-            },
-            {
-                q: "2. 如果我们可以一起看日落，你最想靠在哪里？",
-                options: [
-                    "A. 我的肩膀",
-                    "B. 我的手臂",
-                    "C. 我的怀里",
-                    "D. 靠在我旁边就好"
-                ]
-            },
-            {
-                q: "3. 如果我有一个愿望，你觉得我会许什么愿？",
-                options: [
-                    "A. 每天都能见到你",
-                    "B. 和你一起去很多地方",
-                    "C. 让你每天都开心",
-                    "D. 和你一直走下去"
-                ]
-            },
-            {
-                q: "4. 如果你问我，遇见你之后最大的变化是什么？",
-                options: [
-                    "A. 每天都有了期待",
-                    "B. 开始喜欢上了中文",
-                    "C. 手机里多了一个特别的人",
-                    "D. 生活变得更加温柔"
-                ]
-            },
-            {
-                q: "5. 如果有一天我们真的见面了，我最想对你说什么？",
-                options: [
-                    "A. 我终于见到你了",
-                    "B. 我真的很想你",
-                    "C. 你比我想象中还可爱",
-                    "D. 以后我们还有很多时间在一起"
-                ]
-            }
-        ];
-
-        let currentQuizIndex = 0;
-
-        function goToQuiz() {
-            document.getElementById('page-3').classList.remove('active');
-            document.getElementById('page-quiz').classList.add('active');
-            loadQuiz();
-        }
-
-        function loadQuiz() {
-            const data = quizData[currentQuizIndex];
-            document.getElementById('quiz-num').textContent = `问题 ${currentQuizIndex + 1} / 5`;
-            document.getElementById('quiz-q').textContent = data.q;
-
-            const optsContainer = document.getElementById('quiz-opts');
-            optsContainer.innerHTML = '';
-
-            data.options.forEach(optText => {
-                const btn = document.createElement('button');
-                btn.classList.add('quiz-btn');
-                btn.textContent = optText;
-                btn.onclick = () => handleNextQuiz();
-                optsContainer.appendChild(btn);
-            });
-        }
-
-        function handleNextQuiz() {
-            currentQuizIndex++;
-            if (currentQuizIndex < quizData.length) {
-                loadQuiz();
-            } else {
-                document.getElementById('page-quiz').classList.remove('active');
-                document.getElementById('page-universe').classList.add('active');
-            }
-        }
-
-        // --- A LITTLE UNIVERSE MODAL LOGIC ---
-        const reasons = [
-            "特别的相遇<br>在这么大的世界里，能遇见你，是我最幸运的事情之一。",
-            "你的笑容<br>希望你每天都能开心，因为你的笑容对我来说真的很珍贵。",
-            "我的温柔<br>即使我们相隔很远，只要有你在，我的每一天都会变得特别。",
-            "关于你<br>我喜欢你的每一个小细节，因为那都是独一无二的你。",
-            "我的承诺<br>无论遇到什么，我都希望我们能一直理解彼此，陪伴彼此。",
-            "我的愿望<br>如果能向星星许一个愿望，我希望未来的每一天都有你。❤️"
-        ];
-
-        let clickedStars = 0;
-        const viewedStars = new Set();
-
-        function openStarModal(index) {
-            const modal = document.getElementById('starModal');
-            const textContent = document.getElementById('modalTextContent');
-            textContent.innerHTML = reasons[index];
-            modal.style.display = 'flex';
-
-            if (!viewedStars.has(index)) {
-                viewedStars.add(index);
-                clickedStars++;
-                document.getElementById(`star-${index}`).classList.add('clicked');
-                document.getElementById('universe-progress').textContent = `已点亮星星: ${clickedStars} / 6`;
-            }
-
-            if (clickedStars === 6) {
-                document.getElementById('to-letter-btn').style.display = 'block';
-            }
-        }
-
-        function closeStarModal() {
-            document.getElementById('starModal').style.display = 'none';
-        }
-
-        function goToLetterPage() {
-            document.getElementById('main-container').style.display = 'none';
-            document.getElementById('page-letter').classList.add('active');
-        }
-
-        function openSurprisePage() {
-            document.getElementById('page-letter').classList.remove('active');
-            document.getElementById('page-surprise').classList.add('active');
-        }
-
-        // --- SKRIP BUNGA, LOVE & SPARKLE JATUH ---
-        const items = ['🌸', '🌺', '💖', '💕', '✨', '🌷', '⭐'];
-        
-        function createFallingItem() {
-            const item = document.createElement('div');
-            item.classList.add('falling-item');
-            item.textContent = items[Math.floor(Math.random() * items.length)];
-            
-            item.style.left = Math.random() * 100 + 'vw';
-            item.style.animationDuration = (Math.random() * 3 + 3) + 's';
-            item.style.fontSize = (Math.random() * 16 + 14) + 'px';
-            
-            document.body.appendChild(item);
-            
-            setTimeout(() => { item.remove(); }, 6000);
-        }
-
-        setInterval(createFallingItem, 350);
-    </script>
-</body>
-</html>
+                    <div class="spotify-card" onclick="selectSong('Taylor S
