@@ -12,7 +12,6 @@
         html, body {
             height: 100%;
             width: 100%;
-            overflow: hidden;
             background: #e6f0fa url('bg1.jpg') no-repeat center center fixed;
             background-size: cover;
             display: flex;
@@ -21,19 +20,18 @@
             font-family: 'Quicksand', sans-serif;
             padding: 15px;
             color: #4a4a4a;
-            position: relative;
         }
 
         .main-wrapper {
             width: 100%;
             max-width: 420px;
-            background: rgba(255, 255, 255, 0.99);
+            background: #ffffff;
             border: 2px solid #f3c6df;
-            box-shadow: 0 25px 50px rgba(0, 0, 0, 0.15);
-            border-radius: 28px;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2);
+            border-radius: 24px;
             overflow: hidden;
             position: relative;
-            z-index: 50;
+            z-index: 999;
         }
 
         .app-header {
@@ -52,13 +50,12 @@
         .app-title { font-size: 0.78rem; color: #d47a9e; font-weight: 700; }
 
         .app-body {
-            padding: 22px 18px;
-            min-height: 360px;
+            padding: 20px;
+            min-height: 340px;
             display: flex;
             flex-direction: column;
             justify-content: center;
             align-items: center;
-            position: relative;
         }
 
         .view-panel {
@@ -66,15 +63,10 @@
             width: 100%;
             flex-direction: column;
             align-items: center;
-            opacity: 0;
-            transform: translateY(10px);
-            transition: opacity 0.4s ease, transform 0.4s ease;
         }
 
         .view-panel.active {
             display: flex;
-            opacity: 1;
-            transform: translateY(0);
         }
 
         .music-list {
@@ -84,20 +76,18 @@
             gap: 8px;
             max-height: 150px;
             overflow-y: auto;
-            padding-right: 4px;
             margin-bottom: 10px;
         }
 
         .music-item {
             background: #faf2f6;
             border: 1.5px solid #fbdde9;
-            padding: 8px 10px;
+            padding: 10px 12px;
             border-radius: 12px;
             display: flex;
             align-items: center;
             gap: 10px;
             cursor: pointer;
-            transition: all 0.25s ease;
         }
 
         .music-item.active-song {
@@ -114,34 +104,25 @@
             flex-shrink: 0;
         }
 
-        .music-meta h4 { font-size: 0.75rem; color: #4a4a4a; font-weight: 700; }
-        .music-meta p { font-size: 0.65rem; color: #8c7a6b; }
+        .music-meta h4 { font-size: 0.78rem; color: #4a4a4a; font-weight: 700; }
+        .music-meta p { font-size: 0.68rem; color: #8c7a6b; }
 
         .hint-scroll {
             font-size: 0.7rem;
             color: #d47a9e;
             font-weight: 700;
             margin-bottom: 10px;
+            text-align: center;
         }
 
         .gift-box-area {
-            position: relative;
             cursor: pointer;
-            display: inline-block;
+            text-align: center;
             margin-bottom: 15px;
         }
 
         .gift-emoji {
             font-size: 80px;
-            filter: drop-shadow(0 10px 20px rgba(255, 181, 167, 0.5));
-        }
-
-        .countdown-wrapper {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            padding: 10px;
         }
 
         .countdown-digits {
@@ -150,6 +131,7 @@
             color: #d47a9e;
             line-height: 1;
             margin-bottom: 10px;
+            text-align: center;
         }
 
         .typewriter-box {
@@ -157,7 +139,7 @@
             background: #fff5f8;
             border: 2px dashed #fbdde9;
             border-radius: 16px;
-            padding: 18px;
+            padding: 16px;
             margin-bottom: 15px;
         }
 
@@ -166,45 +148,31 @@
             justify-content: space-between;
             align-items: center;
             border-bottom: 1.5px dashed #fbdde9;
-            padding-bottom: 8px;
-            margin-bottom: 12px;
+            padding-bottom: 6px;
+            margin-bottom: 10px;
             font-size: 0.75rem;
             color: #d47a9e;
             font-weight: 700;
         }
 
         .typewriter-text {
-            font-size: 0.92rem;
+            font-size: 0.9rem;
             color: #d47a9e;
             font-weight: 700;
-            line-height: 1.6;
-            min-height: 70px;
-            display: flex;
-            justify-content: center;
-            align-items: center;
+            line-height: 1.5;
+            min-height: 60px;
             text-align: center;
         }
 
-        .blinking-caret {
-            display: inline-block;
-            width: 2px;
-            height: 16px;
-            background-color: #d47a9e;
-            animation: cursorBlink 0.8s infinite;
-            margin-left: 3px;
-        }
-
-        @keyframes cursorBlink { 0%, 50% { opacity: 1; } 51%, 100% { opacity: 0; } }
-
         .quiz-container { width: 100%; text-align: center; }
         .quiz-indicator { font-size: 0.72rem; color: #f08080; font-weight: 700; margin-bottom: 6px; text-transform: uppercase; }
-        .quiz-ask { font-size: 0.88rem; font-weight: 700; color: #4a4a4a; margin-bottom: 14px; line-height: 1.4; }
+        .quiz-ask { font-size: 0.85rem; font-weight: 700; color: #4a4a4a; margin-bottom: 12px; line-height: 1.4; }
         .quiz-choices { display: flex; flex-direction: column; gap: 8px; width: 100%; }
 
         .choice-btn {
             background: #ffffff;
             border: 1.5px solid #fbdde9;
-            padding: 12px 14px;
+            padding: 12px;
             border-radius: 12px;
             font-size: 0.8rem;
             font-weight: 600;
@@ -220,16 +188,13 @@
             background: #fff5f8;
             border: 2px dashed #fbdde9;
             border-radius: 16px;
-            padding: 18px;
+            padding: 16px;
             text-align: center;
             margin-bottom: 15px;
-        }
-
-        .quiz-finish-msg {
-            font-size: 0.85rem;
+            font-size: 0.82rem;
             color: #d47a9e;
             font-weight: 700;
-            line-height: 1.6;
+            line-height: 1.5;
         }
 
         .stars-layout {
@@ -243,26 +208,25 @@
         .star-box {
             background: #fff5f8;
             border: 1.5px dashed #fbdde9;
-            border-radius: 14px;
-            padding: 12px 6px;
+            border-radius: 12px;
+            padding: 10px 6px;
             cursor: pointer;
             display: flex;
             flex-direction: column;
             align-items: center;
-            gap: 6px;
+            gap: 4px;
         }
 
         .star-box.unlocked { background: #ffe6f0; border-color: #ffb5a7; }
-
-        .star-icon-svg { width: 30px; height: 30px; fill: #ffcc00; }
-        .star-text-label { font-size: 0.72rem; color: #d47a9e; font-weight: 700; }
+        .star-icon-svg { width: 28px; height: 28px; fill: #ffcc00; }
+        .star-text-label { font-size: 0.7rem; color: #d47a9e; font-weight: 700; }
 
         .modal-shade {
             display: none;
             position: fixed;
             top: 0; left: 0; width: 100%; height: 100%;
             background: rgba(0, 0, 0, 0.4);
-            z-index: 9999;
+            z-index: 99999;
             justify-content: center;
             align-items: center;
             padding: 20px;
@@ -272,9 +236,9 @@
             background: #fffdf9;
             border: 2px solid #e8d3c7;
             border-radius: 20px;
-            padding: 24px 20px;
+            padding: 20px;
             width: 100%;
-            max-width: 310px;
+            max-width: 300px;
             text-align: center;
         }
 
@@ -282,76 +246,74 @@
             font-size: 0.8rem;
             color: #d47a9e;
             font-weight: 700;
-            margin-bottom: 12px;
-            text-transform: uppercase;
+            margin-bottom: 10px;
             border-bottom: 1.5px dashed #f3c6df;
             padding-bottom: 6px;
         }
 
         .modal-content-text {
-            font-size: 0.86rem;
+            font-size: 0.84rem;
             color: #4a4a4a;
-            line-height: 1.6;
-            margin-bottom: 18px;
+            line-height: 1.5;
+            margin-bottom: 15px;
             font-weight: 600;
         }
 
         .letter-container-page {
             display: none;
             width: 100%;
-            max-width: 580px;
+            max-width: 500px;
             background: #fffdf9;
             border: 2px solid #e8d3c7;
-            border-radius: 24px;
-            padding: 45px 30px;
+            border-radius: 20px;
+            padding: 30px 20px;
             position: relative;
-            z-index: 100;
+            z-index: 999;
             text-align: left;
-            margin: 20px 0;
+            margin: 15px auto;
             max-height: 85vh;
             overflow-y: auto;
-            line-height: 2.4rem;
+            line-height: 2rem;
         }
 
         .letter-container-page.active { display: block; }
-
-        .letter-inner-body { font-size: 0.95rem; color: #4a4a4a; }
-        .letter-inner-body p { margin-bottom: 2.4rem; }
+        .letter-inner-body { font-size: 0.9rem; color: #4a4a4a; }
+        .letter-inner-body p { margin-bottom: 1.8rem; }
 
         .gallery-page-box {
             display: none;
             width: 100%;
-            max-width: 500px;
-            background: rgba(255, 255, 255, 0.99);
+            max-width: 480px;
+            background: #ffffff;
             border: 2.5px solid #f3c6df;
-            border-radius: 24px;
-            padding: 22px 18px;
+            border-radius: 20px;
+            padding: 20px 15px;
             position: relative;
-            z-index: 100;
+            z-index: 999;
             text-align: center;
-            margin: 15px 0;
-            max-height: 88vh;
+            margin: 15px auto;
+            max-height: 85vh;
             overflow-y: auto;
         }
 
         .gallery-page-box.active { display: flex; flex-direction: column; align-items: center; }
 
-        .gallery-title-main { font-size: 1.5rem; font-weight: 700; color: #d47a9e; margin-bottom: 2px; }
-        .gallery-subtitle-main { font-size: 0.78rem; color: #8c7a6b; margin-bottom: 14px; font-weight: 600; }
+        .gallery-title-main { font-size: 1.4rem; font-weight: 700; color: #d47a9e; margin-bottom: 2px; }
+        .gallery-subtitle-main { font-size: 0.75rem; color: #8c7a6b; margin-bottom: 12px; font-weight: 600; }
 
         .photo-grid {
             display: grid;
             grid-template-columns: repeat(2, 1fr);
-            gap: 12px;
+            gap: 10px;
             width: 100%;
-            margin-bottom: 15px;
+            margin-bottom: 12px;
         }
 
         .polaroid-card {
             background: #fff;
             border: 1.5px solid #f3c6df;
-            border-radius: 12px;
-            padding: 8px 8px 12px 8px;
+            border-radius: 10px;
+            padding: 6px 6px 10px 6px;
             display: flex;
             flex-direction: column;
             align-items: center;
@@ -359,15 +321,15 @@
 
         .polaroid-grid-img {
             width: 100%;
-            height: 130px;
+            height: 120px;
             object-fit: cover;
-            border-radius: 8px;
-            margin-bottom: 6px;
+            border-radius: 6px;
+            margin-bottom: 4px;
         }
 
         .polaroid-grid-sign {
             font-family: 'Sacramento', cursive;
-            font-size: 1.25rem;
+            font-size: 1.15rem;
             color: #d47a9e;
         }
 
@@ -375,15 +337,14 @@
             background: linear-gradient(135deg, #ffb5a7 0%, #f08080 100%);
             color: #ffffff; 
             border: none; 
-            padding: 14px 28px; 
-            font-size: 0.9rem;
+            padding: 12px; 
+            font-size: 0.88rem;
             font-weight: 700; 
             cursor: pointer; 
             border-radius: 50px;
             font-family: 'Quicksand', sans-serif;
-            box-shadow: 0 4px 15px rgba(240, 128, 128, 0.4);
-            -webkit-tap-highlight-color: transparent;
             width: 100%;
+            box-shadow: 0 4px 12px rgba(240, 128, 128, 0.4);
         }
 
         .action-btn:active { transform: scale(0.96); }
@@ -408,7 +369,7 @@
             <div class="view-panel active" id="view-1">
                 <div class="instruction-text" style="margin-bottom: 8px; font-weight: 700; color: #6b6b6b; text-align: center;">请先选择你喜欢的音乐，宝贝 🎶</div>
                 
-                <div class="music-list" id="music-list-container">
+                <div class="music-list">
                     <div class="music-item active-song" data-file="Ed Sheeran - Perfect.mp3">
                         <div class="music-icon">🎵</div>
                         <div class="music-meta">
@@ -446,9 +407,8 @@
                     </div>
                 </div>
                 
-                <div class="hint-scroll" style="text-align: center;">▼ 向下滚动查看更多歌曲 ▼</div>
-                
-                <button class="action-btn" id="start-music-btn" style="margin-top: 5px;">点击播放音乐并开始 🎵</button>
+                <div class="hint-scroll">▼ 选择歌曲后点击下方按钮 ▼</div>
+                <button class="action-btn" id="start-music-btn">点击播放音乐并开始 🎵</button>
             </div>
 
             <!-- VIEW 2 -->
@@ -460,7 +420,7 @@
 
                 <div class="countdown-wrapper" id="timer-box" style="display: none;">
                     <div class="countdown-digits" id="timer-count">5</div>
-                    <div class="countdown-label" style="font-size: 0.82rem; color: #8c7a6b; font-weight: 600;">✨ 准备接收惊喜... ✨</div>
+                    <div class="countdown-label" style="font-size: 0.8rem; color: #8c7a6b; font-weight: 600; text-align: center;">✨ 准备接收惊喜... ✨</div>
                 </div>
             </div>
 
@@ -472,7 +432,7 @@
                         <span>💌 for_mina</span>
                     </div>
                     <div class="typewriter-text">
-                        <span id="typed-output"></span><span class="blinking-caret"></span>
+                        <span id="typed-output"></span><span style="display:inline-block;width:2px;height:14px;background:#d47a9e;margin-left:2px;"></span>
                     </div>
                 </div>
                 <button class="action-btn" id="quiz-unlock-btn" style="display: none;">先玩个小测试 🎮</button>
@@ -490,11 +450,9 @@
             <!-- VIEW 4.5 -->
             <div class="view-panel" id="view-4-result">
                 <div class="quiz-finish-card">
-                    <div class="quiz-finish-msg">
-                        恭喜你完成了所有问题！<br><br>
-                        其实这些问题没有标准答案，因为我只是想让你知道，无论选择哪一个答案，你都是我最特别的人。<br><br>
-                        希望有一天，我们可以把这些问题里的每一个愿望都变成现实。❤️
-                    </div>
+                    恭喜你完成了所有问题！<br><br>
+                    其实这些问题没有标准答案，因为我只是想让你知道，无论选择哪一个答案，你都是我最特别的人。<br><br>
+                    希望有一天，我们可以把这些问题里的每一个愿望都变成现实。❤️
                 </div>
                 <button class="action-btn" id="to-star-btn">开启幸运星 ✨</button>
             </div>
@@ -502,8 +460,8 @@
             <!-- VIEW 5 -->
             <div class="view-panel" id="view-5">
                 <div style="width: 100%; text-align: center;">
-                    <div style="font-size: 1.1rem; font-weight: 700; color: #d47a9e; margin-bottom: 4px;">✨ 我们的幸运星 ✨</div>
-                    <div style="font-size: 0.75rem; color: #8c7a6b; margin-bottom: 14px;">轻触下方的星星，解锁专属心意 🌟</div>
+                    <div style="font-size: 1.05rem; font-weight: 700; color: #d47a9e; margin-bottom: 4px;">✨ 我们的幸运星 ✨</div>
+                    <div style="font-size: 0.72rem; color: #8c7a6b; margin-bottom: 12px;">轻触下方的星星，解锁专属心意 🌟</div>
                     
                     <div class="stars-layout">
                         <div class="star-box" data-star="0">
@@ -532,7 +490,7 @@
                         </div>
                     </div>
 
-                    <div style="font-size: 0.75rem; color: #8c7a6b; margin-bottom: 12px;" id="star-counter-info">已点亮星星: 0 / 6</div>
+                    <div style="font-size: 0.72rem; color: #8c7a6b; margin-bottom: 10px;" id="star-counter-info">已点亮星星: 0 / 6</div>
                     <button class="action-btn" id="letter-unlocked-btn" style="display: none;">打开信件 💌</button>
                 </div>
             </div>
@@ -545,7 +503,7 @@
         <div class="modal-box">
             <div class="modal-title">💌 来自星星的心意</div>
             <div class="modal-content-text" id="modalBodyText"></div>
-            <button class="action-btn" id="close-modal-btn" style="padding: 10px 20px; font-size: 0.85rem;">关闭 ✨</button>
+            <button class="action-btn" id="close-modal-btn">关闭 ✨</button>
         </div>
     </div>
 
@@ -563,8 +521,8 @@
             <p>我爱你，宝贝。❤️</p>
 
             <div style="text-align: center; margin-top: 15px;">
-                <p style="font-size: 0.88rem; color: #8c7a6b; margin-bottom: 10px; font-weight: 600;">这里还有一个最后的惊喜给你... ✨</p>
-                <div id="open-gallery-trigger" style="font-size: 50px; cursor: pointer; display: inline-block;">🎁</div>
+                <p style="font-size: 0.85rem; color: #8c7a6b; margin-bottom: 8px; font-weight: 600;">这里还有一个最后的惊喜给你... ✨</p>
+                <div id="open-gallery-trigger" style="font-size: 45px; cursor: pointer; display: inline-block;">🎁</div>
             </div>
         </div>
     </div>
@@ -601,7 +559,7 @@
             </div>
         </div>
 
-        <div style="font-size: 0.82rem; color: #4a4a4a; line-height: 1.6; font-weight: 600; margin-bottom: 15px; padding: 0 10px;">
+        <div style="font-size: 0.8rem; color: #4a4a4a; line-height: 1.5; font-weight: 600; margin-bottom: 12px; padding: 0 5px;">
             希望以后的每一个生日，我都能陪在你身边。愿你一直被幸福包围，永远做那个开心又可爱的自己。生日快乐，Mina，我好爱你。❤️
         </div>
 
@@ -765,47 +723,47 @@
             "我的愿望<br>如果能向星星许一个愿望，我希望未来的每一天都有你。❤️"
         ];
 
-    let litStarsCount = 0;
-    const openedStarsSet = new Set();
+        let litStarsCount = 0;
+        const openedStarsSet = new Set();
 
-    document.querySelectorAll('.star-box').forEach(box => {
-        box.addEventListener('click', function() {
-            const idx = parseInt(this.getAttribute('data-star'));
-            const overlayElem = document.getElementById('starModalOverlay');
-            const bodyElem = document.getElementById('modalBodyText');
-            bodyElem.innerHTML = starNotes[idx];
-            overlayElem.style.display = 'flex';
+        document.querySelectorAll('.star-box').forEach(box => {
+            box.addEventListener('click', function() {
+                const idx = parseInt(this.getAttribute('data-star'));
+                const overlayElem = document.getElementById('starModalOverlay');
+                const bodyElem = document.getElementById('modalBodyText');
+                bodyElem.innerHTML = starNotes[idx];
+                overlayElem.style.display = 'flex';
 
-            if (!openedStarsSet.has(idx)) {
-                openedStarsSet.add(idx);
-                litStarsCount++;
-                this.classList.add('unlocked');
-                document.getElementById('star-counter-info').textContent = `已点亮星星: ${litStarsCount} / 6`;
-            }
+                if (!openedStarsSet.has(idx)) {
+                    openedStarsSet.add(idx);
+                    litStarsCount++;
+                    this.classList.add('unlocked');
+                    document.getElementById('star-counter-info').textContent = `已点亮星星: ${litStarsCount} / 6`;
+                }
 
-            if (litStarsCount === 6) {
-                document.getElementById('letter-unlocked-btn').style.display = 'block';
-            }
+                if (litStarsCount === 6) {
+                    document.getElementById('letter-unlocked-btn').style.display = 'block';
+                }
+            });
         });
-    });
 
-    document.getElementById('close-modal-btn').addEventListener('click', function() {
-        document.getElementById('starModalOverlay').style.display = 'none';
-    });
+        document.getElementById('close-modal-btn').addEventListener('click', function() {
+            document.getElementById('starModalOverlay').style.display = 'none';
+        });
 
-    document.getElementById('letter-unlocked-btn').addEventListener('click', function() {
-        document.getElementById('main-box-container').style.display = 'none';
-        document.getElementById('view-letter').classList.add('active');
-    });
+        document.getElementById('letter-unlocked-btn').addEventListener('click', function() {
+            document.getElementById('main-box-container').style.display = 'none';
+            document.getElementById('view-letter').classList.add('active');
+        });
 
-    document.getElementById('open-gallery-trigger').addEventListener('click', function() {
-        document.getElementById('view-letter').classList.remove('active');
-        document.getElementById('view-gallery').classList.add('active');
-    });
+        document.getElementById('open-gallery-trigger').addEventListener('click', function() {
+            document.getElementById('view-letter').classList.remove('active');
+            document.getElementById('view-gallery').classList.add('active');
+        });
 
-    document.getElementById('reload-btn').addEventListener('click', function() {
-        location.reload();
-    });
+        document.getElementById('reload-btn').addEventListener('click', function() {
+            location.reload();
+        });
     </script>
 </body>
 </html>
