@@ -27,7 +27,7 @@
             position: relative;
         }
 
-        /* --- ANIMASI PARTIKEL JATUH (LOVE, BUNGA, BINTANG) --- */
+        /* --- ANIMASI PARTIKEL JATUH --- */
         .falling-particle {
             position: absolute;
             top: -50px;
@@ -63,7 +63,7 @@
         .decoration-corner-bl { position: absolute; bottom: 15px; left: 15px; font-size: 18px; z-index: 5; }
         .decoration-corner-br { position: absolute; bottom: 15px; right: 15px; font-size: 18px; z-index: 5; }
 
-        /* --- HALAMAN SURAT ESTETIK VINTAGE --- */
+        /* --- HALAMAN SURAT VINTAGE --- */
         .letter-page {
             display: none;
             width: 100%;
@@ -299,7 +299,7 @@
 
         .instruction-text { font-size: 0.85rem; color: #6b6b6b; font-weight: 600; line-height: 1.4; margin-bottom: 6px; }
 
-        /* --- KOTAK KADO DENGAN ANIMASI MEMANTUL (BERGERAK) --- */
+        /* --- KOTAK KADO BERGERAK --- */
         .gift-wrapper { 
             position: relative; 
             cursor: pointer; 
@@ -412,7 +412,7 @@
             line-height: 1.6;
         }
 
-        /* --- A LITTLE UNIVERSE (STABIL TOTAL, TIDAK GOYANG) --- */
+        /* --- A LITTLE UNIVERSE --- */
         .universe-box { width: 100%; text-align: center; }
         .universe-title { font-size: 1.1rem; font-weight: 700; color: #d47a9e; margin-bottom: 4px; }
         .universe-subtitle { font-size: 0.75rem; color: #8c7a6b; margin-bottom: 15px; }
@@ -453,7 +453,7 @@
 
         .star-label { font-size: 0.72rem; color: #d47a9e; font-weight: 700; }
 
-        /* --- MODAL / POP-UP BINTANG --- */
+        /* --- MODAL BINTANG --- */
         .star-modal-overlay {
             display: none;
             position: fixed;
@@ -538,7 +538,7 @@
 
         <div class="window-body">
             
-            <!-- HALAMAN 1: PLAYLIST SPOTIFY PILIHAN -->
+            <!-- HALAMAN 1: PLAYLIST SPOTIFY -->
             <div class="screen active" id="page-1">
                 <div class="instruction-text">请先选择你喜欢的音乐，宝贝 🎶</div>
                 
@@ -578,7 +578,7 @@
                 <button class="modern-btn" onclick="goToPage2()">开始 💖</button>
             </div>
 
-            <!-- HALAMAN 2: KOTAK KADO BERGERAK & HITUNG MUNDUR -->
+            <!-- HALAMAN 2: KOTAK KADO & HITUNG MUNDUR -->
             <div class="screen" id="page-2">
                 <div class="gift-wrapper" id="gift-box-container" onclick="startGiftCountdown()">
                     <div class="gift-box">🎁</div>
@@ -626,7 +626,7 @@
                 <button class="modern-btn" onclick="goToUniverse()">开启幸运星 ✨</button>
             </div>
 
-            <!-- HALAMAN 5: BINTANG KEBERUNTUNGAN -->
+            <!-- HALAMAN 5: BINTANG -->
             <div class="screen" id="page-universe">
                 <div class="universe-box">
                     <div class="universe-title">✨ 我们的幸运星 ✨</div>
@@ -670,7 +670,7 @@
         </div>
     </div>
 
-    <!-- MODAL POP-UP BINTANG -->
+    <!-- MODAL BINTANG -->
     <div class="star-modal-overlay" id="starModal">
         <div class="star-modal-card">
             <div class="star-modal-title">💌 来自星星的心意</div>
@@ -699,13 +699,12 @@
         </div>
     </div>
 
-    <!-- HALAMAN 7: BUKU KENANGAN 3D (LENGKAP 6 HALAMAN) -->
+    <!-- HALAMAN 7: BUKU KENANGAN 3D -->
     <div class="surprise-page" id="page-surprise">
         <div class="chinese-title">OUR LOVE STORY</div>
         <div class="subtitle-romantic">点击翻页看我们的相册 📖❤️</div>
         
         <div class="book-container">
-            <!-- HALAMAN 1: SAMPUL -->
             <div class="book-page" id="p1" style="z-index: 6;" onclick="flipPage(1)">
                 <div class="page-front cover-page">
                     <div style="height: 100%; display: flex; flex-direction: column; justify-content: space-between; align-items: center; padding: 25px 10px;">
@@ -722,7 +721,6 @@
                 </div>
             </div>
 
-            <!-- HALAMAN 2 -->
             <div class="book-page" id="p2" style="z-index: 5;" onclick="flipPage(2)">
                 <div class="page-front">
                     <img src="mina1.jpg" alt="Mina" class="polaroid-img">
@@ -734,7 +732,6 @@
                 </div>
             </div>
 
-            <!-- HALAMAN 3 -->
             <div class="book-page" id="p3" style="z-index: 4;" onclick="flipPage(3)">
                 <div class="page-front">
                     <img src="mina3.jpg" alt="Mina" class="polaroid-img">
@@ -746,7 +743,6 @@
                 </div>
             </div>
 
-            <!-- HALAMAN 4 -->
             <div class="book-page" id="p4" style="z-index: 3;" onclick="flipPage(4)">
                 <div class="page-front">
                     <img src="mina6.jpg" alt="Mina" class="polaroid-img">
@@ -812,16 +808,15 @@
             audio.src = chosenSong;
             audio.load();
             audio.play().then(() => {
-                console.log("Audio preloaded and playing");
+                console.log("Audio playing");
             }).catch(error => {
-                console.log("Audio play deferred", error);
+                console.log("Audio deferred", error);
             });
 
             document.getElementById('page-1').classList.remove('active');
             document.getElementById('page-2').classList.add('active');
         }
 
-        // FUNGSI HITUNG MUNDUR 5 DETIK & MUNCULKAN PARTIKEL JATUH
         function startGiftCountdown() {
             const giftBox = document.getElementById('gift-box-container');
             const instructionText = document.getElementById('gift-instruction');
@@ -837,7 +832,6 @@
             instructionText.style.display = 'none';
             countdownDisplay.style.display = 'flex';
 
-            // Mulai memunculkan partikel jatuh saat hitung mundur dimulai
             startParticleShower();
 
             let timeLeft = 5;
@@ -856,7 +850,6 @@
             }, 1000);
         }
 
-        // GENERATOR PARTIKEL JATUH ESTETIK
         function startParticleShower() {
             const particles = ['🌸', '💖', '✨', '💕', '🌷', '⭐', '🎈'];
             setInterval(() => {
