@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="zh">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -45,10 +45,12 @@
         /* --- KOTAK JENDELA UTAMA --- */
         .window-card {
             width: 100%;
-            max-width: 400px;
-            background: rgba(255, 255, 255, 0.92);
+            max-width: 420px;
+            background: rgba(255, 255, 255, 0.96);
+            background-image: radial-gradient(#f3c6df 1.5px, transparent 1.5px);
+            background-size: 16px 16px;
             backdrop-filter: blur(10px);
-            border: 2px solid #f3c6df;
+            border: 2.5px solid #f3c6df;
             box-shadow: 0 15px 35px rgba(243, 198, 223, 0.6);
             border-radius: 20px;
             overflow: hidden;
@@ -56,11 +58,16 @@
             z-index: 10;
         }
 
-        /* --- HALAMAN SURAT ESTETIK --- */
+        .decoration-corner-tl { position: absolute; top: 45px; left: 15px; font-size: 18px; z-index: 5; }
+        .decoration-corner-tr { position: absolute; top: 45px; right: 15px; font-size: 18px; z-index: 5; }
+        .decoration-corner-bl { position: absolute; bottom: 15px; left: 15px; font-size: 18px; z-index: 5; }
+        .decoration-corner-br { position: absolute; bottom: 15px; right: 15px; font-size: 18px; z-index: 5; }
+
+        /* --- HALAMAN SURAT ESTETIK VINTAGE --- */
         .letter-page {
             display: none;
             width: 100%;
-            max-width: 540px;
+            max-width: 580px;
             background: #fffdf9;
             background-image: linear-gradient(#f0e6df 1px, transparent 1px);
             background-size: 100% 2.4rem;
@@ -73,12 +80,15 @@
             text-align: left;
             animation: fadeIn 0.6s ease forwards;
             margin: 20px 0;
+            max-height: 85vh;
+            overflow-y: auto;
+            line-height: 2.4rem;
         }
 
         .letter-page.active { display: block; }
 
         .letter-page::before {
-            content: '🎀'; position: absolute; top: -18px; left: 30px;
+            content: '🌹'; position: absolute; top: -18px; left: 30px;
             font-size: 28px; background: #fffdf9; padding: 0 8px;
             border-radius: 50%; box-shadow: 0 4px 10px rgba(0,0,0,0.05);
         }
@@ -90,38 +100,157 @@
         }
 
         .letter-content {
-            font-size: 0.95rem; line-height: 2.4rem; color: #4a4a4a;
-            max-height: 70vh; overflow-y: auto; padding-right: 8px;
+            font-size: 0.95rem; color: #4a4a4a;
+            padding-right: 5px;
         }
 
-        /* --- DUA FOTO POLAROID --- */
-        .photo-gallery {
-            display: flex; justify-content: center; gap: 15px;
-            margin: 30px 0 15px 0; flex-wrap: wrap;
+        .letter-content p {
+            margin-bottom: 2.4rem;
         }
 
-        .photo-frame {
-            background: #ffffff; padding: 8px 8px 20px 8px;
-            border: 1.5px solid #f3c6df; box-shadow: 0 8px 20px rgba(243, 198, 223, 0.4);
-            border-radius: 12px; transition: transform 0.3s ease;
+        /* --- HALAMAN FLIP BOOK 3D SURPRISE --- */
+        .surprise-page {
+            display: none;
+            width: 100%;
+            max-width: 480px;
+            background: rgba(255, 255, 255, 0.96);
+            backdrop-filter: blur(12px);
+            border: 2.5px solid #f3c6df;
+            box-shadow: 0 20px 50px rgba(243, 198, 223, 0.7);
+            border-radius: 24px;
+            padding: 30px 20px;
+            position: relative;
+            z-index: 30;
+            text-align: center;
+            animation: fadeIn 0.8s ease forwards;
+            margin: 20px 0;
         }
 
-        .photo-frame:nth-child(1) { transform: rotate(-3deg); }
-        .photo-frame:nth-child(2) { transform: rotate(3deg); }
+        .surprise-page.active { display: flex; flex-direction: column; align-items: center; }
 
-        .photo-frame:hover { transform: rotate(0deg) scale(1.03); z-index: 5; }
-
-        .photo-frame img {
-            width: 130px; height: 160px; object-fit: cover;
-            border-radius: 8px; display: block;
+        .chinese-title {
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: #d47a9e;
+            margin-bottom: 2px;
+            text-shadow: 0 2px 10px rgba(212, 122, 158, 0.3);
         }
 
-        .signature {
-            text-align: right; font-family: 'Sacramento', cursive;
-            font-size: 2.5rem; color: #d47a9e; margin-top: 15px; line-height: 1;
+        .subtitle-romantic {
+            font-size: 0.85rem;
+            color: #8c7a6b;
+            margin-bottom: 20px;
+            font-weight: 600;
         }
 
-        /* --- TITLE BAR --- */
+        /* WIDGET BUKU 3D */
+        .book-container {
+            width: 280px;
+            height: 380px;
+            position: relative;
+            perspective: 1200px;
+            margin-bottom: 20px;
+        }
+
+        .book-page {
+            width: 100%;
+            height: 100%;
+            position: absolute;
+            top: 0;
+            left: 0;
+            transform-origin: left center;
+            transition: transform 0.8s cubic-bezier(0.645, 0.045, 0.355, 1);
+            transform-style: preserve-3d;
+            border-radius: 16px;
+            box-shadow: 0 8px 25px rgba(243, 198, 223, 0.4);
+            cursor: pointer;
+            background: #ffffff;
+            border: 2px solid #f3c6df;
+            overflow: hidden;
+        }
+
+        .book-page.flipped {
+            transform: rotateY(-180deg);
+        }
+
+        .page-front, .page-back {
+            width: 100%;
+            height: 100%;
+            position: absolute;
+            top: 0;
+            left: 0;
+            backface-visibility: hidden;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+            box-sizing: border-box;
+        }
+
+        .page-back {
+            transform: rotateY(180deg);
+            background: #fffdf9;
+        }
+
+        /* SAMPUL BUKU CANTIK DENGAN PITA & WARNA PINK PASTEL */
+        .cover-page {
+            background: linear-gradient(135deg, #f8b8d0 0%, #f3c6df 50%, #fcd5e5 100%);
+            border: 3px solid #e09bbd;
+            text-align: center;
+            position: relative;
+            box-shadow: inset 0 0 20px rgba(255, 255, 255, 0.5);
+        }
+
+        .cover-ribbon {
+            background: #ffffff;
+            color: #d47a9e;
+            padding: 6px 20px;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            font-weight: 700;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+            margin-bottom: 15px;
+            border: 1.5px dashed #d47a9e;
+        }
+
+        .polaroid-img {
+            width: 100%;
+            height: 220px;
+            object-fit: cover;
+            border-radius: 10px;
+            border: 1.5px solid #f3c6df;
+            box-shadow: 0 4px 12px rgba(243, 198, 223, 0.4);
+            margin-bottom: 15px;
+        }
+
+        .polaroid-caption {
+            font-family: 'Sacramento', cursive;
+            font-size: 1.5rem;
+            color: #d47a9e;
+        }
+
+        .book-nav-btn {
+            display: flex;
+            gap: 15px;
+            margin-bottom: 10px;
+        }
+
+        .nav-btn {
+            background: #ffffff;
+            border: 1.5px solid #f3c6df;
+            color: #d47a9e;
+            padding: 6px 16px;
+            border-radius: 20px;
+            font-weight: 700;
+            cursor: pointer;
+            box-shadow: 0 4px 10px rgba(243, 198, 223, 0.3);
+            transition: all 0.2s;
+        }
+
+        .nav-btn:active { transform: scale(0.95); background: #ffe6f0; }
+
+        /* --- TITLE BAR UTAMA --- */
         .title-bar {
             background: #fff5f8; padding: 12px 18px; display: flex;
             justify-content: space-between; align-items: center; border-bottom: 1px solid #f3c6df;
@@ -135,45 +264,103 @@
 
         /* --- ISI KONTEN --- */
         .window-body {
-            padding: 30px 20px; text-align: center; min-height: 360px;
+            padding: 20px 20px; text-align: center; min-height: 380px;
             display: flex; flex-direction: column; justify-content: center; align-items: center;
+            background: rgba(255, 255, 255, 0.85);
+            position: relative;
         }
 
         .screen { display: none; width: 100%; flex-direction: column; align-items: center; animation: fadeIn 0.4s ease forwards; }
         .screen.active { display: flex; }
 
-        /* --- WIDGET SPOTIFY --- */
+        /* --- SPOTIFY PLAYLIST PILIHAN --- */
+        .playlist-container {
+            width: 100%;
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+            margin-bottom: 6px;
+            max-height: 150px;
+            overflow-y: auto;
+            padding-right: 4px;
+        }
+
+        .scroll-hint {
+            font-size: 0.72rem;
+            color: #d47a9e;
+            font-weight: 700;
+            margin-bottom: 10px;
+            animation: bounceHint 1.5s infinite ease-in-out;
+        }
+
+        @keyframes bounceHint {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(3px); }
+        }
+
         .spotify-card {
-            background: #faf2f6; border: 1.5px solid #f3c6df; padding: 15px;
-            border-radius: 14px; width: 100%; margin-bottom: 20px;
-            display: flex; align-items: center; gap: 12px; text-align: left;
-            box-shadow: 0 4px 15px rgba(243, 198, 223, 0.3);
+            background: #faf2f6; border: 1.5px solid #f3c6df; padding: 8px 10px;
+            border-radius: 12px; width: 100%;
+            display: flex; align-items: center; gap: 10px; text-align: left;
+            cursor: pointer; transition: all 0.2s ease;
+            box-shadow: 0 4px 10px rgba(243, 198, 223, 0.2);
+        }
+
+        .spotify-card:hover, .spotify-card.selected {
+            background: #ffe6f0;
+            border-color: #ffb5a7;
+            transform: scale(1.02);
         }
 
         .spotify-art {
-            width: 45px; height: 45px; background: #ffb5a7; border-radius: 10px;
+            width: 34px; height: 34px; background: #ffb5a7; border-radius: 8px;
             display: flex; justify-content: center; align-items: center;
-            font-size: 22px; box-shadow: 0 4px 10px rgba(255, 181, 167, 0.5);
+            font-size: 16px; flex-shrink: 0;
+            box-shadow: 0 3px 8px rgba(255, 181, 167, 0.5);
         }
 
-        .spotify-info h4 { font-size: 0.85rem; color: #4a4a4a; font-weight: 700; }
-        .spotify-info p { font-size: 0.75rem; color: #8c7a6b; }
+        .spotify-info h4 { font-size: 0.78rem; color: #4a4a4a; font-weight: 700; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+        .spotify-info p { font-size: 0.68rem; color: #8c7a6b; }
 
-        /* --- KOTAK KADO --- */
+        .instruction-text { font-size: 0.85rem; color: #6b6b6b; font-weight: 600; line-height: 1.4; margin-bottom: 6px; }
+
+        /* --- KOTAK KADO AWAL --- */
         .gift-wrapper { position: relative; cursor: pointer; display: inline-block; margin-bottom: 15px; z-index: 20; }
         .gift-box {
-            font-size: 70px; animation: bounceGift 1.5s infinite ease-in-out;
+            font-size: 75px; animation: bounceGift 1.5s infinite ease-in-out;
             user-select: none; transition: transform 0.2s ease;
             filter: drop-shadow(0 8px 15px rgba(255, 181, 167, 0.6));
         }
 
-        .instruction-text { font-size: 0.9rem; color: #6b6b6b; font-weight: 600; line-height: 1.5; }
+        /* --- DESAIN BINGKAI KARTUN RAMAI --- */
+        .typing-wrapper {
+            width: 100%;
+            background: #fff5f8;
+            border: 2.5px dashed #f3c6df;
+            border-radius: 18px;
+            padding: 15px;
+            position: relative;
+            box-shadow: inset 0 0 15px rgba(243, 198, 223, 0.35), 0 8px 20px rgba(243, 198, 223, 0.25);
+            margin-bottom: 12px;
+        }
 
-        /* --- EFEK KETIK --- */
+        .typing-sub-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 1.5px dashed #f3c6df;
+            padding-bottom: 8px;
+            margin-bottom: 15px;
+            font-size: 0.75rem;
+            color: #d47a9e;
+            font-weight: 700;
+        }
+
         .typing-container {
-            font-size: 1rem; color: #d47a9e; font-weight: 700; line-height: 1.6;
-            min-height: 80px; display: flex; justify-content: center;
-            align-items: center; text-align: center; padding: 10px;
+            font-size: 0.95rem; color: #d47a9e; font-weight: 700; line-height: 1.6;
+            min-height: 75px; display: flex; justify-content: center;
+            align-items: center; text-align: center;
+            position: relative;
         }
 
         .cursor {
@@ -181,31 +368,127 @@
             background-color: #d47a9e; animation: blink 0.8s infinite; margin-left: 4px;
         }
 
-        /* --- DESAIN KUIS & SUCCESS --- */
+        /* --- DESAIN KUIS --- */
         .quiz-box { width: 100%; text-align: center; }
-        .quiz-title { font-size: 0.8rem; color: #f08080; font-weight: 700; margin-bottom: 5px; text-transform: uppercase; }
-        .quiz-question { font-size: 1rem; font-weight: 700; color: #4a4a4a; margin-bottom: 20px; line-height: 1.4; }
-        .quiz-options { display: flex; flex-direction: column; gap: 10px; width: 100%; }
+        .quiz-title { font-size: 0.75rem; color: #f08080; font-weight: 700; margin-bottom: 4px; text-transform: uppercase; }
+        .quiz-question { font-size: 0.9rem; font-weight: 700; color: #4a4a4a; margin-bottom: 12px; line-height: 1.4; }
+        .quiz-options { display: flex; flex-direction: column; gap: 8px; width: 100%; }
         
         .quiz-btn {
-            background: #ffffff; border: 1.5px solid #f3c6df; padding: 12px 15px;
-            border-radius: 12px; font-size: 0.85rem; font-weight: 600; color: #4a4a4a;
+            background: #ffffff; border: 1.5px solid #f3c6df; padding: 10px 12px;
+            border-radius: 12px; font-size: 0.8rem; font-weight: 600; color: #4a4a4a;
             cursor: pointer; transition: all 0.2s ease; font-family: 'Quicksand', sans-serif;
             box-shadow: 0 4px 10px rgba(243, 198, 223, 0.2);
+            text-align: left;
         }
 
         .quiz-btn:active { transform: scale(0.97); background: #fff0f5; }
 
-        .success-icon { font-size: 55px; margin-bottom: 10px; animation: bounceGift 1.5s infinite ease-in-out; }
-        .success-title { font-size: 1.1rem; font-weight: 700; color: #d47a9e; margin-bottom: 8px; }
-        .success-desc { font-size: 0.85rem; color: #6b6b6b; margin-bottom: 20px; line-height: 1.5; }
+        /* --- A LITTLE UNIVERSE --- */
+        .universe-box { width: 100%; text-align: center; }
+        .universe-title { font-size: 1.1rem; font-weight: 700; color: #d47a9e; margin-bottom: 4px; }
+        .universe-subtitle { font-size: 0.75rem; color: #8c7a6b; margin-bottom: 15px; }
+        
+        .stars-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 12px;
+            margin-bottom: 15px;
+        }
+
+        .star-item {
+            background: #fff5f8;
+            border: 1.5px dashed #f3c6df;
+            border-radius: 14px;
+            padding: 12px 8px;
+            cursor: pointer;
+            transition: all 0.25s ease;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 6px;
+            box-shadow: 0 4px 10px rgba(243, 198, 223, 0.3);
+        }
+
+        .star-item:hover, .star-item.clicked {
+            background: #ffe6f0;
+            border-color: #ffb5a7;
+            transform: scale(1.05);
+        }
+
+        .star-svg {
+            width: 32px;
+            height: 32px;
+            fill: #ffcc00;
+            filter: drop-shadow(0 2px 5px rgba(255, 204, 0, 0.5));
+            animation: bounceStar 1.5s infinite ease-in-out;
+        }
+
+        @keyframes bounceStar {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-5px); }
+        }
+
+        .star-label { font-size: 0.72rem; color: #d47a9e; font-weight: 700; }
+
+        /* --- MODAL / POP-UP SURAT KECIL (ANTI GLITCH) --- */
+        .star-modal-overlay {
+            display: none;
+            position: fixed;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background: rgba(0, 0, 0, 0.45);
+            z-index: 100;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+        }
+
+        .star-modal-card {
+            background: #fffdf9;
+            background-image: linear-gradient(#f0e6df 1px, transparent 1px);
+            background-size: 100% 2.2rem;
+            border: 2px solid #e8d3c7;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.15);
+            border-radius: 20px;
+            padding: 25px 20px;
+            width: 100%;
+            max-width: 340px;
+            text-align: center;
+            position: relative;
+        }
+
+        .star-modal-title {
+            font-size: 0.8rem;
+            color: #d47a9e;
+            font-weight: 700;
+            margin-bottom: 12px;
+            text-transform: uppercase;
+            border-bottom: 1.5px dashed #f3c6df;
+            padding-bottom: 6px;
+        }
+
+        .star-modal-text {
+            font-size: 0.88rem;
+            color: #4a4a4a;
+            line-height: 1.6;
+            margin-bottom: 20px;
+            font-weight: 600;
+        }
+
+        .close-modal-btn {
+            background: linear-gradient(135deg, #ffb5a7 0%, #f08080 100%);
+            color: #ffffff; border: none; padding: 8px 20px; font-size: 0.8rem;
+            font-weight: 700; cursor: pointer; border-radius: 50px;
+            box-shadow: 0 4px 12px rgba(255, 181, 167, 0.5);
+            font-family: 'Quicksand', sans-serif;
+        }
 
         /* --- TOMBOL MODERN --- */
         .modern-btn {
             background: linear-gradient(135deg, #ffb5a7 0%, #f08080 100%);
-            color: #ffffff; border: none; padding: 12px 26px; font-size: 0.85rem;
+            color: #ffffff; border: none; padding: 10px 24px; font-size: 0.85rem;
             font-weight: 700; cursor: pointer; box-shadow: 0 6px 15px rgba(255, 181, 167, 0.5);
-            transition: all 0.2s ease; margin-top: 15px; border-radius: 50px;
+            transition: all 0.2s ease; margin-top: 5px; border-radius: 50px;
             position: relative; z-index: 20; font-family: 'Quicksand', sans-serif;
             -webkit-tap-highlight-color: transparent;
         }
@@ -220,13 +503,17 @@
 <body>
 
     <!-- AUDIO LATAR BELAKANG -->
-    <audio id="bg-music" loop preload="auto">
-        <source src="about you.mp3" type="audio/mpeg">
-    </audio>
+    <audio id="bg-music" loop preload="auto"></audio>
 
     <!-- KOTAK UTAMA -->
     <div class="window-card" id="main-container">
-        <!-- Title Bar -->
+        <!-- Hiasan Stiker Pojok -->
+        <span class="decoration-corner-tl">🌸</span>
+        <span class="decoration-corner-tr">✨</span>
+        <span class="decoration-corner-bl">💖</span>
+        <span class="decoration-corner-br">🌷</span>
+
+        <!-- Title Bar Utama -->
         <div class="title-bar">
             <span class="window-title">birthday_gift.exe</span>
             <div class="title-dots">
@@ -237,17 +524,52 @@
 
         <div class="window-body">
             
-            <!-- HALAMAN 1: PEMUTAR MUSIK -->
+            <!-- HALAMAN 1: PLAYLIST SPOTIFY PILIHAN -->
             <div class="screen active" id="page-1">
-                <div class="spotify-card">
-                    <div class="spotify-art">🎵</div>
-                    <div class="spotify-info">
-                        <h4>About You</h4>
-                        <p>For Mina</p>
+                <div class="instruction-text">请先选择你喜欢的音乐，宝贝 🎶</div>
+                
+                <div class="playlist-container">
+                    <div class="spotify-card selected" onclick="selectSong('The 1975 - About You.mp3', this)">
+                        <div class="spotify-art">🎵</div>
+                        <div class="spotify-info">
+                            <h4>About You</h4>
+                            <p>The 1975</p>
+                        </div>
+                    </div>
+                    <div class="spotify-card" onclick="selectSong('Ed Sheeran - Perfect.mp3', this)">
+                        <div class="spotify-art">🎵</div>
+                        <div class="spotify-info">
+                            <h4>Perfect</h4>
+                            <p>Ed Sheeran</p>
+                        </div>
+                    </div>
+                    <div class="spotify-card" onclick="selectSong('Elvis Presley - Can\'t Help Falling In Love.mp3', this)">
+                        <div class="spotify-art">🎵</div>
+                        <div class="spotify-info">
+                            <h4>Can't Help Falling In Love</h4>
+                            <p>Elvis Presley</p>
+                        </div>
+                    </div>
+                    <div class="spotify-card" onclick="selectSong('Keshi - My Love Mine All Mine.mp3', this)">
+                        <div class="spotify-art">🎵</div>
+                        <div class="spotify-info">
+                            <h4>My Love Mine All Mine</h4>
+                            <p>Keshi</p>
+                        </div>
+                    </div>
+                    <div class="spotify-card" onclick="selectSong('Taylor Swift - Love Story (Lyrics).mp3', this)">
+                        <div class="spotify-art">🎵</div>
+                        <div class="spotify-info">
+                            <h4>Love Story</h4>
+                            <p>Taylor Swift</p>
+                        </div>
                     </div>
                 </div>
-                <div class="instruction-text" style="margin-bottom: 15px;">Putar lagunya dulu yuk! ✨</div>
-                <button class="modern-btn" id="play-btn" onclick="goToPage2()">Play Music 🎶</button>
+                
+                <!-- Indikator Scroll -->
+                <div class="scroll-hint">▼ 向下滚动查看更多歌曲 ▼</div>
+
+                <button class="modern-btn" onclick="goToPage2()">开始 💖</button>
             </div>
 
             <!-- HALAMAN 2: KOTAK KADO -->
@@ -255,89 +577,240 @@
                 <div class="gift-wrapper" onclick="openGift()">
                     <div class="gift-box">🎁</div>
                 </div>
-                <div class="instruction-text">Kamu punya satu kado!<br><span style="font-size: 0.8rem; color: #b0b0b0;">( Sentuh kadonya )</span></div>
+                <div class="instruction-text">你有一个小礼物！<br><span style="font-size: 0.8rem; color: #b0b0b0;">( 请点击礼盒 )</span></div>
             </div>
 
             <!-- HALAMAN 3: EFEK KETIK BERGANTI -->
             <div class="screen" id="page-3">
-                <div class="typing-container">
-                    <span id="typed-text"></span><span class="cursor"></span>
+                <div class="typing-wrapper">
+                    <div class="typing-sub-header">
+                        <span>🎀 message.txt</span>
+                        <span>💌 for_mina</span>
+                    </div>
+
+                    <div class="typing-container">
+                        <span id="typed-text"></span><span class="cursor"></span>
+                    </div>
                 </div>
-                <button class="modern-btn" id="quiz-start-btn" style="display: none;" onclick="goToQuiz()">Main Kuis Dulu 🎮</button>
+                <button class="modern-btn" id="quiz-start-btn" style="display: none;" onclick="goToQuiz()">先玩个小测试 🎮</button>
             </div>
 
-            <!-- HALAMAN 4: KUIS 5 PERTANYAAN -->
+            <!-- HALAMAN 4: KUIS MANDARIN 5 PERTANYAAN -->
             <div class="screen" id="page-quiz">
                 <div class="quiz-box">
-                    <div class="quiz-title" id="quiz-num">PERTANYAAN 1 / 5</div>
-                    <div class="quiz-question" id="quiz-q">Siapa orang yang paling kangen sama Mina setiap hari?</div>
+                    <div class="quiz-title" id="quiz-num">问题 1 / 5</div>
+                    <div class="quiz-question" id="quiz-q"></div>
                     <div class="quiz-options" id="quiz-opts"></div>
                 </div>
             </div>
 
-            <!-- HALAMAN 5: KUIS SELESAI (YEY BENAR SEMUA) -->
-            <div class="screen" id="page-success">
-                <div class="success-icon">🎉</div>
-                <div class="success-title">Yey! Jawaban kamu benar semua, sayang! ❤️</div>
-                <div class="success-desc">Hebat banget! Sekarang ada satu hal lagi nih buat kamu di dalam...</div>
-                <button class="modern-btn" onclick="goToLetterPage()">Buka Suratnya 💌</button>
+            <!-- HALAMAN 5: A LITTLE UNIVERSE -->
+            <div class="screen" id="page-universe">
+                <div class="universe-box">
+                    <div class="universe-title">✨ A Little Universe ✨</div>
+                    <div class="universe-subtitle">轻触下方的星星 🌟</div>
+                    
+                    <div class="stars-grid">
+                        <div class="star-item" id="star-0" onclick="openStarModal(0)">
+                            <svg class="star-svg" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+                            <div class="star-label">星星 1</div>
+                        </div>
+                        <div class="star-item" id="star-1" onclick="openStarModal(1)">
+                            <svg class="star-svg" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+                            <div class="star-label">星星 2</div>
+                        </div>
+                        <div class="star-item" id="star-2" onclick="openStarModal(2)">
+                            <svg class="star-svg" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+                            <div class="star-label">星星 3</div>
+                        </div>
+                        <div class="star-item" id="star-3" onclick="openStarModal(3)">
+                            <svg class="star-svg" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+                            <div class="star-label">星星 4</div>
+                        </div>
+                        <div class="star-item" id="star-4" onclick="openStarModal(4)">
+                            <svg class="star-svg" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+                            <div class="star-label">星星 5</div>
+                        </div>
+                        <div class="star-item" id="star-5" onclick="openStarModal(5)">
+                            <svg class="star-svg" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+                            <div class="star-label">星星 6</div>
+                        </div>
+                    </div>
+
+                    <div style="font-size: 0.75rem; color: #8c7a6b; margin-bottom: 10px;" id="universe-progress">
+                        已点亮星星: 0 / 6
+                    </div>
+
+                    <button class="modern-btn" id="to-letter-btn" style="display: none;" onclick="goToLetterPage()">打开信件 💌</button>
+                </div>
             </div>
 
         </div>
     </div>
 
-    <!-- HALAMAN 6: SURAT ESTETIK FULLSCREEN DENGAN 2 FOTO -->
+    <!-- MODAL POP-UP SURAT KECIL (ANTI GLITCH) -->
+    <div class="star-modal-overlay" id="starModal">
+        <div class="star-modal-card">
+            <div class="star-modal-title">💌 来自星星的心意</div>
+            <div class="star-modal-text" id="modalTextContent"></div>
+            <button class="close-modal-btn" onclick="closeStarModal()">关闭 ✨</button>
+        </div>
+    </div>
+
+    <!-- HALAMAN 6: SURAT ESTETIK VINTAGE -->
     <div class="letter-page" id="page-letter">
         <div class="letter-content">
-            <p>嗯……宝贝，生日快乐。</p><br>
-            <p>其实写这些话之前，我想了很久，也不知道该怎么开口。说真的，我心里一直觉得很难过，也很抱歉。因为今天是你的生日，是对你来说这么特别的一天，可我却什么礼物都没办法送给你，甚至连一份可以亲手交给你的礼物都没有。</p><br>
-            <p>我真的很希望自己能为你做得更多，哪怕只是一件小小的礼物也好。可是现在，我好像只能把这些话写下来送给你。每次想到这里，我都会觉得有点难受。对不起呀，我知道这些文字代替不了真正的礼物，但我还是希望你不要觉得自己没有收到礼物，因为我真的有认真地为你准备这份心意。</p><br>
-            <p>嗯……说完这些，还是要好好祝我的宝贝生日快乐！</p><br>
-            <p>希望新的一岁里，你每天都能开开心心，身体健康，想做的事情都能顺利完成。希望你能遇到更多美好的事情，少一点烦恼，少一点难过。也希望你一直都能做自己喜欢的事情，慢慢变成自己想成为的样子。</p><br>
-            <p>不要总是给自己太大的压力，累了就休息，不开心了也可以跟我说。我想知道你的开心和难过，也想参与你生活里的每一个小瞬间。</p><br>
-            <p>还有一个愿望，希望以后有一天，我能真正陪在你身边，亲自陪你过生日，把准备好的礼物交到你手里。到那时候，我一定不想再只隔着屏幕跟你说生日快乐了。</p><br>
-            <p>最后，生日快乐呀，Mina。希望你一直被爱包围，希望你未来的每一天都能过得幸福。谢谢你来到我的生活里，我真的很珍惜你。</p><br>
+            <p>嗯……宝贝，生日快乐。</p>
+            <p>其实写这些话之前，我想了很久，也不知道该怎么开口。说真的，我心里一直觉得很难过，也很抱歉。因为今天是你的生日，是对你来说这么特别的一天，可我却什么礼物都没办法送给你，甚至连一份可以亲手交给你的礼物都没有。</p>
+            <p>我真的很希望自己能为你做得更多，哪怕只是一件小小的礼物也好。可是现在，我好像只能把这些话写下来送给你。每次想到这里，我都会觉得有点难受。对不起呀，我知道这些文字代替不了真正的礼物，但我还是希望你不要觉得自己没有收到礼物，因为我真的有认真地为你准备这份心意。</p>
+            <p>嗯……说完这些，还是要好好祝我的宝贝生日快乐！</p>
+            <p>希望新的一岁里，你每天都能开开心心，身体健康，想做的事情都能顺利完成。希望你能遇到更多美好的事情，少一点烦恼，少一点难过。也希望你一直都能做自己喜欢的事情，慢慢变成自己想成为的样子。</p>
+            <p>不要总是给自己太大的压力，累了就休息，不开心了也可以跟我说。我想知道你的开心和难过，也想参与你生活里的每一个小瞬间。</p>
+            <p>还有一个愿愿望，希望以后有一天，我能真正陪在你身边，亲自陪你过生日，把准备好的礼物交到你手里。到那时候，我一定不想再只隔着屏幕跟你说生日快乐了。</p>
+            <p>最后，生日快乐呀，Mina。希望你一直被爱包围，希望你未来的每一天都能过得幸福。谢谢你来到我的生活里，我真的很珍惜你。</p>
             <p>我爱你，宝贝。❤️</p>
 
-            <!-- DUA FOTO POLAROID MINA -->
-            <div class="photo-gallery">
-                <div class="photo-frame">
-                    <img src="mina.jpg" alt="Mina 1">
+            <!-- KADO KECIL DI BAWAH SURAT -->
+            <div class="end-gift-section">
+                <p style="font-size: 0.9rem; color: #8c7a6b; margin-bottom: 10px; font-weight: 600;">这里还有一个最后的惊喜给你... ✨</p>
+                <div class="mini-gift" onclick="openSurprisePage()">🎁</div>
+            </div>
+        </div>
+    </div>
+
+    <!-- HALAMAN 7: BUKU KENANGAN 3D INTERAKTIF (SAMPUL BERPITA & 6 HALAMAN LENGKAP) -->
+    <div class="surprise-page" id="page-surprise">
+        <div class="chinese-title">OUR LOVE STORY</div>
+        <div class="subtitle-romantic">点击翻页看我们的相册 📖❤️</div>
+        
+        <!-- FLIP BOOK CONTAINER -->
+        <div class="book-container">
+            
+            <!-- PAGE 1: COVER BUKU BERPITA -->
+            <div class="book-page" id="p1" style="z-index: 6;" onclick="flipPage(1)">
+                <div class="page-front cover-page">
+                    <div style="font-size: 45px; margin-bottom: 5px;">🎀📖✨</div>
+                    <div class="cover-ribbon">Mina's Special Album</div>
+                    <div style="font-size: 1.2rem; font-weight: 700; color: #7a3e59; margin-bottom: 6px;">For My Love ❤️</div>
+                    <div style="font-size: 0.75rem; color: #8c7a6b; background: rgba(255,255,255,0.7); padding: 4px 10px; border-radius: 10px; display: inline-block;">(点击翻开纪念册)</div>
                 </div>
-                <div class="photo-frame">
-                    <img src="mina1.jpg" alt="Mina 2">
+                <div class="page-back">
+                    <img src="mina.jpg" alt="Mina" class="polaroid-img">
+                    <div class="polaroid-caption">My Love</div>
                 </div>
             </div>
 
-            <div class="signature">From L</div>
+            <!-- PAGE 2 -->
+            <div class="book-page" id="p2" style="z-index: 5;" onclick="flipPage(2)">
+                <div class="page-front">
+                    <img src="mina1.jpg" alt="Mina" class="polaroid-img">
+                    <div class="polaroid-caption">Pretty Girl</div>
+                </div>
+                <div class="page-back">
+                    <img src="mina2.jpg" alt="Mina" class="polaroid-img">
+                    <div class="polaroid-caption">Very Special</div>
+                </div>
+            </div>
+
+            <!-- PAGE 3 -->
+            <div class="book-page" id="p3" style="z-index: 4;" onclick="flipPage(3)">
+                <div class="page-front">
+                    <img src="mina3.jpg" alt="Mina" class="polaroid-img">
+                    <div class="polaroid-caption">Forever & Always</div>
+                </div>
+                <div class="page-back">
+                    <img src="mina5.jpg" alt="Mina" class="polaroid-img">
+                    <div class="polaroid-caption">So Cute</div>
+                </div>
+            </div>
+
+            <!-- PAGE 4 -->
+            <div class="book-page" id="p4" style="z-index: 3;" onclick="flipPage(4)">
+                <div class="page-front">
+                    <img src="mina6.jpg" alt="Mina" class="polaroid-img">
+                    <div class="polaroid-caption">My Treasure</div>
+                </div>
+                <div class="page-back" style="padding: 22px 16px; text-align: center;">
+                    <div style="font-size: 0.88rem; color: #4a4a4a; line-height: 1.7; font-weight: 600;">
+                        希望以后的每一个生日，我都能陪在你身边。愿你一直被幸福包围，永远做那个开心又可爱的自己。我真的很庆幸能遇见你。生日快乐，Mina，我好爱你。❤️
+                    </div>
+                </div>
+            </div>
+
         </div>
+
+        <!-- TOMBOL CONTROL BUKU -->
+        <div class="book-nav-btn">
+            <button class="nav-btn" onclick="prevPage()">◀ 上一页</button>
+            <button class="nav-btn" onclick="nextPage()">下一页 ▶</button>
+        </div>
+
+        <button class="modern-btn" onclick="location.reload()" style="margin-top: 10px;">从头再来 💖</button>
     </div>
 
     <script>
+        // --- LOGIC 3D PAGE FLIP BOOK ---
+        let currentBookPage = 0;
+        const totalPages = 4;
+
+        function flipPage(pageNumber) {
+            const page = document.getElementById(`p${pageNumber}`);
+            if (page.classList.contains('flipped')) {
+                page.classList.remove('flipped');
+                currentBookPage = pageNumber - 1;
+            } else {
+                page.classList.add('flipped');
+                currentBookPage = pageNumber;
+            }
+        }
+
+        function nextPage() {
+            if (currentBookPage < totalPages) {
+                currentBookPage++;
+                document.getElementById(`p${currentBookPage}`).classList.add('flipped');
+            }
+        }
+
+        function prevPage() {
+            if (currentBookPage > 0) {
+                document.getElementById(`p${currentBookPage}`).classList.remove('flipped');
+                currentBookPage--;
+            }
+        }
+
+        // --- PEMILIHAN LAGU SPOTIFY CARD ---
+        let chosenSong = "The 1975 - About You.mp3";
+
+        function selectSong(songName, element) {
+            chosenSong = songName;
+            document.querySelectorAll('.spotify-card').forEach(card => {
+                card.classList.remove('selected');
+            });
+            element.classList.add('selected');
+        }
+
+        function goToPage2() {
+            const audio = document.getElementById('bg-music');
+            audio.src = chosenSong;
+            audio.play().catch(function(error) {
+                console.log("Audio blocked by browser, continuing.");
+            });
+            document.getElementById('page-1').classList.remove('active');
+            document.getElementById('page-2').classList.add('active');
+        }
+
         // --- TEKS KETIK + GOMBALAN ---
         const messages = [
             "Happy Birthday, Mina! ✨",
-            "Emm... maaf ya aku cuma bisa ngasih ini...",
-            "Tapi tahu gak? Ada satu hal yang gak bisa dibeli pakai uang...",
-            "Yaitu rasa sayang aku yang banyak banget buat kamu! 💖",
-            "Sebelum buka suratnya, jawab 5 kuis singkat ini dulu yuk! 😉"
+            "嗯……宝贝，对不起只能准备了这个……",
+            "但你知道吗？有些心意是金钱买不到的……",
+            "那就是我对你满满的爱与喜欢！ 💖",
+            "在打开信件之前，先来回答这5个专属小问题吧！ 😉"
         ];
 
         let msgIndex = 0;
         let charIndex = 0;
         let isDeleting = false;
-
-        function goToPage2() {
-            const audio = document.getElementById('bg-music');
-            if (audio) {
-                audio.play().catch(function(error) {
-                    console.log("Audio diblokir browser, tetap lanjut.");
-                });
-            }
-
-            document.getElementById('page-1').classList.remove('active');
-            document.getElementById('page-2').classList.add('active');
-        }
 
         function openGift() {
             document.getElementById('page-2').classList.remove('active');
@@ -375,41 +848,51 @@
             setTimeout(typeLoop, typeSpeed);
         }
 
-        // --- DATA KUIS 5 PERTANYAAN GOMBAL ---
+        // --- DATA KUIS MANDARIN FULL ---
         const quizData = [
             {
-                q: "1. Siapa orang yang paling kangen sama Mina setiap hari?",
+                q: "1. 如果有一天我突然出现在你面前，你觉得我会先做什么？",
                 options: [
-                    { text: "L (yang bikin web ini) ❤️", correct: true },
-                    { text: "Tetangga sebelah ❌", correct: false }
+                    "A. 抱抱你",
+                    "B. 牵你的手",
+                    "C. 看着你笑",
+                    "D. 告诉你我很想你"
                 ]
             },
             {
-                q: "2. Apa makanan paling manis di dunia menurut L?",
+                q: "2. 如果我们可以一起看日落，你最想靠在哪里？",
                 options: [
-                    { text: "Cokelat / Permen 🍫", correct: false },
-                    { text: "Senyuman Mina lah! 😊", correct: true }
+                    "A. 我的肩膀",
+                    "B. 我的手臂",
+                    "C. 我的怀里",
+                    "D. 靠在我旁边就好"
                 ]
             },
             {
-                q: "3. Tahu gak bedanya kamu sama bintang?",
+                q: "3. 如果我有一个愿望，你觉得我会许什么愿？",
                 options: [
-                    { text: "Bintang di langit, kalau kamu di hati L ✨", correct: true },
-                    { text: "Sama-sama jauh 😭", correct: false }
+                    "A. 每天都能见到你",
+                    "B. 和你一起去很多地方",
+                    "C. 让你每天都开心",
+                    "D. 和你一直走下去"
                 ]
             },
             {
-                q: "4. Kalau L disuruh pilih antara semua harta atau Mina?",
+                q: "4. 如果你问我，遇见你之后最大的变化是什么？",
                 options: [
-                    { text: "Pilih Mina selamanya! 💖", correct: true },
-                    { text: "Pilih tidur aja 😴", correct: false }
+                    "A. 每天都有了期待",
+                    "B. 开始喜欢上了中文",
+                    "C. 手机里多了一个特别的人",
+                    "D. 生活变得更加温柔"
                 ]
             },
             {
-                q: "5. Terakhir, Mina janji ya harus bahagia terus di hari ulang tahun ini?",
+                q: "5. 如果有一天我们真的见面了，我最想对你说什么？",
                 options: [
-                    { text: "Janji! Sayang L juga ❤️", correct: true },
-                    { text: "Pasti dong! 🌸", correct: true }
+                    "A. 我终于见到你了",
+                    "B. 我真的很想你",
+                    "C. 你比我想象中还可爱",
+                    "D. 以后我们还有很多时间在一起"
                 ]
             }
         ];
@@ -424,38 +907,74 @@
 
         function loadQuiz() {
             const data = quizData[currentQuizIndex];
-            document.getElementById('quiz-num').textContent = `PERTANYAAN ${currentQuizIndex + 1} / 5`;
+            document.getElementById('quiz-num').textContent = `问题 ${currentQuizIndex + 1} / 5`;
             document.getElementById('quiz-q').textContent = data.q;
 
             const optsContainer = document.getElementById('quiz-opts');
             optsContainer.innerHTML = '';
 
-            data.options.forEach(opt => {
+            data.options.forEach(optText => {
                 const btn = document.createElement('button');
                 btn.classList.add('quiz-btn');
-                btn.textContent = opt.text;
-                btn.onclick = () => handleAnswer(opt.correct);
+                btn.textContent = optText;
+                btn.onclick = () => handleNextQuiz();
                 optsContainer.appendChild(btn);
             });
         }
 
-        function handleAnswer(isCorrect) {
-            if (isCorrect) {
-                currentQuizIndex++;
-                if (currentQuizIndex < quizData.length) {
-                    loadQuiz();
-                } else {
-                    document.getElementById('page-quiz').classList.remove('active');
-                    document.getElementById('page-success').classList.add('active');
-                }
+        function handleNextQuiz() {
+            currentQuizIndex++;
+            if (currentQuizIndex < quizData.length) {
+                loadQuiz();
             } else {
-                alert("Tetot! Jawaban salah 😜 Coba pilih jawaban yang benar dong!");
+                document.getElementById('page-quiz').classList.remove('active');
+                document.getElementById('page-universe').classList.add('active');
             }
+        }
+
+        // --- A LITTLE UNIVERSE MODAL LOGIC ---
+        const reasons = [
+            "特别的相遇<br>在这么大的世界里，能遇见你，是我最幸运的事情之一。",
+            "你的笑容<br>希望你每天都能开心，因为你的笑容对我来说真的很珍贵。",
+            "我的温柔<br>即使我们相隔很远，只要有你在，我的每一天都会变得特别。",
+            "关于你<br>我喜欢你的每一个小细节，因为那都是独一无二的你。",
+            "我的承诺<br>无论遇到什么，我都希望我们能一直理解彼此，陪伴彼此。",
+            "我的愿望<br>如果能向星星许一个愿望，我希望未来的每一天都有你。❤️"
+        ];
+
+        let clickedStars = 0;
+        const viewedStars = new Set();
+
+        function openStarModal(index) {
+            const modal = document.getElementById('starModal');
+            const textContent = document.getElementById('modalTextContent');
+            textContent.innerHTML = reasons[index];
+            modal.style.display = 'flex';
+
+            if (!viewedStars.has(index)) {
+                viewedStars.add(index);
+                clickedStars++;
+                document.getElementById(`star-${index}`).classList.add('clicked');
+                document.getElementById('universe-progress').textContent = `已点亮星星: ${clickedStars} / 6`;
+            }
+
+            if (clickedStars === 6) {
+                document.getElementById('to-letter-btn').style.display = 'block';
+            }
+        }
+
+        function closeStarModal() {
+            document.getElementById('starModal').style.display = 'none';
         }
 
         function goToLetterPage() {
             document.getElementById('main-container').style.display = 'none';
             document.getElementById('page-letter').classList.add('active');
+        }
+
+        function openSurprisePage() {
+            document.getElementById('page-letter').classList.remove('active');
+            document.getElementById('page-surprise').classList.add('active');
         }
 
         // --- SKRIP BUNGA, LOVE & SPARKLE JATUH ---
