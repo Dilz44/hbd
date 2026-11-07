@@ -125,13 +125,29 @@
             font-size: 80px;
         }
 
+        /* PERBAIKAN COUNTDOWN DI SINI (DIBIKIN VERTIKAL KE BAWAH) */
+        .countdown-wrapper {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            width: 100%;
+            text-align: center;
+            padding: 10px 0;
+        }
+
         .countdown-digits {
-            font-size: 4.5rem;
+            font-size: 5rem;
             font-weight: 700;
             color: #d47a9e;
             line-height: 1;
-            margin-bottom: 10px;
-            text-align: center;
+            margin-bottom: 12px;
+        }
+
+        .countdown-label {
+            font-size: 0.85rem;
+            color: #8c7a6b;
+            font-weight: 600;
         }
 
         .typewriter-box {
@@ -420,7 +436,7 @@
 
                 <div class="countdown-wrapper" id="timer-box" style="display: none;">
                     <div class="countdown-digits" id="timer-count">5</div>
-                    <div class="countdown-label" style="font-size: 0.8rem; color: #8c7a6b; font-weight: 600; text-align: center;">✨ 准备接收惊喜... ✨</div>
+                    <div class="countdown-label">✨ 准备接收惊喜... ✨</div>
                 </div>
             </div>
 
@@ -568,19 +584,25 @@
 
     <script>
         let selectedSongFile = "Ed Sheeran - Perfect.mp3";
+        const player = document.getElementById('bg-audio');
 
         document.querySelectorAll('.music-item').forEach(item => {
             item.addEventListener('click', function() {
                 selectedSongFile = this.getAttribute('data-file');
                 document.querySelectorAll('.music-item').forEach(el => el.classList.remove('active-song'));
                 this.classList.add('active-song');
+                
+                // Preload audio begitu lagu dipilih supaya nggak delay pas diputar
+                player.src = selectedSongFile;
+                player.load();
             });
         });
 
+        // Set lagu awal saat pertama buka web
+        player.src = selectedSongFile;
+        player.load();
+
         document.getElementById('start-music-btn').addEventListener('click', function() {
-            const player = document.getElementById('bg-audio');
-            player.src = selectedSongFile;
-            player.load();
             player.play().catch(e => console.log("Audio play error:", e));
             goToGiftView();
         });
@@ -596,7 +618,6 @@
             const timerBox = document.getElementById('timer-box');
             const timerCount = document.getElementById('timer-count');
 
-            const player = document.getElementById('bg-audio');
             if (player.paused) {
                 player.play().catch(e => console.log(e));
             }
