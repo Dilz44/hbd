@@ -27,6 +27,22 @@
             position: relative;
         }
 
+        /* --- ANIMASI PARTIKEL JATUH (LOVE, BUNGA, BINTANG) --- */
+        .falling-particle {
+            position: absolute;
+            top: -50px;
+            font-size: 22px;
+            user-select: none;
+            pointer-events: none !important;
+            animation: particleFall linear infinite;
+            z-index: 2;
+        }
+
+        @keyframes particleFall {
+            0% { transform: translateY(0) rotate(0deg); opacity: 0.9; }
+            100% { transform: translateY(105vh) rotate(360deg); opacity: 0.2; }
+        }
+
         /* --- KOTAK JENDELA UTAMA --- */
         .window-card {
             width: 100%;
@@ -283,12 +299,25 @@
 
         .instruction-text { font-size: 0.85rem; color: #6b6b6b; font-weight: 600; line-height: 1.4; margin-bottom: 6px; }
 
-        /* --- KOTAK KADO & HITUNG MUNDUR 5 DETIK (ESTETIK, TIDAK POLOS) --- */
-        .gift-wrapper { position: relative; cursor: pointer; display: inline-block; margin-bottom: 10px; z-index: 20; }
+        /* --- KOTAK KADO DENGAN ANIMASI MEMANTUL (BERGERAK) --- */
+        .gift-wrapper { 
+            position: relative; 
+            cursor: pointer; 
+            display: inline-block; 
+            margin-bottom: 10px; 
+            z-index: 20; 
+            animation: bounceGift 1.5s infinite ease-in-out;
+        }
+
         .gift-box {
             font-size: 75px;
             user-select: none;
             filter: drop-shadow(0 8px 15px rgba(255, 181, 167, 0.6));
+        }
+
+        @keyframes bounceGift {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-10px); }
         }
 
         .countdown-box {
@@ -314,7 +343,7 @@
             font-weight: 600;
         }
 
-        /* --- DESAIN BINGKAI KARTUN --- */
+        /* --- DESAIN BINGKAI KARTUN & EFEK KETIK --- */
         .typing-wrapper {
             width: 100%;
             background: #fff5f8;
@@ -323,6 +352,7 @@
             padding: 15px;
             position: relative;
             margin-bottom: 12px;
+            box-shadow: inset 0 0 15px rgba(243, 198, 223, 0.35);
         }
 
         .typing-sub-header {
@@ -341,7 +371,15 @@
             font-size: 0.95rem; color: #d47a9e; font-weight: 700; line-height: 1.6;
             min-height: 75px; display: flex; justify-content: center;
             align-items: center; text-align: center;
+            position: relative;
         }
+
+        .cursor {
+            display: inline-block; width: 2px; height: 18px;
+            background-color: #d47a9e; animation: blink 0.8s infinite; margin-left: 4px;
+        }
+
+        @keyframes blink { 0%, 50% { opacity: 1; } 51%, 100% { opacity: 0; } }
 
         /* --- DESAIN KUIS --- */
         .quiz-box { width: 100%; text-align: center; }
@@ -540,21 +578,20 @@
                 <button class="modern-btn" onclick="goToPage2()">开始 💖</button>
             </div>
 
-            <!-- HALAMAN 2: KOTAK KADO & HITUNG MUNDUR 5 DETIK -->
+            <!-- HALAMAN 2: KOTAK KADO BERGERAK & HITUNG MUNDUR -->
             <div class="screen" id="page-2">
                 <div class="gift-wrapper" id="gift-box-container" onclick="startGiftCountdown()">
                     <div class="gift-box">🎁</div>
                 </div>
                 <div class="instruction-text" id="gift-instruction">你有一个小礼物！<br><span style="font-size: 0.8rem; color: #b0b0b0;">( 请点击礼盒 )</span></div>
 
-                <!-- Kontainer Hitung Mundur yang Estetik -->
                 <div class="countdown-box" id="countdown-display" style="display: none;">
                     <div class="countdown-number" id="countdown-num">5</div>
                     <div class="countdown-label">✨ 准备接收惊喜... ✨</div>
                 </div>
             </div>
 
-            <!-- HALAMAN 3: EFEK KETIK -->
+            <!-- HALAMAN 3: EFEK KETIK TEKS -->
             <div class="screen" id="page-3">
                 <div class="typing-wrapper">
                     <div class="typing-sub-header">
@@ -562,7 +599,7 @@
                         <span>💌 for_mina</span>
                     </div>
                     <div class="typing-container">
-                        <span id="typed-text"></span>
+                        <span id="typed-text"></span><span class="cursor"></span>
                     </div>
                 </div>
                 <button class="modern-btn" id="quiz-start-btn" style="display: none;" onclick="goToQuiz()">先玩个小测试 🎮</button>
@@ -773,7 +810,6 @@
         function goToPage2() {
             const audio = document.getElementById('bg-music');
             audio.src = chosenSong;
-            // AUDIONYA LANGSUNG DI-TRIGGER DARI SINI AGAR TIDAK DELAY
             audio.load();
             audio.play().then(() => {
                 console.log("Audio preloaded and playing");
@@ -785,14 +821,13 @@
             document.getElementById('page-2').classList.add('active');
         }
 
-        // FUNGSI HITUNG MUNDUR 5 DETIK (ESTETIK, TIDAK POLOS)
+        // FUNGSI HITUNG MUNDUR 5 DETIK & MUNCULKAN PARTIKEL JATUH
         function startGiftCountdown() {
             const giftBox = document.getElementById('gift-box-container');
             const instructionText = document.getElementById('gift-instruction');
             const countdownDisplay = document.getElementById('countdown-display');
             const countdownNum = document.getElementById('countdown-num');
 
-            // Pastikan audio memastikan keputer saat kado ditekan
             const audio = document.getElementById('bg-music');
             if (audio.paused) {
                 audio.play().catch(e => console.log(e));
@@ -801,6 +836,9 @@
             giftBox.style.display = 'none';
             instructionText.style.display = 'none';
             countdownDisplay.style.display = 'flex';
+
+            // Mulai memunculkan partikel jatuh saat hitung mundur dimulai
+            startParticleShower();
 
             let timeLeft = 5;
             countdownNum.textContent = timeLeft;
@@ -813,9 +851,25 @@
                     clearInterval(timer);
                     document.getElementById('page-2').classList.remove('active');
                     document.getElementById('page-3').classList.add('active');
-                    typeText();
+                    typeLoop();
                 }
             }, 1000);
+        }
+
+        // GENERATOR PARTIKEL JATUH ESTETIK
+        function startParticleShower() {
+            const particles = ['🌸', '💖', '✨', '💕', '🌷', '⭐', '🎈'];
+            setInterval(() => {
+                const p = document.createElement('div');
+                p.classList.add('falling-particle');
+                p.textContent = particles[Math.floor(Math.random() * particles.length)];
+                p.style.left = Math.random() * 100 + 'vw';
+                p.style.animationDuration = (Math.random() * 2 + 2) + 's';
+                p.style.fontSize = (Math.random() * 14 + 16) + 'px';
+                document.body.appendChild(p);
+
+                setTimeout(() => { p.remove(); }, 4000);
+            }, 250);
         }
 
         const messages = [
@@ -826,9 +880,38 @@
             "在打开信件之前，先来回答这5个专属小问题吧！ 😉"
         ];
 
-        function typeText() {
-            document.getElementById('typed-text').textContent = messages[0];
-            document.getElementById('quiz-start-btn').style.display = 'block';
+        let msgIndex = 0;
+        let charIndex = 0;
+        let isDeleting = false;
+
+        function typeLoop() {
+            const currentText = messages[msgIndex];
+            const typedElement = document.getElementById('typed-text');
+
+            if (isDeleting) {
+                typedElement.textContent = currentText.substring(0, charIndex - 1);
+                charIndex--;
+            } else {
+                typedElement.textContent = currentText.substring(0, charIndex + 1);
+                charIndex++;
+            }
+
+            let typeSpeed = isDeleting ? 30 : 65;
+
+            if (!isDeleting && charIndex === currentText.length) {
+                if (msgIndex === messages.length - 1) {
+                    document.getElementById('quiz-start-btn').style.display = 'block';
+                    return;
+                }
+                typeSpeed = 1600;
+                isDeleting = true;
+            } else if (isDeleting && charIndex === 0) {
+                isDeleting = false;
+                msgIndex++;
+                typeSpeed = 350;
+            }
+
+            setTimeout(typeLoop, typeSpeed);
         }
 
         const quizData = [
