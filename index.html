@@ -66,14 +66,14 @@
             flex-direction: column;
             align-items: center;
             opacity: 0;
-            transform: translateY(15px);
-            transition: opacity 0.4s cubic-bezier(0.4, 0, 0.2, 1), transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            transform: scale(0.95) translateY(10px);
+            transition: opacity 0.4s ease, transform 0.4s ease;
         }
 
         .view-panel.active {
             display: flex;
             opacity: 1;
-            transform: translateY(0);
+            transform: scale(1) translateY(0);
         }
 
         .music-list {
@@ -134,7 +134,7 @@
         }
 
         .gift-box-area:active {
-            transform: scale(0.85) rotate(-5deg);
+            transform: scale(0.8) rotate(-10deg);
         }
 
         @keyframes giftFloat {
@@ -212,7 +212,6 @@
         .quiz-ask { font-size: 0.85rem; font-weight: 700; color: #4a4a4a; margin-bottom: 12px; line-height: 1.4; }
         .quiz-choices { display: flex; flex-direction: column; gap: 8px; width: 100%; }
 
-        /* ANIMASI KLIK PILIHAN KUIS YANG SMOOTH */
         .choice-btn {
             background: #ffffff;
             border: 1.5px solid #fbdde9;
@@ -341,7 +340,7 @@
             font-weight: 600;
         }
 
-        /* SURAT DENGAN PITA DI ATASNYA DAN ANIMASI KADO DI DALAMNYA */
+        /* SURAT DENGAN PITA DI ATAS DAN ANIMASI HALUS */
         .letter-container-page {
             display: none;
             width: 100%;
@@ -358,11 +357,11 @@
             overflow-y: auto;
             line-height: 2rem;
             opacity: 0;
-            transform: translateY(15px);
+            transform: scale(0.95) translateY(15px);
             transition: opacity 0.5s ease, transform 0.5s ease;
         }
 
-        .letter-container-page.active { display: block; opacity: 1; transform: translateY(0); }
+        .letter-container-page.active { display: block; opacity: 1; transform: scale(1) translateY(0); }
 
         .letter-ribbon-header {
             position: absolute;
@@ -380,24 +379,42 @@
         .letter-inner-body { font-size: 0.9rem; color: #4a4a4a; }
         .letter-inner-body p { margin-bottom: 1.8rem; }
 
-        /* ANIMASI KADO DI DALAM SURAT */
+        /* KADO DI DALAM SURAT DENGAN INSTRUKSI JELAS & NAMA L */
+        .letter-gift-wrapper {
+            text-align: center;
+            margin-top: 25px;
+            padding: 15px;
+            background: #fff5f8;
+            border: 2px dashed #fbdde9;
+            border-radius: 16px;
+        }
+
+        .letter-gift-cue {
+            font-size: 0.82rem;
+            color: #d47a9e;
+            font-weight: 700;
+            margin-bottom: 8px;
+            line-height: 1.4;
+        }
+
         .letter-gift-icon {
-            font-size: 45px;
+            font-size: 50px;
             cursor: pointer;
             display: inline-block;
             transition: transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-            animation: giftBounce 2s infinite ease-in-out;
+            animation: giftBounce 1.5s infinite ease-in-out;
         }
 
         .letter-gift-icon:active {
-            transform: scale(0.8) rotate(10deg);
+            transform: scale(0.7) rotate(15deg);
         }
 
         @keyframes giftBounce {
             0%, 100% { transform: translateY(0); }
-            50% { transform: translateY(-6px); }
+            50% { transform: translateY(-8px); }
         }
 
+        /* GALERI FOTO DENGAN TRANSISI HALUS */
         .gallery-page-box {
             display: none;
             width: 100%;
@@ -413,11 +430,11 @@
             max-height: 85vh;
             overflow-y: auto;
             opacity: 0;
-            transform: translateY(15px);
+            transform: scale(0.95) translateY(15px);
             transition: opacity 0.5s ease, transform 0.5s ease;
         }
 
-        .gallery-page-box.active { display: flex; flex-direction: column; align-items: center; opacity: 1; transform: translateY(0); }
+        .gallery-page-box.active { display: flex; flex-direction: column; align-items: center; opacity: 1; transform: scale(1) translateY(0); }
 
         .gallery-title-main { font-size: 1.4rem; font-weight: 700; color: #d47a9e; margin-bottom: 2px; }
         .gallery-subtitle-main { font-size: 0.75rem; color: #8c7a6b; margin-bottom: 12px; font-weight: 600; }
@@ -629,7 +646,7 @@
         </div>
     </div>
 
-    <!-- VIEW 6: SURAT (DENGAN PITA DI ATASNYA DAN KADO BERANIMASI) -->
+    <!-- VIEW 6: SURAT (DENGAN PITA, INSTRUKSI NAMA L, & KADO ANIMASI) -->
     <div class="letter-container-page" id="view-letter">
         <div class="letter-ribbon-header">🎀</div>
         <div class="letter-inner-body">
@@ -643,8 +660,9 @@
             <p>最后，生日快乐呀，Mina。希望你一直被爱包围，希望你未来的每一天都能过得幸福。谢谢你来到我的生活里，我真的很珍惜你。</p>
             <p>我爱你，宝贝。❤️</p>
 
-            <div style="text-align: center; margin-top: 15px;">
-                <p style="font-size: 0.85rem; color: #8c7a6b; margin-bottom: 8px; font-weight: 600;">这里还有一个最后的惊喜给你... ✨</p>
+            <!-- KOTAK KADO DENGAN PESAN KHUSUS DARI L -->
+            <div class="letter-gift-wrapper">
+                <div class="letter-gift-cue">✨ 专属于你的最后惊喜 (from L)<br>👇 快点点击下面的小礼盒吧！ 👇</div>
                 <div id="open-gallery-trigger" class="letter-gift-icon">🎁</div>
             </div>
         </div>
@@ -693,6 +711,7 @@
         let selectedSongFile = "Ed Sheeran - Perfect.mp3";
         const player = document.getElementById('bg-audio');
 
+        // Pilih lagu dari list
         document.querySelectorAll('.music-item').forEach(item => {
             item.addEventListener('click', function() {
                 selectedSongFile = this.getAttribute('data-file');
@@ -706,9 +725,15 @@
         player.src = selectedSongFile;
         player.load();
 
+        // Tombol play musik dipercepat & dioptimalkan agar tidak delay
         document.getElementById('start-music-btn').addEventListener('click', function() {
-            player.play().catch(e => console.log("Audio play error:", e));
-            goToGiftView();
+            player.playbackRate = 1.0;
+            player.play().then(() => {
+                goToGiftView();
+            }).catch(error => {
+                console.log("Audio play blocked/error:", error);
+                goToGiftView();
+            });
         });
 
         function goToGiftView() {
