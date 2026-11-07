@@ -212,6 +212,7 @@
         .quiz-ask { font-size: 0.85rem; font-weight: 700; color: #4a4a4a; margin-bottom: 12px; line-height: 1.4; }
         .quiz-choices { display: flex; flex-direction: column; gap: 8px; width: 100%; }
 
+        /* ANIMASI KLIK PILIHAN KUIS YANG SMOOTH */
         .choice-btn {
             background: #ffffff;
             border: 1.5px solid #fbdde9;
@@ -277,11 +278,22 @@
             flex-direction: column;
             align-items: center;
             gap: 4px;
-            transition: transform 0.2s ease;
+            transition: transform 0.2s cubic-bezier(0.175, 0.885, 0.32, 1.275);
         }
 
-        .star-box:active { transform: scale(0.92); }
-        .star-box.unlocked { background: #ffe6f0; border-color: #ffb5a7; }
+        .star-box:active { transform: scale(0.9); }
+        .star-box.unlocked { 
+            background: #ffe6f0; 
+            border-color: #ffb5a7; 
+            animation: starUnlockPop 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        }
+
+        @keyframes starUnlockPop {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.15); }
+            100% { transform: scale(1); }
+        }
+
         .star-icon-svg { width: 28px; height: 28px; fill: #ffcc00; }
         .star-text-label { font-size: 0.7rem; color: #d47a9e; font-weight: 700; }
 
@@ -329,6 +341,7 @@
             font-weight: 600;
         }
 
+        /* SURAT DENGAN PITA DI ATASNYA DAN ANIMASI KADO DI DALAMNYA */
         .letter-container-page {
             display: none;
             width: 100%;
@@ -366,6 +379,24 @@
 
         .letter-inner-body { font-size: 0.9rem; color: #4a4a4a; }
         .letter-inner-body p { margin-bottom: 1.8rem; }
+
+        /* ANIMASI KADO DI DALAM SURAT */
+        .letter-gift-icon {
+            font-size: 45px;
+            cursor: pointer;
+            display: inline-block;
+            transition: transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            animation: giftBounce 2s infinite ease-in-out;
+        }
+
+        .letter-gift-icon:active {
+            transform: scale(0.8) rotate(10deg);
+        }
+
+        @keyframes giftBounce {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-6px); }
+        }
 
         .gallery-page-box {
             display: none;
@@ -598,7 +629,7 @@
         </div>
     </div>
 
-    <!-- VIEW 6: SURAT -->
+    <!-- VIEW 6: SURAT (DENGAN PITA DI ATASNYA DAN KADO BERANIMASI) -->
     <div class="letter-container-page" id="view-letter">
         <div class="letter-ribbon-header">🎀</div>
         <div class="letter-inner-body">
@@ -614,7 +645,7 @@
 
             <div style="text-align: center; margin-top: 15px;">
                 <p style="font-size: 0.85rem; color: #8c7a6b; margin-bottom: 8px; font-weight: 600;">这里还有一个最后的惊喜给你... ✨</p>
-                <div id="open-gallery-trigger" style="font-size: 45px; cursor: pointer; display: inline-block;">🎁</div>
+                <div id="open-gallery-trigger" class="letter-gift-icon">🎁</div>
             </div>
         </div>
     </div>
@@ -662,7 +693,6 @@
         let selectedSongFile = "Ed Sheeran - Perfect.mp3";
         const player = document.getElementById('bg-audio');
 
-        // Event listener untuk memilih lagu dari list
         document.querySelectorAll('.music-item').forEach(item => {
             item.addEventListener('click', function() {
                 selectedSongFile = this.getAttribute('data-file');
@@ -673,11 +703,9 @@
             });
         });
 
-        // Inisialisasi lagu pertama
         player.src = selectedSongFile;
         player.load();
 
-        // Tombol play musik & masuk ke halaman kado
         document.getElementById('start-music-btn').addEventListener('click', function() {
             player.play().catch(e => console.log("Audio play error:", e));
             goToGiftView();
