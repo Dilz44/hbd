@@ -283,19 +283,35 @@
 
         .instruction-text { font-size: 0.85rem; color: #6b6b6b; font-weight: 600; line-height: 1.4; margin-bottom: 6px; }
 
-        /* --- KOTAK KADO & HITUNG MUNDUR 5 DETIK --- */
-        .gift-wrapper { position: relative; cursor: pointer; display: inline-block; margin-bottom: 15px; z-index: 20; }
+        /* --- KOTAK KADO & HITUNG MUNDUR 5 DETIK (ESTETIK, TIDAK POLOS) --- */
+        .gift-wrapper { position: relative; cursor: pointer; display: inline-block; margin-bottom: 10px; z-index: 20; }
         .gift-box {
             font-size: 75px;
             user-select: none;
             filter: drop-shadow(0 8px 15px rgba(255, 181, 167, 0.6));
         }
 
-        #countdown-display {
-            font-size: 2.5rem;
+        .countdown-box {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+        }
+
+        .countdown-number {
+            font-size: 4rem;
             font-weight: 700;
             color: #d47a9e;
-            margin-bottom: 10px;
+            text-shadow: 0 4px 15px rgba(212, 122, 158, 0.3);
+            line-height: 1.1;
+            margin-bottom: 8px;
+        }
+
+        .countdown-label {
+            font-size: 0.85rem;
+            color: #8c7a6b;
+            font-weight: 600;
         }
 
         /* --- DESAIN BINGKAI KARTUN --- */
@@ -529,8 +545,13 @@
                 <div class="gift-wrapper" id="gift-box-container" onclick="startGiftCountdown()">
                     <div class="gift-box">🎁</div>
                 </div>
-                <div id="countdown-display" style="display: none;">5</div>
                 <div class="instruction-text" id="gift-instruction">你有一个小礼物！<br><span style="font-size: 0.8rem; color: #b0b0b0;">( 请点击礼盒 )</span></div>
+
+                <!-- Kontainer Hitung Mundur yang Estetik -->
+                <div class="countdown-box" id="countdown-display" style="display: none;">
+                    <div class="countdown-number" id="countdown-num">5</div>
+                    <div class="countdown-label">✨ 准备接收惊喜... ✨</div>
+                </div>
             </div>
 
             <!-- HALAMAN 3: EFEK KETIK -->
@@ -752,36 +773,44 @@
         function goToPage2() {
             const audio = document.getElementById('bg-music');
             audio.src = chosenSong;
+            // AUDIONYA LANGSUNG DI-TRIGGER DARI SINI AGAR TIDAK DELAY
+            audio.load();
             audio.play().then(() => {
-                console.log("Audio playing successfully");
+                console.log("Audio preloaded and playing");
             }).catch(error => {
-                console.log("Audio autoplay prevented", error);
+                console.log("Audio play deferred", error);
             });
+
             document.getElementById('page-1').classList.remove('active');
             document.getElementById('page-2').classList.add('active');
         }
 
-        // FUNGSI HITUNG MUNDUR 5 DETIK SEBELUM LANJUT KE PESAN
+        // FUNGSI HITUNG MUNDUR 5 DETIK (ESTETIK, TIDAK POLOS)
         function startGiftCountdown() {
             const giftBox = document.getElementById('gift-box-container');
-            const countdownDisplay = document.getElementById('countdown-display');
             const instructionText = document.getElementById('gift-instruction');
+            const countdownDisplay = document.getElementById('countdown-display');
+            const countdownNum = document.getElementById('countdown-num');
 
-            // Sembunyikan kado dan instruksi, tampilkan angka hitung mundur
+            // Pastikan audio memastikan keputer saat kado ditekan
+            const audio = document.getElementById('bg-music');
+            if (audio.paused) {
+                audio.play().catch(e => console.log(e));
+            }
+
             giftBox.style.display = 'none';
             instructionText.style.display = 'none';
-            countdownDisplay.style.display = 'block';
+            countdownDisplay.style.display = 'flex';
 
             let timeLeft = 5;
-            countdownDisplay.textContent = timeLeft;
+            countdownNum.textContent = timeLeft;
 
             const timer = setInterval(() => {
                 timeLeft--;
                 if (timeLeft > 0) {
-                    countdownDisplay.textContent = timeLeft;
+                    countdownNum.textContent = timeLeft;
                 } else {
                     clearInterval(timer);
-                    // Pindah ke halaman 3 (teks pesan) setelah 5 detik pas
                     document.getElementById('page-2').classList.remove('active');
                     document.getElementById('page-3').classList.add('active');
                     typeText();
